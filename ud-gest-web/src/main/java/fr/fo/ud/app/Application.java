@@ -14,9 +14,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages="fr.fo.ud")
 @EnableJpaRepositories(basePackages= {"fr.fo.ud"})
+@EnableMongoRepositories("fr.fo.ud")
 @EntityScan(basePackages= {"fr.fo.ud"})
 @ComponentScan(basePackages = {"fr.fo.ud"})
 public class Application {

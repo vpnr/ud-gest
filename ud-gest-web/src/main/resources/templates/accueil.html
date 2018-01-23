@@ -37,9 +37,11 @@
 			</div>
 		</div>
 	</div>
-	<img class="text-center" th:src="@{/images/fo.png}"></img>
-	<img class="text-center" th:src="@{/images/fo.png}"></img>
-	<img class="text-center" th:src="@{/images/fo.png}"></img>
+<!-- 	<img class="text-center" th:src="@{/images/fo.png}"></img> -->
+<!-- 	<img class="text-center" th:src="@{/images/fo.png}"></img> -->
+<!-- 	<img class="text-center" th:src="@{/images/fo.png}"></img> -->
+		<span th:text="${personne.nom}"></span>
+		<span th:text="${personne.prenom}"></span>
 	<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
