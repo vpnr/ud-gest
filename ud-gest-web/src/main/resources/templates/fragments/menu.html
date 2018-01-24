@@ -10,7 +10,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">
+				<a class="navbar-brand" href="index.html" th:href="@{/index}">
 					<img th:src="@{/images/accueil_logo_02.png}" name="image" id="home" th:onmouseover="@{/images/accueil_logo_01.png}" th:onmouseout="@{/images/accueil_logo_02.png}" />
 <!-- 					<img th:src="@{/images/accueil_logo_02.png}" name="image" id="home"/> -->
 				</a>
@@ -19,7 +19,10 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="salon.html">Le salon</a></li>
+					<li><a th:href="@{/adherent}">Adherent</a></li>
+					<li><a href="cheques-cadeaux.html">Entreprise</a></li>
+					<li><a href="partenaires.html">Syndicat</a></li>
+					<li><a href="contact.html">Fédération</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle white"
 						data-toggle="dropdown">Soins et tarifs<b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -32,9 +35,6 @@
 							<li><a href="extensions-cils.html">Extensions de cils</a></li>
 							<li><a href="autres-soins.html">Autres soins</a></li>
 						</ul></li>
-					<li><a href="cheques-cadeaux.html">Chèques cadeaux</a></li>
-					<li><a href="partenaires.html">Nos partenaires</a></li>
-					<li><a href="contact.html">Contact</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

@@ -38,6 +38,8 @@ public interface IDaoAdherent {
      */
     Adherent delete(Adherent adh);
     
+    List<Adherent> findAll();
+    
     Adherent findById(Integer id);
     
     /**

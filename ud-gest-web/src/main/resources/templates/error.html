@@ -1,10 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>ERROR</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<head th:include="fragments/header :: header"></head>
 <body>
-	<p>exception gérée.</p>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+		th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<p>exception gérée.</p>
+	</div>
+	<footer th:include="fragments/footer :: footer"></footer>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#tableAdherent').dynatable();
+		});
+	</script>
 </body>
 </html>

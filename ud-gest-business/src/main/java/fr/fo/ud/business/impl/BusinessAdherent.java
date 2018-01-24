@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import fr.fo.ud.business.api.IBusinessAdherent;
 import fr.fo.ud.data.api.IDaoAdherent;
-import fr.fo.ud.data.api.IDaoVille;
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
 import fr.fo.ud.entity.Fonction;
@@ -39,6 +38,10 @@ public class BusinessAdherent implements IBusinessAdherent {
 		return null;
 	}
 
+	public List<Adherent> getAll() {
+		return daoAdherent.findAll();
+	}
+	
 	public Adherent getById(Integer paramId) {
 		return daoAdherent.findById(paramId);
 	}
@@ -54,8 +57,8 @@ public class BusinessAdherent implements IBusinessAdherent {
 	}
 
 	public List<Adherent> getByMotCle(String paramMotCle) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return daoAdherent.findByMotCle(paramMotCle);
 	}
 
 	public List<Adherent> getByVille(Ville paramVille) {

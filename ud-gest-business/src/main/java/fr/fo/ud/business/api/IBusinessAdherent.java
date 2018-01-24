@@ -11,37 +11,39 @@ import fr.fo.ud.entity.Ville;
 
 public interface IBusinessAdherent {
 
-	Adherent add(Adherent adh);
+	public Adherent add(Adherent adh);
 	
-	Adherent update(Adherent adh);
+	public Adherent update(Adherent adh);
 	
-	Adherent delete(Adherent adh);
+	public Adherent delete(Adherent adh);
 	
-	Adherent getById(Integer id);
+	public List<Adherent> getAll();
 	
-	List<Adherent> getByMotCle(String motCle);
+	public Adherent getById(Integer id);
 	
-	List<Formation> getFormationByAdherent(Adherent adherent);
+	public List<Adherent> getByMotCle(String motCle);
 	
-	List<Fonction> getFonctionByAdherent(Adherent adherent);
+	public List<Formation> getFormationByAdherent(Adherent adherent);
 	
-	List<Adherent> getByVille(Ville ville);
+	public List<Fonction> getFonctionByAdherent(Adherent adherent);
 	
-	List<Adherent> getBySyndicat(Syndicat syndicat);
+	public List<Adherent> getByVille(Ville ville);
 	
-	List<Adherent> getByEntreprise(Entreprise entreprise);
+	public List<Adherent> getBySyndicat(Syndicat syndicat);
 	
-	List<Adherent> getByFonction(Fonction fonction);
+	public List<Adherent> getByEntreprise(Entreprise entreprise);
 	
-	List<Adherent> getByFormation(Formation formation);
+	public List<Adherent> getByFonction(Fonction fonction);
 	
-	Adherent addFonctionAdherent(Fonction fonction);
+	public List<Adherent> getByFormation(Formation formation);
 	
-	Adherent deleteFonctionAdherent(Fonction fonction);
+	public Adherent addFonctionAdherent(Fonction fonction);
 	
-	Adherent updateFonctionAdherent(Fonction fonction);
+	public Adherent deleteFonctionAdherent(Fonction fonction);
 	
-	Adherent addFormationAdherent(Formation formation);
+	public Adherent updateFonctionAdherent(Fonction fonction);
+	
+	public Adherent addFormationAdherent(Formation formation);
 	
 	
 }

@@ -1,16 +1,67 @@
-#footer {
-	width: 100%;
-    border-width: 0 0 1px;
-    background-color: #222;
-    border-color: #080808;
-	min-height: 50px;
-    border: 1px solid transparent;
-    margin-bottom: 0px !important;
-    margin-right: 0px !important;
-}
-
 #home{
 	margin: -10px 0px 0px 0px;
 	height: 40px;
 	width: 40px;
 }
+
+#footer {
+	width: 100%;
+    border-width: 0 0 1px;
+    background-color: black;
+    border-color: #080808;
+	min-height: 50px;
+    border: 1px solid transparent;
+    margin-bottom: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 30px;
+}
+
+#footer-content {
+	margin-top: 15px;	
+}
+
+label {
+min-width: 120px;
+}
+
+.form-group-adherent {
+	background: black;
+	height: 46px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding-top: 12px;
+}
+
+.form-group-entreprise {
+	background: black;
+	height: 46px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding-top: 12px;
+	padding-left: 10px;
+	width: 98%;
+}
+
+.form-group-syndicat {
+	background: black;
+	height: 46px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding-top: 12px;
+	padding-left: 10px;
+	width: 100%;
+}
+/* Overdide bootstrap css to keep nav red */
+/* nav { */
+/* 	background-color: red !important; */
+/* 	border-color: red !important; */
+/* } */
+
+/* .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover { */
+/*     color: white !important; */
+/*     background-color: red !important; */
+/* } */
+
+/* .navbar-inverse .navbar-nav > li > a { */
+/*     color: white !important; */
+/* } */

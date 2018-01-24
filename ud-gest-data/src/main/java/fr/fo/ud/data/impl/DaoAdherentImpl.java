@@ -37,17 +37,20 @@ public class DaoAdherentImpl implements IDaoAdherent {
 		return paramAdh;
 	}
 
+	public List<Adherent> findAll() {
+		return em.createQuery("select a from Adherent a", Adherent.class).getResultList();
+	}
+	
 	public List<Adherent> findByNom(String paramNom) {
 		List<Adherent> adherents = null;
-		Query q = em.createQuery("select a from Adherent a where nom =:pNom");
+		Query q = em.createQuery("select a from Adherent a where nom =:pNom", Adherent.class);
 		q.setParameter("pNom", paramNom);
 		adherents = q.getResultList();
 		return adherents;
 	}
 
 	public List<Adherent> findByMotCle(String paramMotCle) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select a from Adherent a where nom =:pNom", Adherent.class).setParameter("nom", paramMotCle).getResultList();
 	}
 
 	public List<Adherent> findByVille(String paramVille) {
