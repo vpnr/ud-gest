@@ -6,13 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
+
 import fr.fo.ud.data.api.IDaoSyndicat;
 import fr.fo.ud.entity.Syndicat;
-import fr.fo.ud.entity.Ville;
 
+@Component
 public class DaoSyndicatImpl implements IDaoSyndicat {
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+    @PersistenceContext
     private EntityManager em;
     
 	public Syndicat add(Syndicat paramSyndicat) {
@@ -36,14 +38,9 @@ public class DaoSyndicatImpl implements IDaoSyndicat {
 	    return (Syndicat) q.getSingleResult();
 	}
 
-	public List<Syndicat> getByVille(Ville paramVille) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<Syndicat> getByMotCle(String paramMotCle) {
 	    Query q = em.createQuery("select s from Syndicat s where s.libelle like :pLibelle order by s.libelle");
-	    q.setParameter("Libelle", paramMotCle);
+	    q.setParameter("pLibelle", paramMotCle + "%");
 	    return q.getResultList();
 	}
 

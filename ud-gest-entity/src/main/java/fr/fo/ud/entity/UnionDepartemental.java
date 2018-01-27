@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ud")
 public class UnionDepartemental implements Serializable {
@@ -31,7 +33,13 @@ public class UnionDepartemental implements Serializable {
     private String numeroRue;
     
     @Column(name = "libelle_rue", nullable = true, length = 150)
-    private String libelleRue;
+    private String rue;
+    
+    @Column(name = "cp_ud", nullable = true, length = 150)
+    private String cp;
+    
+    @Column(name = "ville_ud", nullable = true, length = 150)
+    private String ville;
     
     @Column(name = "tel_ud", nullable = true, length = 15)
     private String tel;
@@ -45,29 +53,11 @@ public class UnionDepartemental implements Serializable {
     @Column(name = "siteweb_ud", nullable = true, length = 150)
     private String siteWeb;
     
-    @ManyToOne
-    @JoinColumn(name = "id_ville_ud", nullable = true)
-    private Ville ville;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "ud")
     private List<Syndicat> syndicats;
 
 	public UnionDepartemental() {
-		super();
-	}
-
-	public UnionDepartemental(Integer paramId, String paramLibelle, String paramNumeroRue, String paramLibelleRue,
-			String paramTel, String paramFax, String paramMail, String paramSiteWeb, Ville paramVille) {
-		super();
-		id = paramId;
-		libelle = paramLibelle;
-		numeroRue = paramNumeroRue;
-		libelleRue = paramLibelleRue;
-		tel = paramTel;
-		fax = paramFax;
-		mail = paramMail;
-		siteWeb = paramSiteWeb;
-		ville = paramVille;
 	}
 
 	public Integer getId() {
@@ -94,12 +84,28 @@ public class UnionDepartemental implements Serializable {
 		numeroRue = paramNumeroRue;
 	}
 
-	public String getLibelleRue() {
-		return libelleRue;
+	public String getRue() {
+		return rue;
 	}
 
-	public void setLibelleRue(String paramLibelleRue) {
-		libelleRue = paramLibelleRue;
+	public void setRue(String rue) {
+		this.rue = rue;
+	}
+
+	public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
 	public String getTel() {
@@ -132,14 +138,6 @@ public class UnionDepartemental implements Serializable {
 
 	public void setSiteWeb(String paramSiteWeb) {
 		siteWeb = paramSiteWeb;
-	}
-
-	public Ville getVille() {
-		return ville;
-	}
-
-	public void setVille(Ville paramVille) {
-		ville = paramVille;
 	}
 
 	public List<Syndicat> getSyndicats() {

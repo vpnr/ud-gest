@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Classe representant la table {@link Entreprise}
  * @author myPC
@@ -22,7 +25,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "entreprise")
-
 public class Entreprise implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +45,12 @@ public class Entreprise implements Serializable{
     
     @Column(name = "libelle_rue", nullable = true, length = 150)
     private String libelleRue;
+    
+    @Column(name = "cp_entreprise", nullable = true, length = 150)
+    private String cp;
+    
+    @Column(name = "ville_entreprise", nullable = true, length = 150)
+    private String ville;
 
     @Column(name = "tel_entreprise", nullable = true, length = 15)
     private String tel;
@@ -56,32 +64,13 @@ public class Entreprise implements Serializable{
     @Column(name = "siteweb_entreprise", nullable = true, length = 150)
     private String siteWeb;
     
-    @ManyToOne
-    @JoinColumn(name = "id_ville_entreprise", nullable = true)
-    private Ville ville;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "entreprise")
     private List<Adherent> adherents;
 
     public Entreprise() {
 		super();
 	}
-
-	public Entreprise(Integer paramId, String paramLibelle, Date paramDateElection, String paramNumeroRue,
-            String paramLibelleRue, String paramTel, String paramFax, String paramMail, String paramSiteWeb,
-            Ville paramVille) {
-        super();
-        id = paramId;
-        libelle = paramLibelle;
-        dateElection = paramDateElection;
-        numeroRue = paramNumeroRue;
-        libelleRue = paramLibelleRue;
-        tel = paramTel;
-        fax = paramFax;
-        mail = paramMail;
-        siteWeb = paramSiteWeb;
-        ville = paramVille;
-    }
 
     /**
      * @return the id
@@ -197,15 +186,23 @@ public class Entreprise implements Serializable{
 		libelleRue = paramLibelleRue;
 	}
 
-	public Ville getVille() {
+    public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getVille() {
 		return ville;
 	}
 
-	public void setVille(Ville paramVille) {
-		ville = paramVille;
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
-    public Date getDateElection() {
+	public Date getDateElection() {
         return dateElection;
     }
 

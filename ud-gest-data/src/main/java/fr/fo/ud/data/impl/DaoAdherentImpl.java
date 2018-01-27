@@ -7,7 +7,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.fo.ud.data.api.IDaoAdherent;
 import fr.fo.ud.entity.Adherent;
@@ -16,7 +18,8 @@ import fr.fo.ud.entity.Fonction;
 import fr.fo.ud.entity.Formation;
 import fr.fo.ud.entity.Syndicat;
 
-@Component
+@Repository
+@Transactional
 public class DaoAdherentImpl implements IDaoAdherent {
 
 	@PersistenceContext

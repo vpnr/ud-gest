@@ -7,7 +7,6 @@ import fr.fo.ud.entity.Entreprise;
 import fr.fo.ud.entity.Fonction;
 import fr.fo.ud.entity.Formation;
 import fr.fo.ud.entity.Syndicat;
-import fr.fo.ud.entity.Ville;
 
 public interface IBusinessAdherent {
 
@@ -26,8 +25,6 @@ public interface IBusinessAdherent {
 	public List<Formation> getFormationByAdherent(Adherent adherent);
 	
 	public List<Fonction> getFonctionByAdherent(Adherent adherent);
-	
-	public List<Adherent> getByVille(Ville ville);
 	
 	public List<Adherent> getBySyndicat(Syndicat syndicat);
 	

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "branche")
 public class Branche implements Serializable {
@@ -31,6 +33,7 @@ public class Branche implements Serializable {
     @JoinColumn(name = "id_federation_branche", nullable = false)
     private Federation federation;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "branche")
     private List<Syndicat> syndicats;
 

@@ -2,14 +2,18 @@ package fr.fo.ud.business.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.fo.ud.business.api.IBusinessEntreprise;
 import fr.fo.ud.data.api.IDaoEntreprise;
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Ville;
 
+@Service
 public class BusinessEntreprise implements IBusinessEntreprise{
 
+	@Autowired
 	private IDaoEntreprise daoEntreprise;
 	
 	public Entreprise add(Entreprise paramEntreprise) {
@@ -36,11 +40,6 @@ public class BusinessEntreprise implements IBusinessEntreprise{
 
 	public List<Entreprise> getByMotCle(String paramMotCle) {
 		return daoEntreprise.getByMotCle(paramMotCle);
-	}
-
-	public List<Entreprise> getByVille(Ville paramVille) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public List<Entreprise> getEntrepriseByAdherent(Adherent paramAdherent) {

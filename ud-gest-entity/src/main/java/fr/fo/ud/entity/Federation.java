@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "federation")
 public class Federation implements Serializable {
@@ -33,6 +35,12 @@ public class Federation implements Serializable {
     @Column(name = "libelle_rue", nullable = true, length = 150)
     private String libelleRue;
     
+    @Column(name = "cp_federation", nullable = true, length = 150)
+    private String cp;
+    
+    @Column(name = "ville_federation", nullable = true, length = 150)
+    private String ville;
+    
     @Column(name = "tel_federation", nullable = true, length = 15)
     private String tel;
     
@@ -45,32 +53,16 @@ public class Federation implements Serializable {
     @Column(name = "siteweb_federation", nullable = true, length = 150)
     private String siteWeb;
     
-    @ManyToOne
-    @JoinColumn(name = "id_ville_federation", nullable = true)
-    private Ville ville;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "federation")
     private List<Branche> branches;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "federation")
     private List<Syndicat> syndicats;
 
     public Federation() {
         super();
-    }
-
-    public Federation(Integer paramId, String paramLibelle, String paramNumeroRue, String paramLibelleRue,
-            String paramTel, String paramFax, String paramMail, String paramSiteWeb, Ville paramVille) {
-        super();
-        id = paramId;
-        libelle = paramLibelle;
-        numeroRue = paramNumeroRue;
-        libelleRue = paramLibelleRue;
-        tel = paramTel;
-        fax = paramFax;
-        mail = paramMail;
-        siteWeb = paramSiteWeb;
-        ville = paramVille;
     }
 
     public Integer getId() {
@@ -105,7 +97,23 @@ public class Federation implements Serializable {
         libelleRue = paramLibelleRue;
     }
 
-    public String getTel() {
+    public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public String getTel() {
         return tel;
     }
 
@@ -135,14 +143,6 @@ public class Federation implements Serializable {
 
     public void setSiteWeb(String paramSiteWeb) {
         siteWeb = paramSiteWeb;
-    }
-
-    public Ville getVille() {
-        return ville;
-    }
-
-    public void setVille(Ville paramVille) {
-        ville = paramVille;
     }
 
     public List<Branche> getBranches() {

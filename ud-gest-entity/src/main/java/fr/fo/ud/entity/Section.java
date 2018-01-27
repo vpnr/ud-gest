@@ -30,6 +30,12 @@ public class Section implements Serializable {
     @Column(name = "libelle_rue", nullable = true, length = 150)
     private String libelleRue;
     
+    @Column(name = "cp_section", nullable = true, length = 150)
+    private String cp;
+    
+    @Column(name = "ville_section", nullable = true, length = 150)
+    private String ville;
+    
     @Column(name = "tel_section", nullable = true, length = 15)
     private String tel;
     
@@ -41,33 +47,13 @@ public class Section implements Serializable {
     
     @Column(name = "siteweb_section", nullable = true, length = 150)
     private String siteWeb;
-
-    @ManyToOne
-    @JoinColumn(name = "id_ville_section", nullable = true)
-    private Ville ville;
     
     @ManyToOne
     @JoinColumn(name = "id_syndicat_section", nullable = false)
     private Syndicat syndicat;
 
 	public Section() {
-		super();
 	}
-
-	public Section(Integer paramId, String paramLibelle, String paramNumeroRue, String paramLibelleRue, String paramTel,
-            String paramFax, String paramMail, String paramSiteWeb, Ville paramVille, Syndicat paramSyndicat) {
-        super();
-        id = paramId;
-        libelle = paramLibelle;
-        numeroRue = paramNumeroRue;
-        libelleRue = paramLibelleRue;
-        tel = paramTel;
-        fax = paramFax;
-        mail = paramMail;
-        siteWeb = paramSiteWeb;
-        ville = paramVille;
-        syndicat = paramSyndicat;
-    }
 
     public Integer getId() {
 		return id;
@@ -133,12 +119,20 @@ public class Section implements Serializable {
 		siteWeb = paramSiteWeb;
 	}
 
-	public Ville getVille() {
+	public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getVille() {
 		return ville;
 	}
 
-	public void setVille(Ville paramVille) {
-		ville = paramVille;
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
 	public Syndicat getSyndicat() {

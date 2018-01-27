@@ -12,14 +12,10 @@ import fr.fo.ud.entity.Entreprise;
 import fr.fo.ud.entity.Fonction;
 import fr.fo.ud.entity.Formation;
 import fr.fo.ud.entity.Syndicat;
-import fr.fo.ud.entity.Ville;
 
 @Service
 public class BusinessAdherent implements IBusinessAdherent {
 
-//	@Autowired
-//	private IDaoVille daoVille;
-	
 	@Autowired
 	private IDaoAdherent daoAdherent;
 	
@@ -59,11 +55,6 @@ public class BusinessAdherent implements IBusinessAdherent {
 	public List<Adherent> getByMotCle(String paramMotCle) {
 		
 		return daoAdherent.findByMotCle(paramMotCle);
-	}
-
-	public List<Adherent> getByVille(Ville paramVille) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public List<Adherent> getBySyndicat(Syndicat paramSyndicat) {

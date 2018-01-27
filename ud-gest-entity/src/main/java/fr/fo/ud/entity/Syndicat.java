@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Classe representant l'entite {@link Syndicat} dans l'unite de persistence.
  * @author myPC
@@ -46,6 +48,12 @@ public class Syndicat implements Serializable {
     @Column(name = "libelle_rue", nullable = true, length = 150)
     private String libelleRue;
     
+    @Column(name = "cp_syndicat", nullable = true, length = 150)
+    private String cp;
+    
+    @Column(name = "ville_syndicat", nullable = true, length = 150)
+    private String ville;
+    
     @Column(name = "tel_syndicat", nullable = true, length = 15)
     private String tel;
     
@@ -57,10 +65,6 @@ public class Syndicat implements Serializable {
     
     @Column(name = "siteweb_syndicat", nullable = true, length = 150)
     private String siteWeb;
-
-    @ManyToOne
-    @JoinColumn(name = "id_ville_syndicat", nullable = true)
-    private Ville ville;
     
     @ManyToOne
     @JoinColumn(name = "id_branche_syndicat", nullable = true)
@@ -74,9 +78,11 @@ public class Syndicat implements Serializable {
     @JoinColumn(name = "id_ud_syndicat", nullable = false)
     private UnionDepartemental ud;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "syndicat")
     private List<Adherent> adherents;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "syndicat")
     private List<Section> sections;
     
@@ -84,30 +90,8 @@ public class Syndicat implements Serializable {
      * Default constructor.
      */
     public Syndicat() {
-
     }
     
-    public Syndicat(Integer paramId, String paramLibelle, Date paramDernierAg, Date paramProchainAg,
-            String paramNumeroRue, String paramLibelleRue, String paramTel, String paramFax, String paramMail,
-            String paramSiteWeb, Ville paramVille, Branche paramBranche, Federation paramFederation,
-            UnionDepartemental paramUd) {
-        super();
-        id = paramId;
-        libelle = paramLibelle;
-        dernierAg = paramDernierAg;
-        prochainAg = paramProchainAg;
-        numeroRue = paramNumeroRue;
-        libelleRue = paramLibelleRue;
-        tel = paramTel;
-        fax = paramFax;
-        mail = paramMail;
-        siteWeb = paramSiteWeb;
-        ville = paramVille;
-        branche = paramBranche;
-        federation = paramFederation;
-        ud = paramUd;
-    }
-
     public Date getProchainAg() {
         return prochainAg;
     }
@@ -150,14 +134,6 @@ public class Syndicat implements Serializable {
     public String getTel() {
         return tel;
     }
-
-    public Ville getVille() {
-		return ville;
-	}
-
-	public void setVille(Ville paramVille) {
-		ville = paramVille;
-	}
     
     /**
      * @param paramTel the tel to set
@@ -236,6 +212,22 @@ public class Syndicat implements Serializable {
 
 	public void setLibelleRue(String paramLibelleRue) {
 		libelleRue = paramLibelleRue;
+	}
+
+	public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
 	public Date getDernierAg() {

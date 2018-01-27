@@ -2,13 +2,17 @@ package fr.fo.ud.business.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.fo.ud.business.api.IBusinessSyndicat;
 import fr.fo.ud.data.api.IDaoSyndicat;
 import fr.fo.ud.entity.Syndicat;
-import fr.fo.ud.entity.Ville;
 
+@Service
 public class BusinessSyndicat implements IBusinessSyndicat{
 
+	@Autowired
 	private IDaoSyndicat daoSyndicat;
 
 	public Syndicat add(Syndicat paramSyndicat) {
@@ -35,8 +39,4 @@ public class BusinessSyndicat implements IBusinessSyndicat{
 	    return daoSyndicat.getByMotCle(paramMotCle);
 	}
 
-	public List<Syndicat> getByVille(Ville paramVille) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

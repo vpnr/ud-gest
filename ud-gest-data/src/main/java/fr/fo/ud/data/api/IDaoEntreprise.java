@@ -3,10 +3,9 @@ package fr.fo.ud.data.api;
 import java.util.List;
 
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Ville;
 
 /**
- * Definition des services liées a la persistence pour l'entite {@link Entreprise}.
+ * Definition des services liï¿½es a la persistence pour l'entite {@link Entreprise}.
  * @author myPC
  *
  */
@@ -20,21 +19,21 @@ public interface IDaoEntreprise {
 	Entreprise add(Entreprise entreprise);
 	
 	/**
-	 * Methode permettant de modifier une {@link Entreprise} dans l'unité de persistence.
+	 * Methode permettant de modifier une {@link Entreprise} dans l'unitï¿½ de persistence.
 	 * @param entreprise
 	 * @return
 	 */
 	Entreprise update(Entreprise entreprise);
 	
 	/**
-	 * Methode permettant de supprimer une {@link Entreprise} dans l'unité de persitence.
+	 * Methode permettant de supprimer une {@link Entreprise} dans l'unitï¿½ de persitence.
 	 * @param entreprise
 	 * @return
 	 */
 	Entreprise delete(Entreprise entreprise);
 	
 	/**
-	 * methode permettant de rechercher une {@link Entreprise} selon son id dans l'unité de persistence.
+	 * methode permettant de rechercher une {@link Entreprise} selon son id dans l'unitï¿½ de persistence.
 	 * @param id
 	 * @return
 	 */
@@ -47,17 +46,10 @@ public interface IDaoEntreprise {
 	List<Entreprise> getAll();
 	
     /**
-     * Methode permettant de rechercher des {@link Entreprise} selon un mot clé.
+     * Methode permettant de rechercher des {@link Entreprise} selon un mot clï¿½.
      * @param motCle
      * @return
      */
     List<Entreprise> getByMotCle(String motCle);
-    
-    /**
-     * Methode permettant de rechercher une {@link Entreprise} selon sa ville dans l'unité de persistence.
-     * @param ville
-     * @return
-     */
-    List<Entreprise> getByVille(Ville ville);
     
 }

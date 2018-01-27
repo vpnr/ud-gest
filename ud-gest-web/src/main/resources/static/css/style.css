@@ -51,6 +51,13 @@ min-width: 120px;
 	padding-left: 10px;
 	width: 100%;
 }
+
+.icon-search-overide {
+	color: white !important;
+	margin-left: 10px;
+}
+
+
 /* Overdide bootstrap css to keep nav red */
 /* nav { */
 /* 	background-color: red !important; */

@@ -3,7 +3,6 @@ package fr.fo.ud.business.api;
 import java.util.List;
 
 import fr.fo.ud.entity.Syndicat;
-import fr.fo.ud.entity.Ville;
 
 public interface IBusinessSyndicat {
 
@@ -19,6 +18,5 @@ public interface IBusinessSyndicat {
 	
 	List<Syndicat> getByMotCle(String motCle);
 	
-	List<Syndicat> getByVille(Ville ville);
 	
 }

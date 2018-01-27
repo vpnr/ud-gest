@@ -46,17 +46,22 @@
 						<a th:href="@{'/detail-syndicat/'+ ${adherent.syndicat.id}}" th:text="${adherent.syndicat.libelle}"></a>
 					</td>
 					<td>
-<!-- 						<a th:href="@{'/detail-ud/'+ ${adherent.ud.id}}" th:text="${adherent.ud.libelle}"></a> -->
+						<a th:href="@{'/detail-ud/'+ ${adherent.syndicat.ud.id}}" th:text="${adherent.syndicat.ud.libelle}"></a>
 					</td>
 					<td>
-<!-- 						<a th:href="@{'/detail-federation/'+ ${adherent.federation.id}}" th:text="${adherent.federation.libelle}"></a> -->
+						<a th:href="@{'/detail-federation/'+ ${adherent.syndicat.federation.id}}" th:text="${adherent.syndicat.federation.libelle}"></a>
 					</td>
 					<td class="center-td">
-						<a th:href="@{'/detail-adherent/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>
+						<a th:href="@{'/show-adherent-detail/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div class="row">
+			<div class="col-xs-12">
+				<a th:href="@{/show-adherent-form}" class="underline">Ajouter un adherent</a>
+			</div>
+		</div>
 	</div>
 </body>
 <div th:include="fragments/footer :: footer"></div>
