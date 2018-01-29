@@ -6,12 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.fo.ud.data.api.IDaoFederation;
 import fr.fo.ud.entity.Federation;
 
+@Transactional
+@Repository
 public class DaoFederationImpl implements IDaoFederation{
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+    @PersistenceContext
     EntityManager em;
     
     public Federation add(Federation paramFederation) {
@@ -28,19 +33,19 @@ public class DaoFederationImpl implements IDaoFederation{
         em.remove(paramFederation);
         return paramFederation;
     }
+    
+    public List<Federation> findAll() {
+    	Query q = em.createQuery("select f from Federation f order by f.libelle");
+    	return q.getResultList();
+    }
 
-    public Federation getById(Integer paramId) {
+    public Federation findById(Integer paramId) {
         Query q = em.createQuery("select f from Federation f left join fetch f.branches where f.id =:pId ");
         q.setParameter("pId", paramId);
         return (Federation) q.getSingleResult();
     }
 
-    public List<Federation> getAll() {
-        Query q = em.createQuery("select f from Federation f order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Federation> getByMotCle(String paramMotCle) {
+    public List<Federation> findByMotCle(String paramMotCle) {
         Query q = em.createQuery("select f from Federation f where f.libelle like :pLibelle order by f.libelle");
         q.setParameter("pLibelle", paramMotCle + "%");
         return q.getResultList();

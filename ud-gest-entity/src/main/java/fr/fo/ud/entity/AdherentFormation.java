@@ -13,8 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "adherent_formation")
-@IdClass(AssociationFormationId.class)
-public class Adherent_Formation implements Serializable {
+public class AdherentFormation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,11 +34,11 @@ public class Adherent_Formation implements Serializable {
 	@PrimaryKeyJoinColumn(name = "id_formation", referencedColumnName = "id_formation")
 	private Formation formation;
 
-	public Adherent_Formation() {
+	public AdherentFormation() {
 		super();
 	}
 
-	public Adherent_Formation(Integer paramIdAdherent, Integer paramIdFormation, Date paramDateObtention,
+	public AdherentFormation(Integer paramIdAdherent, Integer paramIdFormation, Date paramDateObtention,
 			Adherent paramAdherent, Formation paramFormation) {
 		super();
 		idAdherent = paramIdAdherent;

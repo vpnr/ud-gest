@@ -7,18 +7,20 @@ import fr.fo.ud.entity.Entreprise;
 
 public interface IBusinessEntreprise {
 
-	Entreprise add(Entreprise entreprise);
+	public Entreprise add(Entreprise entreprise);
 	
-	Entreprise update(Entreprise entreprise);
+	public Entreprise update(Entreprise entreprise);
 	
-	Entreprise delete(Entreprise entreprise);
+	public Entreprise delete(Entreprise entreprise);
 	
-	Entreprise getById(Integer id);
+	public Entreprise getById(Integer id);
 	
-	List<Entreprise> getAll();
+	public List<Entreprise> getAll();
 	
-	List<Entreprise> getByMotCle(String motCle);
+	public List<Entreprise> getByMotCle(String motCle);
 	
-	List<Entreprise> getEntrepriseByAdherent(Adherent adherent);
+	public List<Entreprise> getEntrepriseByAdherent(Adherent adherent);
+	
+	public List<String> getAllLibelleByMotCle(String motCle);
 	
 }

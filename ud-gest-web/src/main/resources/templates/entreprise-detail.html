@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+		th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Détails entreprise</h1>
+				<ol class="breadcrumb">
+					<li><a th:href="@{/adherent}">Rechercher entreprise</a></li>
+					<li class="active">Détails entreprise</li>
+				</ol>
+			</div>
+		</div>
+		<div class='row'>
+			<form class="form-horizontal" role="form">
+				<div class='row'>
+					<div class="col-lg-12 form-group-adherent">
+						<p class="fa fa-inverse">Informations Générales</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="nom" class="col-sm-2 control-label">Libelle :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="libelle" id="libelle_entreprise" th:value="${entreprise.libelle}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="prenom" class="col-sm-2 control-label">Elections :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="dateElection" id="data_election" th:value="${entreprise.dateElection}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="dob" class="col-sm-2 control-label">Téléphone :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="tel"
+									id="tel" th:value="${entreprise.tel}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Fax :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="fax" id="fax" th:value="${entreprise.fax}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="mail" class="col-sm-2 control-label">Mail :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="mail"	id="mail" th:value="${entreprise.mail}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="web" class="col-sm-2 control-label">Site web :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="web"	id="web" th:value="${entreprise.siteWeb}"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="num_rue_entreprise" id="num_rue_entreprise" th:value="${entreprise.numeroRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rue" class="col-sm-2 control-label">Rue :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="rue_entrepise" id="rue_entreprise" th:value="${entreprise.libelleRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cp" class="col-sm-2 control-label">Cp :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="cp_entreprise" id="cp_entreprise" th:value="${entreprise.cp}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ville" class="col-sm-2 control-label">Ville :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="ville_entreprise"	id="ville_entreprise" th:value="${entreprise.ville}"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+						<div class="col-lg-12 form-group-adherent">
+							<p class="fa fa-inverse">Adherents</p>
+						</div>
+				</div>
+				<div class="row">
+					<table id="table_adherent" class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<td>Nom</td>
+								<td>prenom</td>
+								<td>Tel</td>
+								<td>Mail</td>
+								<td>syndicat</td>
+								<td>ud</td>
+								<td>federation</td>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="adherent : ${entreprise.adherents}">
+								<td th:text="${adherent.nom}"></td>
+								<td th:text="${adherent.prenom}"></td>
+								<td th:text="${adherent.tel}"></td>
+								<td th:text="${adherent.mail}"></td>
+								<td>
+									<a th:href="@{'/show-syndicat-detail/'+ ${adherent.syndicat.id}}" th:text="${adherent.syndicat.libelle}"></a>
+								</td>
+								<td>
+									<a th:href="@{'/show-ud-detail/'+ ${adherent.syndicat.ud.id}}" th:text="${adherent.syndicat.ud.libelle}"></a>
+								</td>
+								<td>
+									<a th:href="@{'/show-federation-detail/'+ ${adherent.syndicat.federation.id}}" th:text="${adherent.syndicat.federation.libelle}"></a>
+								</td>
+								<td class="center-td">
+									<a th:href="@{'/show-adherent-detail/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+<script type="text/javascript">
+			$(document).ready(function() {
+			    $('#table_adherent').dynatable();
+				$.dynatableSetup({
+					 inputs: {
+						 queryEvent: 'keyup'
+					 }
+				});
+			});
+			$('tr').each(function(){
+			    $(this).find('td').eq(6).removeAttr('style');
+			    $(this).find('td').eq(6).addClass('text-center');
+			    $(this).find('td').eq(7).removeAttr('style');
+			    $(this).find('td').eq(7).addClass('text-center');
+			})
+			
+		</script>
+</html>

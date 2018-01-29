@@ -2,15 +2,15 @@ package fr.fo.ud.business.api;
 
 import java.util.List;
 
-import fr.fo.ud.entity.Fonction;
+import fr.fo.ud.entity.Mandat;
 
 public interface IBusinessFonction {
 
-    Fonction add(Fonction fonction);
-    Fonction update(Fonction fonction);
-    Fonction delete(Fonction fonction);
-    List<Fonction> getAll();
-    List<Fonction> getByMotCle(String motCle);
-    Fonction getById(Integer id);
+    Mandat add(Mandat fonction);
+    Mandat update(Mandat fonction);
+    Mandat delete(Mandat fonction);
+    List<Mandat> getAll();
+    List<Mandat> getByMotCle(String motCle);
+    Mandat getById(Integer id);
     
 }

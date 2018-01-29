@@ -51,4 +51,6 @@ public interface IDaoSyndicat {
      * @return
      */
     List<Syndicat> getByMotCle(String motCle);
+    
+    
 }

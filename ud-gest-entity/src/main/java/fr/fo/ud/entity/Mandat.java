@@ -14,28 +14,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "fonction")
+@Table(name = "mandat")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Fonction implements Serializable {
+public class Mandat implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "id_fonction")
+    @Column(name = "id_mandat")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(name = "libelle_fonction", nullable = false, length = 100)
+    @Column(name = "libelle_mandat", nullable = false, length = 100)
     private String libelle;
     
     @OneToMany(mappedBy = "adherent")
-    private List<Adherent_Fonction> adherentFonctions;
+    private List<AdherentMandat> adherentmandats;
     
-    public Fonction() {
+    public Mandat() {
 		super();
 	}
     
-	public Fonction(Integer paramId, String paramLibelle) {
+	public Mandat(Integer paramId, String paramLibelle) {
         super();
         id = paramId;
         libelle = paramLibelle;
@@ -69,12 +69,12 @@ public class Fonction implements Serializable {
         libelle = paramLibelle;
     }
 
-	public List<Adherent_Fonction> getAdherents() {
-		return adherentFonctions;
+	public List<AdherentMandat> getAdherents() {
+		return adherentmandats;
 	}
 
-	public void setAdherents(List<Adherent_Fonction> paramAdherents) {
-		adherentFonctions = paramAdherents;
+	public void setAdherents(List<AdherentMandat> paramAdherents) {
+		adherentmandats = paramAdherents;
 	}
 	
 	

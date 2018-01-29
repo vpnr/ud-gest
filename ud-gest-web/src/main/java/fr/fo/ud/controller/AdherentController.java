@@ -1,5 +1,6 @@
 package fr.fo.ud.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.fo.ud.business.api.IBusinessAdherent;
+import fr.fo.ud.business.api.IBusinessEntreprise;
+import fr.fo.ud.business.api.IBusinessSyndicat;
 import fr.fo.ud.entity.Adherent;
 
 @Controller
@@ -21,10 +26,28 @@ public class AdherentController {
 	@Autowired
 	IBusinessAdherent buAdherent;
 	
+	@Autowired
+	IBusinessEntreprise buEntreprise;
+	
+	@Autowired
+	IBusinessSyndicat buSyndicat;
+	
 	@RequestMapping(value="/show-adherent-search", method=RequestMethod.GET)
 	public String allAdherent(Model model) {
 		try {
-			List<Adherent> adherents = buAdherent.getAll();
+//			List<Adherent> adherents = buAdherent.getAll();
+//			model.addAttribute("adherents", adherents);
+			return "adherent-search";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/search-adherent-form", method=RequestMethod.POST)
+	public String searchAdherentByMotCle(@RequestParam(name="motCle") String motCle ,Model model) {
+		try {
+			List<Adherent> adherents = buAdherent.getByMotCle(motCle);
 			model.addAttribute("adherents", adherents);
 			return "adherent-search";
 		} catch (Exception e) {
@@ -60,6 +83,15 @@ public class AdherentController {
 			e.printStackTrace();
 			return "error";
 		}
+	}
+	
+	@RequestMapping(value="/search-adherent-ajax", method=RequestMethod.POST)
+	public @ResponseBody List<String> searchAdherent(@RequestParam(name="motCle") String motCle) {
+		List<String> wordsToSend = new ArrayList<>();
+		for (String libelleEntreprise : buEntreprise.getAllLibelleByMotCle(motCle)) {
+			wordsToSend.add(libelleEntreprise);
+		}
+		return wordsToSend;
 	}
 	
 }

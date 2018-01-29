@@ -6,15 +6,15 @@ import fr.fo.ud.entity.Federation;
 
 public interface IDaoFederation {
 
-    Federation add(Federation federation);
+    public Federation add(Federation federation);
     
-    Federation update(Federation federation);
+    public Federation update(Federation federation);
     
-    Federation delete(Federation federation);
+    public Federation delete(Federation federation);
     
-    Federation getById(Integer id);
+    public List<Federation> findAll();
     
-    List<Federation> getAll();
+    public Federation findById(Integer id);
     
-    List<Federation> getByMotCle(String motCle);
+    public List<Federation> findByMotCle(String motCle);
 }

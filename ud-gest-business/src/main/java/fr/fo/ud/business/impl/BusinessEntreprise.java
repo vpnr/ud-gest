@@ -31,20 +31,25 @@ public class BusinessEntreprise implements IBusinessEntreprise{
 	}
 
 	public Entreprise getById(Integer paramId) {
-		return daoEntreprise.getById(paramId);
+		return daoEntreprise.findById(paramId);
 	}
 
 	public List<Entreprise> getAll() {
-		return daoEntreprise.getAll();
+		return daoEntreprise.findAll();
 	}
 
 	public List<Entreprise> getByMotCle(String paramMotCle) {
-		return daoEntreprise.getByMotCle(paramMotCle);
+		return daoEntreprise.findByMotCle(paramMotCle);
 	}
 
 	public List<Entreprise> getEntrepriseByAdherent(Adherent paramAdherent) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<String> getAllLibelleByMotCle(String motCle) {
+		return daoEntreprise.findAllLibelleByMotCle(motCle);
 	}
 
 }

@@ -2,17 +2,18 @@ package fr.fo.ud.business.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.fo.ud.business.api.IBusinessFederation;
-import fr.fo.ud.data.api.IDaoBranche;
 import fr.fo.ud.data.api.IDaoFederation;
-import fr.fo.ud.entity.Branche;
 import fr.fo.ud.entity.Federation;
 
+@Service
 public class BusinessFederation implements IBusinessFederation {
 
+	@Autowired
     private IDaoFederation daoFederation;
-    
-    private IDaoBranche daoBranche;
     
     public Federation add(Federation paramFederation) {
         return daoFederation.add(paramFederation);
@@ -25,21 +26,17 @@ public class BusinessFederation implements IBusinessFederation {
     public Federation delete(Federation paramFederation) {
         return daoFederation.delete(paramFederation);
     }
-
+    
     public List<Federation> getAll() {
-        return daoFederation.getAll();
+    	return daoFederation.findAll();
+    }
+    
+    public Federation getById(Integer paramId) {
+    	return daoFederation.findById(paramId);
     }
 
     public List<Federation> getByMotCle(String paramMotCle) {
-        return daoFederation.getByMotCle(paramMotCle);
+        return daoFederation.findByMotCle(paramMotCle);
     }
 
-    public Federation getById(Integer paramId) {
-        return daoFederation.getById(paramId);
-    }
-
-    public List<Branche> getBranchesByFederation(Federation paramFederation) {
-        return daoBranche.getByFederation(paramFederation);
-    }
-    
 }

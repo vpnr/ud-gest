@@ -69,12 +69,12 @@ public class Adherent implements Serializable {
     private Entreprise entreprise;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "fonction")
-    private List<Adherent_Fonction> fonctions;
+    @OneToMany(mappedBy = "mandat")
+    private List<AdherentMandat> mandats;
     
     @JsonIgnore
     @OneToMany(mappedBy = "formation")
-    private List<Adherent_Formation> formations;
+    private List<AdherentFormation> formations;
     
     public Adherent() {
 	}
@@ -211,19 +211,19 @@ public class Adherent implements Serializable {
 		this.entreprise = entreprise;
 	}
 
-	public List<Adherent_Fonction> getFonctions() {
-		return fonctions;
+	public List<AdherentMandat> getMandats() {
+		return mandats;
 	}
 
-	public void setFonctions(List<Adherent_Fonction> fonctions) {
-		this.fonctions = fonctions;
+	public void setMonctions(List<AdherentMandat> mandats) {
+		this.mandats = mandats;
 	}
 
-	public List<Adherent_Formation> getFormations() {
+	public List<AdherentFormation> getFormations() {
 		return formations;
 	}
 
-	public void setFormations(List<Adherent_Formation> formations) {
+	public void setFormations(List<AdherentFormation> formations) {
 		this.formations = formations;
 	}
 
@@ -231,8 +231,8 @@ public class Adherent implements Serializable {
 	public String toString() {
 		return "Adherent [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dob=" + dob + ", numeroRue="
 				+ numeroRue + ", libelleRue=" + libelleRue + ", cp=" + cp + ", ville=" + ville + ", tel=" + tel
-				+ ", mail=" + mail + ", syndicat=" + syndicat + ", entreprise=" + entreprise + ", fonctions="
-				+ fonctions + ", formations=" + formations + "]";
+				+ ", mail=" + mail + ", syndicat=" + syndicat + ", entreprise=" + entreprise + ", mandats="
+				+ mandats + ", formations=" + formations + "]";
 	}
 
 	

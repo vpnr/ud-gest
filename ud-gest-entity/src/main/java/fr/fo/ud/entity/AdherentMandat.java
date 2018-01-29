@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "adherent_fonction")
-public class Adherent_Fonction implements Serializable {
+@Table(name = "adherent_mandat")
+public class AdherentMandat implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,23 +23,23 @@ public class Adherent_Fonction implements Serializable {
 	
 	@Id
     @ManyToOne
-    @JoinColumn(name = "id_fonction")
-    private Fonction fonction;
+    @JoinColumn(name = "id_mandat")
+    private Mandat mandat;
 	
-	@Column(name = "date_debut_fonction", nullable = true)
+	@Column(name = "date_debut_mandat", nullable = true)
 	private Date dateDebut;
 	
-	@Column(name = "date_fin_fonction", nullable = true)
+	@Column(name = "date_fin_mandat", nullable = true)
 	private Date dateFin;
 
-    public Adherent_Fonction() {
+    public AdherentMandat() {
         super();
     }
 
-    public Adherent_Fonction(Adherent paramAdherent, Fonction paramFonction, Date paramDateDebut, Date paramDateFin) {
+    public AdherentMandat(Adherent paramAdherent, Mandat paramMandat, Date paramDateDebut, Date paramDateFin) {
         super();
         adherent = paramAdherent;
-        fonction = paramFonction;
+        mandat = paramMandat;
         dateDebut = paramDateDebut;
         dateFin = paramDateFin;
     }
@@ -52,12 +52,12 @@ public class Adherent_Fonction implements Serializable {
         adherent = paramAdherent;
     }
 
-    public Fonction getFonction() {
-        return fonction;
+    public Mandat getmandat() {
+        return mandat;
     }
 
-    public void setFonction(Fonction paramFonction) {
-        fonction = paramFonction;
+    public void setmandat(Mandat paramMandat) {
+        mandat = paramMandat;
     }
 
     public Date getDateDebut() {

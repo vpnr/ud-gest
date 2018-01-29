@@ -7,17 +7,16 @@ import fr.fo.ud.entity.Federation;
 
 public interface IBusinessFederation {
 
-    Federation add(Federation federation);
+    public Federation add(Federation federation);
     
-    Federation update(Federation federation);
+    public Federation update(Federation federation);
     
-    Federation delete(Federation federation);
+    public Federation delete(Federation federation);
     
-    Federation getById(Integer id);
+    public Federation getById(Integer id);
     
-    List<Federation> getAll();
+    public List<Federation> getAll();
         
-    List<Federation> getByMotCle(String motCle);
+    public List<Federation> getByMotCle(String motCle);
     
-    List<Branche> getBranchesByFederation(Federation federation);
 }

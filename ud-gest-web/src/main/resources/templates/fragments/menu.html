@@ -10,7 +10,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html" th:href="@{/index}">
+				<a class="navbar-brand" href="index.html" th:href="@{/show-index}">
 					<img th:src="@{/images/accueil_logo_02.png}" name="image" id="home" th:onmouseover="@{/images/accueil_logo_01.png}" th:onmouseout="@{/images/accueil_logo_02.png}" />
 <!-- 					<img th:src="@{/images/accueil_logo_02.png}" name="image" id="home"/> -->
 				</a>
@@ -20,11 +20,11 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a th:href="@{/show-adherent-search}">Adherent</a></li>
-					<li><a th:href="@{/entreprise}">Entreprise</a></li>
-					<li><a th:href="@{/syndicat}">Syndicat</a></li>
-					<li><a th:href="@{federation}">Fédération</a></li>
-					<li><a th:href="@{/union-departementale}">Union départementale</a></li>
-					<li><a th:href="@{/administration}">Administration</a></li>
+					<li><a th:href="@{/show-entreprise-search}">Entreprise</a></li>
+					<li><a th:href="@{/show-syndicat-search}">Syndicat</a></li>
+					<li><a th:href="@{show-federation-search}">Fédération</a></li>
+					<li><a th:href="@{/show-ud-search}">Union départementale</a></li>
+					<li><a th:href="@{/show-admin}">Administration</a></li>
 <!-- 					<li class="dropdown"><a href="#" class="dropdown-toggle white" -->
 <!-- 						data-toggle="dropdown">Soins et tarifs<b class="caret"></b></a> -->
 <!-- 						<ul class="dropdown-menu"> -->

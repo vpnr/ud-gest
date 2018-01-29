@@ -3,34 +3,34 @@ package fr.fo.ud.data.api;
 import java.util.List;
 
 import fr.fo.ud.entity.Adherent;
-import fr.fo.ud.entity.Fonction;
+import fr.fo.ud.entity.Mandat;
 
 public interface IDaoFonction {
 
-	Fonction add(Fonction fonction);
+	Mandat add(Mandat fonction);
 	
-	Fonction update(Fonction fonction);
+	Mandat update(Mandat fonction);
 	
-	Fonction delete(Fonction fonction);
+	Mandat delete(Mandat fonction);
 	
-	Fonction getById(Integer id);
+	Mandat getById(Integer id);
 	
-	List<Fonction> getAll();
+	List<Mandat> getAll();
 	
-	List<Fonction> getByMotCle(String motCle);
+	List<Mandat> getByMotCle(String motCle);
 	
-	List<Fonction> getFonctionEntreprise();
+	List<Mandat> getFonctionEntreprise();
 	
-	List<Fonction> getFonctionSyndicat();
+	List<Mandat> getFonctionSyndicat();
 	
-	List<Fonction> getFonctionSection();
+	List<Mandat> getFonctionSection();
 	
-	List<Fonction> getFonctionBranche();
+	List<Mandat> getFonctionBranche();
 	
-	List<Fonction> getFonctionUd();
+	List<Mandat> getFonctionUd();
 	
-	List<Fonction> getFonctionFederation();
+	List<Mandat> getFonctionFederation();
 	
-	List<Fonction> getFonctionGroupement();
+	List<Mandat> getFonctionGroupement();
 	
 }

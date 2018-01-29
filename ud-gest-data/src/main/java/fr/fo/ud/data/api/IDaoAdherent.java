@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Fonction;
+import fr.fo.ud.entity.Mandat;
 import fr.fo.ud.entity.Formation;
 import fr.fo.ud.entity.Syndicat;
 
@@ -101,5 +101,5 @@ public interface IDaoAdherent {
     
     List<Adherent> findByFormation(Formation formation);
     
-    List<Adherent> findByFonction(Fonction fonction);
+    List<Adherent> findByMandat(Mandat mandat);
 }

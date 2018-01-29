@@ -71,11 +71,11 @@ public class Syndicat implements Serializable {
     private Branche branche;
     
     @ManyToOne
-    @JoinColumn(name = "id_federation_syndicat", nullable = false)
+    @JoinColumn(name = "id_federation_syndicat", nullable = true)
     private Federation federation;
     
     @ManyToOne
-    @JoinColumn(name = "id_ud_syndicat", nullable = false)
+    @JoinColumn(name = "id_ud_syndicat", nullable = true)
     private UnionDepartemental ud;
     
     @JsonIgnore

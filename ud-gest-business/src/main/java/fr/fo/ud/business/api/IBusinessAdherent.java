@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Fonction;
+import fr.fo.ud.entity.Mandat;
 import fr.fo.ud.entity.Formation;
 import fr.fo.ud.entity.Syndicat;
 
@@ -22,25 +22,22 @@ public interface IBusinessAdherent {
 	
 	public List<Adherent> getByMotCle(String motCle);
 	
-	public List<Formation> getFormationByAdherent(Adherent adherent);
-	
-	public List<Fonction> getFonctionByAdherent(Adherent adherent);
-	
 	public List<Adherent> getBySyndicat(Syndicat syndicat);
 	
 	public List<Adherent> getByEntreprise(Entreprise entreprise);
 	
-	public List<Adherent> getByFonction(Fonction fonction);
+	public List<Adherent> getByMandat(Mandat mandat);
 	
 	public List<Adherent> getByFormation(Formation formation);
 	
-	public Adherent addFonctionAdherent(Fonction fonction);
+	public void addMandatAdherent(Mandat mandat);
 	
-	public Adherent deleteFonctionAdherent(Fonction fonction);
+	public void updateMandatAdherent(Mandat mandat);
+
+	public void deleteMandatAdherent(Mandat mandat);
+
+	public void addFormationAdherent(Formation formation);
 	
-	public Adherent updateFonctionAdherent(Fonction fonction);
-	
-	public Adherent addFormationAdherent(Formation formation);
-	
+	public void updateFormationAdherent(Formation formation);
 	
 }
