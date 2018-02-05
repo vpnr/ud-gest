@@ -83,3 +83,12 @@ insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, li
 insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, libelle_rue, cp_adherent, ville_adherent, tel_adherent, mail_adherent, id_entreprise_adherent, id_syndicat_adherent) values ("Pannier", "Philippe", "1965-12-04", "14", "rue du capitaine facq", "21120", "dreux", "0685810505", "phil.pannier@msn.com", 1, 4);
 insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, libelle_rue, cp_adherent, ville_adherent, tel_adherent, mail_adherent, id_entreprise_adherent, id_syndicat_adherent) values ("Pannier", "Veronique", "1964-12-18", "14", "rue A", "54236", "dourdan", "0688447250", "lagoute92@hotmail.com", 2, 3);
 
+insert into user(login_user, password_user, mail_user, tel_user, active) values ("admin", "$2a$10$AaQU0tyBBJAX1s2n0.m5v./t0n44r/BGx8tBsymXFf2q6Q3zW0hZC", "admin@udgest.fr", "0146309108", 1);
+insert into user(login_user, password_user, mail_user, tel_user,active) values ("user", "$2a$10$Qxv7Pr1YF/HL0HINtK44Vu7MxOalRe6Ti9yuzWEMNQED81hclPeRi", "user@udgest.fr", "0656458545", 1);
+
+insert into role VALUES (1,"ADMIN");
+insert into role VALUES (2,"USER");
+
+insert into user_role (id_user, id_role) values (1, 1);
+insert into user_role (id_user, id_role) values (2, 2);
+

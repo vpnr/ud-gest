@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:include="fragments/header :: header"></head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:include="fragments/menu :: menu"></nav>
 	<div class="container">
 		<h1>Index udgest</h1>
+		<div sec:authentication="name">
+    The value of the "name" property of the authentication object should appear here.
+</div>
 	</div>
-	
 </body>
 <footer th:include="fragments/footer :: footer"></footer>
 </html>

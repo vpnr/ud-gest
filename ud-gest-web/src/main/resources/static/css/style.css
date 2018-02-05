@@ -112,6 +112,19 @@ min-width: 120px;
 	color: grey;
 }
 
+#login-form {
+	margin-top: 15%;
+	min-height: 100%;
+}
+
+#logo_login {
+	margin-bottom: 50px;
+}
+
+hr {
+	border-top: 1px solid #8c8b8b;
+}
+
 
 /* Overdide bootstrap css to keep nav red */
 /* nav { */

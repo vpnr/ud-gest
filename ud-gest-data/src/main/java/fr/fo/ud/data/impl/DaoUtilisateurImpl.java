@@ -1,45 +1,52 @@
 package fr.fo.ud.data.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.fo.ud.data.api.IDaoUtilisateur;
-import fr.fo.ud.entity.Utilisateur;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public class DaoUtilisateurImpl implements IDaoUtilisateur {
+import fr.fo.ud.data.api.IDaoUser;
+import fr.fo.ud.entity.User;
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+@Repository
+@Transactional
+public class DaoUtilisateurImpl implements IDaoUser {
+
+    @PersistenceContext
     EntityManager em;
-    
-	public Utilisateur add(Utilisateur paramUser) {
-		// TODO Auto-generated method stub
-		return null;
+
+	@Override
+	public User save(User user) {
+		em.persist(user);
+		return user;
 	}
 
-	public Utilisateur update(Utilisateur paramUser) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public void update(User user) {
+		em.merge(user);
 	}
 
-	public Utilisateur delete(Utilisateur paramUser) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public void delete(User user) {
+		em.remove(user);
 	}
 
-	public Utilisateur getById(Integer paramId) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public List<User> findAll() {
+		return em.createQuery("select u from User u", User.class).getResultList();
 	}
 
-	public Utilisateur connexion(String paramLogin, String paramMdp) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public User findById(int id) {
+		return em.createQuery("select u from User u where u.id = :id", User.class).setParameter("id", id).getSingleResult();
 	}
 
-	public void deconnexion() {
-		// TODO Auto-generated method stub
-		
+	@Override
+	public User findByPseudo(String pseudo) {
+		return em.createQuery("select u from User u where u.pseudo = :pseudo", User.class).setParameter("pseudo", pseudo).getSingleResult();
 	}
-
 
 }
