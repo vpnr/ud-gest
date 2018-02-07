@@ -17,12 +17,8 @@ public class FederationController {
 	
 	@RequestMapping(value="/show-federation-search", method=RequestMethod.GET)
 	public String showFederationSearch(Model model) {
-		try {
 			model.addAttribute("federations", buFederation.getAll());
 			return "federation-search";
-		} catch (Exception e) {
-			return "error";
-		}
 	}
 	
 	@RequestMapping(value="/show-federation-detail/{id}", method=RequestMethod.GET)

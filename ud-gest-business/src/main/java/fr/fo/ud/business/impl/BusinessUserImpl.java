@@ -61,10 +61,31 @@ public class BusinessUserImpl implements IBusinessUser {
 	}
 
 	@Override
-	public void updateUser(int id, String pwd) {
+	public void updateUser(User user, int idRole) {
+		user.setMdp(bCryptPasswordEncoder.encode(user.getMdp()));
+		Role userRole = daoRole.findById(idRole);
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		daoUser.update(user);
+	}
+	
+	@Override
+	public void deleteUser(User user) {
+		daoUser.delete(user);
+	}
+
+	@Override
+	public void activeUser(int id) {
 		User user = daoUser.findById(id);
-		String pwdCrypt = bCryptPasswordEncoder.encode(pwd);
-		user.setMdp(pwdCrypt);
+		user.setActive(1);
+		daoUser.update(user);
+	}
+	
+	@Override
+	public void desactiveUser(int id) {
+		User user = daoUser.findById(id);
+		user.toString();
+		user.setActive(0);
+		user.toString();
 		daoUser.update(user);
 	}
 

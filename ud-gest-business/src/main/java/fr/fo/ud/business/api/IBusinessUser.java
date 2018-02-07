@@ -17,8 +17,14 @@ public interface IBusinessUser {
 	
 	public User saveUser(User user, int idRole);
 	
-	public void updateUser(int id, String pwd);
+	public void updateUser(User user, int idRole);
+	
+	public void deleteUser(User user);
 	
 	public List<Role> getAllRole();
+	
+	public void activeUser(int id);
+	
+	public void desactiveUser(int id);
 	
 }

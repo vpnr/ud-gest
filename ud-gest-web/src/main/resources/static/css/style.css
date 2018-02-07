@@ -38,11 +38,24 @@ Spacing utils
 	margin-right: 30px;
 }
 
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
 
 #home{
 	margin: -10px 0px 0px 0px;
 	height: 40px;
 	width: 40px;
+}
+
+.container
+{
+    min-height: 90% !important;
+    min-height: calc(100% - 80px) !important;
 }
 
 #footer {

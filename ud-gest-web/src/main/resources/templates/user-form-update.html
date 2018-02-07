@@ -7,15 +7,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Ajouter un utilisateur</h1>
+				<h1 class="page-header">Modifier un utilisateur</h1>
 				<ol class="breadcrumb">
-					<li><a th:href="@{/admin/show-user-search}">Rechercher utilisateur</a></li>
-					<li class="active">Ajouter un utilisateur</li>
+					<li><a th:href="@{/show-entreprise-search}">Rechercher utilisateur</a></li>
+					<li class="active">Modifier un utilisateur</li>
 				</ol>
 			</div>
 		</div>
-		<form class="form-horizontal" th:action="@{/admin/save-user}" th:method="post" th:object="${user}">
+		<form class="form-horizontal" th:action="@{/admin/update-user}" th:method="post" th:object="${user}">
 			<div class='row'>
+				<div class="col-lg-12">
+					<div class="form-group">
+						<div class="col-sm-8">
+							<input type="hidden" class="form-control" th:field="*{id}" id="id"></input>
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label for="login" class="col-sm-2 control-label">Pseudo :</label>
@@ -72,7 +79,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label"></label>
 						<div class="col-sm-6 text-right">
-							<button type="submit" class="btn btn-default btn-md">Ajouter</button>
+							<button type="submit" class="btn btn-default btn-md">Modifier</button>
 						</div>
 					</div>
 				</div>
