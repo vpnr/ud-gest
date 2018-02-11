@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "adherent_mandat")
 public class AdherentMandat implements Serializable {
@@ -27,9 +29,11 @@ public class AdherentMandat implements Serializable {
     private Mandat mandat;
 	
 	@Column(name = "date_debut_mandat", nullable = true)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateDebut;
 	
 	@Column(name = "date_fin_mandat", nullable = true)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateFin;
 
     public AdherentMandat() {

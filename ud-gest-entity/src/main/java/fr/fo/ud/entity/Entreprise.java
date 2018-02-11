@@ -4,18 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Classe representant la table {@link Entreprise}
@@ -38,6 +39,7 @@ public class Entreprise implements Serializable{
     private String libelle;
     
     @Column(name = "date_election", nullable = true)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateElection;
     
     @Column(name = "numero_rue", nullable = true, length = 10)
@@ -209,5 +211,12 @@ public class Entreprise implements Serializable{
     public void setDateElection(Date paramDateElection) {
         dateElection = paramDateElection;
     }
+
+//	@Override
+//	public String toString() {
+//		return "Entreprise [id=" + id + ", libelle=" + libelle + ", dateElection=" + dateElection + ", numeroRue="
+//				+ numeroRue + ", libelleRue=" + libelleRue + ", cp=" + cp + ", ville=" + ville + ", tel=" + tel
+//				+ ", fax=" + fax + ", mail=" + mail + ", siteWeb=" + siteWeb + "]";
+//	}
 	
 }

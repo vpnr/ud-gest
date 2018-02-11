@@ -21,6 +21,7 @@ import fr.fo.ud.business.api.IBusinessAdherent;
 import fr.fo.ud.business.api.IBusinessEntreprise;
 import fr.fo.ud.business.api.IBusinessSyndicat;
 import fr.fo.ud.entity.Adherent;
+import fr.fo.ud.entity.Entreprise;
 
 @Controller
 public class AdherentController {
@@ -34,7 +35,7 @@ public class AdherentController {
 	@Autowired
 	IBusinessSyndicat buSyndicat;
 	
-	@RequestMapping(value="/show-adherent-search", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-adherent-search", method=RequestMethod.GET)
 	public String allAdherent(Model model) {
 		try {
 //			List<Adherent> adherents = buAdherent.getAll();
@@ -48,7 +49,7 @@ public class AdherentController {
 		}
 	}
 	
-	@RequestMapping(value="/search-adherent-form", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/search-adherent-form", method=RequestMethod.POST)
 	public String searchAdherentByMotCle(@RequestParam(name="motCle") String motCle ,Model model) {
 		try {
 			List<Adherent> adherents = buAdherent.getByMotCle(motCle);
@@ -60,7 +61,7 @@ public class AdherentController {
 		}
 	}
 	
-	@RequestMapping(value="/show-adherent-detail/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-adherent-detail/{id}", method=RequestMethod.GET)
 	public String adherentById(Model model, @PathVariable(name="id") int id) {
 		try {
 			model.addAttribute("adherent", buAdherent.getById(id));
@@ -71,16 +72,20 @@ public class AdherentController {
 		}
 	}
 	
-	@RequestMapping(value="/show-adherent-form", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-adherent-form", method=RequestMethod.GET)
 	public String showAdherentForm(Model model) {
 		model.addAttribute("adherent", new Adherent());
+		model.addAttribute("entreprises", buEntreprise.getAll());
+		model.addAttribute("syndicats", buSyndicat.getAll());
 		return "adherent-form";
 	}
 	
-	@RequestMapping(value="/save-adherent", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/save-adherent", method=RequestMethod.POST)
 	public String saveAdherent(@ModelAttribute Adherent adherent, final BindingResult bindingResult,final ModelMap model) {
 		try {
 			System.out.println(adherent.toString());
+			System.out.println(adherent.getEntreprise().toString());
+			System.out.println(adherent.getSyndicat().toString());
 			buAdherent.add(adherent);
 			return "index";
 		} catch (Exception e) {
@@ -89,13 +94,13 @@ public class AdherentController {
 		}
 	}
 	
-	@RequestMapping(value="/search-adherent-ajax", method=RequestMethod.POST)
-	public @ResponseBody List<String> searchAdherent(@RequestParam(name="motCle") String motCle) {
-		List<String> wordsToSend = new ArrayList<>();
-		for (String libelleEntreprise : buEntreprise.getAllLibelleByMotCle(motCle)) {
-			wordsToSend.add(libelleEntreprise);
+	@RequestMapping(value="/ud-gest/search-entreprise-ajax", method=RequestMethod.POST)
+	public @ResponseBody List<Entreprise> searchEntreprise(@RequestParam(name="motCle") String motCle) {
+		List<Entreprise> entreprises = new ArrayList<>();
+		for (Entreprise entreprise : buEntreprise.getByMotCle(motCle)) {
+			entreprises.add(entreprise);
 		}
-		return wordsToSend;
+		return entreprises;
 	}
 	
 }

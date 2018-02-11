@@ -25,7 +25,7 @@ public class SyndicatController {
 	@Autowired
 	IBusinessSyndicat buSyndicat;
 	
-	@RequestMapping(value="/show-syndicat-search", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-syndicat-search", method=RequestMethod.GET)
 	public String showSyndicatSearch(Model model) {
 		try {
 			model.addAttribute("syndicats", buSyndicat.getAll());
@@ -36,20 +36,20 @@ public class SyndicatController {
 		}
 	}
 	
-	@RequestMapping(value="/search-syndicat-ajax", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/search-syndicat-ajax", method=RequestMethod.POST)
 	public @ResponseBody List<Syndicat> rechercherSyndicatAjax(@RequestParam(name="motCle") String motCle) {
 		List<Syndicat> syndicats = new ArrayList<>();
 		syndicats.addAll(buSyndicat.getByMotCle(motCle));
 		return syndicats;
 	}
 	
-	@RequestMapping(value="/show-syndicat-form", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-syndicat-form", method=RequestMethod.GET)
 	public String showSyndicatForm(Model model) {
 		model.addAttribute("syndicat", new Syndicat());
 		return "syndicat-form";
 	}
 	
-	@RequestMapping(value="/show-syndicat-detail/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-syndicat-detail/{id}", method=RequestMethod.GET)
 	public String showSyndicatDetail(@PathVariable(name="id") int id, Model model) {
 		try {
 			model.addAttribute("syndicat", buSyndicat.getById(id));
@@ -59,7 +59,7 @@ public class SyndicatController {
 		}
 	}
 	
-	@RequestMapping(value="/save-syndicat", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/save-syndicat", method=RequestMethod.POST)
 	public String saveSyndicat(@ModelAttribute Syndicat syndicat, final BindingResult bindingResult, final ModelMap model) {
 		try {
 			System.out.println(syndicat.toString());

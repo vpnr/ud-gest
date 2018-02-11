@@ -9,13 +9,13 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">Ajouter syndicat</h1>
 				<ol class="breadcrumb">
-					<li><a th:href="@{/show-syndicat-search}">Rechercher syndicat</a></li>
+					<li><a th:href="@{/ud-gest/show-syndicat-search}">Rechercher syndicat</a></li>
 					<li class="active">Ajouter syndicat</li>
 				</ol>
 			</div>
 		</div>
 		<div class='row'>
-			<form class="form-horizontal" method="post" th:object="${syndicat}" th:action="@{/save-syndicat}">
+			<form class="form-horizontal" method="post" th:object="${syndicat}" th:action="@{/ud-gest/save-syndicat}">
 				<div class='row'>
 					<div class="col-lg-12 form-group-adherent">
 						<p class="fa fa-inverse">Informations générales</p>

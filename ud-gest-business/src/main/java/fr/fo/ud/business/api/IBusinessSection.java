@@ -6,15 +6,15 @@ import fr.fo.ud.entity.Section;
 
 public interface IBusinessSection {
 
-    Section add(Section section);
+    public Section add(Section section);
     
-    Section update(Section section);
+    public Section update(Section section);
     
-    Section delete(Section section);
+    public Section delete(Section section);
     
-    Section getById(Integer id);
+    public Section getById(Integer id);
     
-    List<Section> getAll();
+    public List<Section> getAll();
     
-    List<Section> getByMotCle(String motCle);
+    public List<Section> getByMotCle(String motCle);
 }

@@ -41,16 +41,16 @@
 					<td th:text="${syndicat.tel}"></td>
 					<td th:text="${syndicat.fax}"></td>
 					<td th:text="${syndicat.mail}"></td>
-					<td th:text="${syndicat.siteWeb}"></td>
+					<td><a th:href="@{'http://' + ${syndicat.siteWeb}}" th:text="${syndicat.siteWeb}"></a></td>
 					<td class="center-td">
-						<a th:href="@{'/show-syndicat-detail/'+ ${syndicat.id}}"><span class="glyphicon glyphicon-search"></span></a>
+						<a th:href="@{'/ud-gest/show-syndicat-detail/'+ ${syndicat.id}}"><span class="glyphicon glyphicon-search"></span></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="row">
 			<div class="col-xs-12">
-				<a th:href="@{/show-syndicat-form}" class="link">Ajouter un syndicat</a>
+				<a th:href="@{/ud-gest/show-syndicat-form}" class="link">Ajouter un syndicat</a>
 			</div>
 		</div>
 	</div>
@@ -73,8 +73,6 @@
 			$('tr').each(function(){
 			    $(this).find('td').eq(6).removeAttr('style');
 			    $(this).find('td').eq(6).addClass('text-center');
-			    $(this).find('td').eq(7).removeAttr('style');
-			    $(this).find('td').eq(7).addClass('text-center');
 			})
 			
 		</script>

@@ -33,8 +33,8 @@ public class DaoAdherentImpl implements IDaoAdherent {
 
     @Override
 	public Adherent update(Adherent paramAdh) {
-		Adherent adh = null;
-		return null;
+		em.merge(paramAdh);
+		return paramAdh;
 	}
 
 	@Override

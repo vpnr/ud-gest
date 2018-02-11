@@ -2,12 +2,17 @@ package fr.fo.ud.business.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.fo.ud.business.api.IBusinessSection;
 import fr.fo.ud.data.api.IDaoSection;
 import fr.fo.ud.entity.Section;
 
-public class BusinessSection implements IDaoSection {
+@Service
+public class BusinessSection implements IBusinessSection{
 
+	@Autowired
     private IDaoSection daoSection;
 
     public Section add(Section paramSection) {

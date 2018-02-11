@@ -11,7 +11,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html" th:href="@{/show-index}">
+				<a class="navbar-brand" href="index.html" th:href="@{/ud-gest/show-index}">
 					<img th:src="@{/images/accueil_logo_02.png}" name="image" id="home" th:onmouseover="@{/images/accueil_logo_01.png}" th:onmouseout="@{/images/accueil_logo_02.png}" />
 <!-- 					<img th:src="@{/images/accueil_logo_02.png}" name="image" id="home"/> -->
 				</a>
@@ -20,14 +20,15 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a th:href="@{/show-adherent-search}">Adherent</a></li>
-					<li><a th:href="@{/show-entreprise-search}">Entreprise</a></li>
-					<li><a th:href="@{/show-syndicat-search}">Syndicat</a></li>
-					<li><a th:href="@{show-federation-search}">Fédération</a></li>
-					<li><a th:href="@{/show-ud-search}">Union départementale</a></li>
-					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/admin/show-user-search}">Administration</a></li>
-					<li sec:authorize="isAnonymous()"><a th:href="@{/show-login}">Se connecter</a></li>
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Se déconnecter</a></li>
+					<li><a th:href="@{/ud-gest/show-adherent-search}">Adherent</a></li>
+					<li><a th:href="@{/ud-gest/show-entreprise-search}">Entreprise</a></li>
+					<li><a th:href="@{/ud-gest/show-syndicat-search}">Syndicat</a></li>
+					<li><a th:href="@{/ud-gest/show-section-search}">Section</a></li>
+					<li><a th:href="@{/ud-gest/show-federation-search}">Fédération</a></li>
+					<li><a th:href="@{/ud-gest/show-ud-search}">Union départementale</a></li>
+					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/ud-gest//admin/show-user-search}">Administration</a></li>
+					<li sec:authorize="isAnonymous()"><a th:href="@{/ud-gest/show-login}">Se connecter</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/ud-gest/logout}">Se déconnecter</a></li>
 					
 <!-- 					<li class="dropdown"><a href="#" class="dropdown-toggle white" -->
 <!-- 						data-toggle="dropdown">Soins et tarifs<b class="caret"></b></a> -->

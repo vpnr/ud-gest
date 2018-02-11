@@ -20,13 +20,13 @@ public class UserController {
 	@Autowired
 	IBusinessUser buUser;
 	
-	@RequestMapping(value="/admin/show-user-search", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/admin/show-user-search", method=RequestMethod.GET)
 	public String showUserSearch(Model model) {
 		model.addAttribute("users", buUser.getAllUser());
 		return "user-search";
 	}
 	
-	@RequestMapping(value="/admin/show-user-form", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/admin/show-user-form", method=RequestMethod.GET)
 	public String showUserFormAdd(Model model) {
 		try {
 			model.addAttribute("user", new User());
@@ -38,7 +38,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/show-user-form/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/admin/show-user-form/{id}", method=RequestMethod.GET)
 	public String updateUser(@PathVariable(name="id") int id, Model model) {
 		try {
 			model.addAttribute("user", buUser.getUserById(id));
@@ -50,55 +50,55 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/save-user", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/admin/save-user", method=RequestMethod.POST)
 	public String saveUser(@ModelAttribute User user, @RequestParam(name="role_id") int id, final BindingResult bindingResult,final ModelMap model) {
 		try {
 			buUser.saveUser(user, id);
-			return "redirect:/admin/show-user-search";
+			return "redirect:/ud-gest/admin/show-user-search";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
 	}
 	
-	@RequestMapping(value="/admin/update-user", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/admin/update-user", method=RequestMethod.POST)
 	public String updateUser(@ModelAttribute User user, @RequestParam(name="role_id") int id, final BindingResult bindingResult,final ModelMap model) {
 		try {
 			buUser.updateUser(user, id);
-			return "redirect:/admin/show-user-search";
+			return "redirect:/ud-gest/admin/show-user-search";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
 	}
 	
-	@RequestMapping(value="/admin/delete-user/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/admin/delete-user/{id}", method=RequestMethod.GET)
 	public String deleteUser(@PathVariable(name="id") int id) {
 		try {
 			buUser.deleteUser(buUser.getUserById(id));
-			return "redirect:/admin/show-user-search";
+			return "redirect:/ud-gest/admin/show-user-search";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
 	}
 	
-	@RequestMapping(value="/admin/active-user/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/admin/active-user/{id}", method=RequestMethod.GET)
 	public String activeUser(@PathVariable(name="id") int id) {
 		try {
 			buUser.activeUser(id);
-			return "redirect:/admin/show-user-search";
+			return "redirect:/ud-gest/admin/show-user-search";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
 	}
 	
-	@RequestMapping(value="/admin/desactive-user/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/admin/desactive-user/{id}", method=RequestMethod.GET)
 	public String desactiveUser(@PathVariable(name="id") int id) {
 		try {
 			buUser.desactiveUser(id);
-			return "redirect:/admin/show-user-search";
+			return "redirect:/ud-gest/admin/show-user-search";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";

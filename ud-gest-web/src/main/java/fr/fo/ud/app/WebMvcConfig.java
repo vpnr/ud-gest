@@ -27,7 +27,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver, SpringSecurityDialect sec) {
 	    final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 	    templateEngine.setTemplateResolver(templateResolver);
-//	    templateEngine.addDialect(sec);
 	    templateEngine.addDialect(sec);// Enable use of "sec"
 	    return templateEngine;
 	}

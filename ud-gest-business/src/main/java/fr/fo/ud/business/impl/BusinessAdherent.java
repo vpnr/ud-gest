@@ -26,8 +26,7 @@ public class BusinessAdherent implements IBusinessAdherent {
 
 	@Override
 	public Adherent update(Adherent adh) {
-		// TODO Auto-generated method stub
-		return null;
+		return daoAdherent.update(adh);
 	}
 
 	@Override

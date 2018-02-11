@@ -46,6 +46,10 @@ Spacing utils
 	color: red;
 }
 
+.orange {
+	color: orange;
+}
+
 #home{
 	margin: -10px 0px 0px 0px;
 	height: 40px;

@@ -31,7 +31,6 @@ public class LoginControllerTest {
 		WebElement submit = driver.findElement(By.name("Submit"));
 		submit.click();
 		
-		
 	}
 	
 }

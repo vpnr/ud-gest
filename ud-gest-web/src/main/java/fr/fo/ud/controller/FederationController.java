@@ -15,13 +15,13 @@ public class FederationController {
 	@Autowired
 	IBusinessFederation buFederation;
 	
-	@RequestMapping(value="/show-federation-search", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-federation-search", method=RequestMethod.GET)
 	public String showFederationSearch(Model model) {
 			model.addAttribute("federations", buFederation.getAll());
 			return "federation-search";
 	}
 	
-	@RequestMapping(value="/show-federation-detail/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-federation-detail/{id}", method=RequestMethod.GET)
 	public String showFederationDetail(@PathVariable(name="id") int id, Model model) {
 		try {
 			model.addAttribute("federation", buFederation.getById(id));

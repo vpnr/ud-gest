@@ -39,18 +39,18 @@
 						<a th:href="@{'/admin/show-user-form/'+ ${user.id}}"><span class="glyphicon glyphicon-cog"></span></a>
 					</td>
 					<td class="center-td">
-						<a th:if="${user.active} == 1" th:href="@{'/admin/desactive-user/'+ ${user.id}}"><span class="glyphicon glyphicon-off red"></span></a>
-						<a th:if="${user.active} == 0" th:href="@{'/admin/active-user/'+ ${user.id}}"><span class="glyphicon glyphicon-off green"></span></a>
+						<a th:if="${user.active} == 1" th:href="@{'/ud-gest/admin/desactive-user/'+ ${user.id}}"><span class="glyphicon glyphicon-off red"></span></a>
+						<a th:if="${user.active} == 0" th:href="@{'/ud-gest/admin/active-user/'+ ${user.id}}"><span class="glyphicon glyphicon-off green"></span></a>
 					</td>
 					<td class="center-td">
-						<a th:href="@{'/admin/delete-user/'+ ${user.id}}"><span class="glyphicon glyphicon-trash"></span></a>
+						<a th:href="@{'/ud-gest/admin/delete-user/'+ ${user.id}}"><span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="row">
 			<div class="col-xs-12">
-				<a th:href="@{/admin/show-user-form}" class="link">Ajouter un utilisateur</a>
+				<a th:href="@{/ud-gest/admin/show-user-form}" class="link">Ajouter un utilisateur</a>
 			</div>
 		</div>
 	</div>

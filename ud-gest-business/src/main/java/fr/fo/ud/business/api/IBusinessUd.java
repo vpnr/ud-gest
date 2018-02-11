@@ -10,7 +10,7 @@ public interface IBusinessUd {
     
     UnionDepartemental update(UnionDepartemental ud);
     
-    UnionDepartemental delete(UnionDepartemental ud);
+    UnionDepartemental delete(int id);
     
     UnionDepartemental getById(Integer id);
     

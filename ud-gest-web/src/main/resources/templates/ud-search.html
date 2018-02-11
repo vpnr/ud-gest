@@ -6,11 +6,11 @@
 	<div class="container">
 		<div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Fédération</h1>
+                <h1 class="page-header">Union départementale</h1>
                 <ol class="breadcrumb">
                     <li><a href="index.html">Accueil</a>
                     </li>
-                    <li class="active">Fédération</li>
+                    <li class="active">Union départementale</li>
                 </ol>
             </div>
         </div>
@@ -19,36 +19,38 @@
  			<p>Les liens du tableau permettent d'afficher les détails de l'élément séléctionné.</p>
 			<p>
  				<span class="glyphicon glyphicon-search"></span>
- 				<span> - Afficher les détails de la fédération</span>
+ 				<span> - Afficher les détails de l'union départementale</span>
  			</p>
 		</div>
-		<table id="tableFederation" class="table table-striped table-bordered">
+		<table id="tableUD" class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<td>libelle</td>
+					<td>ville</td>
 					<td>tel</td>
 					<td>fax</td>
 					<td>mail</td>
-					<td>Site web</td>
+					<td>site-web</td>
 					<td></td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="federation : ${federations}">
-					<td th:text="${federation.libelle}"></td>
-					<td th:text="${federation.tel}"></td>
-					<td th:text="${federation.fax}"></td>
-					<td th:text="${federation.mail}"></td>
-					<td th:text="${federation.siteWeb}"></td>
+				<tr th:each="ud : ${uds}">
+					<td th:text="${ud.libelle}"></td>
+					<td th:text="${ud.ville}"></td>
+					<td th:text="${ud.tel}"></td>
+					<td th:text="${ud.fax}"></td>
+					<td th:text="${ud.mail}"></td>
+					<td><a th:href="@{'http://' + ${ud.siteWeb}}" th:text="${ud.siteWeb}"></a></td>
 					<td class="center-td">
-						<a th:href="@{'/show-federation-detail/'+ ${federation.id}}"><span class="glyphicon glyphicon-search"></span></a>
+						<a th:href="@{'/ud-gest/show-ud-detail/'+ ${ud.id}}"><span class="glyphicon glyphicon-search"></span></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="row">
 			<div class="col-xs-12">
-				<a th:href="@{/ud-gest/show-federation-form}" class="link">Ajouter une fédération</a>
+				<a th:href="@{/ud-gest/show-ud-form}" class="link">Ajouter une Union départementale</a>
 			</div>
 		</div>
 	</div>
@@ -60,7 +62,7 @@
 
 <script type="text/javascript">
 			$(document).ready(function() {
-			    $('#tableFederation').dynatable();
+			    $('#tableUD').dynatable();
 				$.dynatableSetup({
 					 inputs: {
 						 queryEvent: 'keyup'
@@ -69,8 +71,10 @@
 			});
 			
 			$('tr').each(function(){
-			    $(this).find('td').eq(5).removeAttr('style');
-			    $(this).find('td').eq(5).addClass('text-center');
+			    $(this).find('td').eq(6).removeAttr('style');
+			    $(this).find('td').eq(6).addClass('text-center');
+			    $(this).find('td').eq(7).removeAttr('style');
+			    $(this).find('td').eq(7).addClass('text-center');
 			})
 			
 		</script>

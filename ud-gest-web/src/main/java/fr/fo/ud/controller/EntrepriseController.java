@@ -1,8 +1,5 @@
 package fr.fo.ud.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import fr.fo.ud.business.api.IBusinessAdherent;
 import fr.fo.ud.business.api.IBusinessEntreprise;
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
@@ -25,7 +22,10 @@ public class EntrepriseController {
 	@Autowired
 	IBusinessEntreprise buEntreprise;
 	
-	@RequestMapping(value="/show-entreprise-search", method=RequestMethod.GET)
+	@Autowired
+	IBusinessAdherent buAdherent;
+	
+	@RequestMapping(value="/ud-gest/show-entreprise-search", method=RequestMethod.GET)
 	public String showEntrepriseSearch(Model model) {
 		try {
 			model.addAttribute("entreprises", buEntreprise.getAll());
@@ -36,14 +36,7 @@ public class EntrepriseController {
 		}
 	}
 	
-	@RequestMapping(value="/search-entreprise-ajax", method=RequestMethod.POST)
-	public @ResponseBody List<Entreprise> rechercherEntreprise(@RequestParam("motCle") String motCle) {
-		List<Entreprise> entreprises = new ArrayList<>();
-		entreprises.addAll(buEntreprise.getByMotCle(motCle));
-		return entreprises;
-	}
-	
-	@RequestMapping(value="/show-entreprise-detail/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-entreprise-detail/{id}", method=RequestMethod.GET)
 	public String showEntrepriseDetails(@PathVariable("id") int id, Model model) {
 		try {
 			model.addAttribute("entreprise", buEntreprise.getById(id));
@@ -53,20 +46,54 @@ public class EntrepriseController {
 		}
 	}
 	
-	@RequestMapping(value="/show-entreprise-form", method=RequestMethod.GET)
+	@RequestMapping(value="/ud-gest/show-entreprise-form", method=RequestMethod.GET)
 	public String showEntrepriseForm(Model model) {
 		model.addAttribute("entreprise", new Entreprise());
 		return "entreprise-form";
 	}
 	
-	@RequestMapping(value="/save-entreprise", method=RequestMethod.POST)
+	@RequestMapping(value="/ud-gest/save-entreprise", method=RequestMethod.POST)
 	public String saveEntreprise(@ModelAttribute Entreprise entreprise, final BindingResult bindingResult, final ModelMap model) {
 		try {
-			System.out.println(entreprise.toString());
 			buEntreprise.add(entreprise);
-			return "index";
+			return "redirect:/ud-gest/show-entreprise-search";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/ud-gest/update-entreprise", method=RequestMethod.POST)
+	public String updateEntreprise(@ModelAttribute Entreprise entreprise, final BindingResult bindingResult, final ModelMap model) {
+		try {
+			buEntreprise.update(entreprise);
+			return "redirect:/ud-gest/show-entreprise-search";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/ud-gest/delete-entreprise", method=RequestMethod.POST)
+	public String removeEntreprise(@RequestParam(name="id") int id) {
+		try {
+			buEntreprise.delete(id);
+			return "redirect:/ud-gest/show-entreprise-search";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/ud-gest/remove-adherent-from-entreprise", method=RequestMethod.POST)
+	public String removeAdherentFromEntreprise(@RequestParam(name="id") int id) {
+		try {
+			Adherent adherent = buAdherent.getById(id);
+			int idEntreprise = adherent.getEntreprise().getId();
+			adherent.setEntreprise(null);
+			buAdherent.update(adherent);
+			return "redirect:/ud-gest/show-entreprise-detail/" + idEntreprise;
+		} catch (Exception e) {
 			return "error";
 		}
 	}

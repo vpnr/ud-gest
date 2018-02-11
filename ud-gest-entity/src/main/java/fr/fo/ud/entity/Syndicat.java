@@ -270,4 +270,11 @@ public class Syndicat implements Serializable {
         federation = paramFederation;
     }
 
+	@Override
+	public String toString() {
+		return "Syndicat [id=" + id + ", libelle=" + libelle + ", dernierAg=" + dernierAg + ", prochainAg=" + prochainAg
+				+ ", numeroRue=" + numeroRue + ", libelleRue=" + libelleRue + ", cp=" + cp + ", ville=" + ville
+				+ ", tel=" + tel + ", fax=" + fax + ", mail=" + mail + ", siteWeb=" + siteWeb + "]";
+	}
+
 }

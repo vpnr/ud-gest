@@ -28,14 +28,14 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 
 	@Override
 	public Entreprise update(Entreprise paramEntreprise) {
-		// TODO Auto-generated method stub
-		return null;
+		em.merge(paramEntreprise);
+		return paramEntreprise;
 	}
 
 	@Override
 	public Entreprise delete(Entreprise paramEntreprise) {
-		// TODO Auto-generated method stub
-		return null;
+		em.remove(paramEntreprise);
+		return paramEntreprise;
 	}
 
 	@Override

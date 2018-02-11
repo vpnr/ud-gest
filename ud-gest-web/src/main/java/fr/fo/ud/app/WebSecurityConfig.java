@@ -45,17 +45,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.
 			authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/login").permitAll()
-				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+				.antMatchers("/ud-gest/").permitAll()
+				.antMatchers("/ud-gest/login").permitAll()
+				.antMatchers("/ud-gest/admin/**").hasAuthority("ADMIN").anyRequest()
 				.authenticated().and().csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/login?error=true")
-				.defaultSuccessUrl("/show-index")
+				.loginPage("/ud-gest/login").failureUrl("/login?error=true")
+				.defaultSuccessUrl("/ud-gest/show-index")
 				.usernameParameter("login_user")
 				.passwordParameter("password_user")
 				.and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/").and().exceptionHandling()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/ud-gest/logout"))
+				.logoutSuccessUrl("/ud-gest/show-index").and().exceptionHandling()
 				.accessDeniedPage("/error");
 	}
 	

@@ -11,7 +11,7 @@ public interface IBusinessEntreprise {
 	
 	public Entreprise update(Entreprise entreprise);
 	
-	public Entreprise delete(Entreprise entreprise);
+	public Entreprise delete(int id);
 	
 	public Entreprise getById(Integer id);
 	

@@ -6,12 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.fo.ud.data.api.IDaoSection;
 import fr.fo.ud.entity.Section;
 
+@Repository
+@Transactional
 public class DaoSectionImpl implements IDaoSection{
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+    @PersistenceContext
     private EntityManager em;
 
     public Section add(Section paramSection) {
@@ -30,20 +35,15 @@ public class DaoSectionImpl implements IDaoSection{
     }
 
     public Section getById(Integer paramId) {
-        Query q = em.createQuery("select s from Section s where s.id =:pId");
-        q.setParameter("pId", paramId);
-        return (Section) q.getSingleResult();
+        return em.createQuery("select s from Section s where s.id =:pId", Section.class).setParameter("pId", paramId).getSingleResult();
     }
 
     public List<Section> getAll() {
-        Query q = em.createQuery("select s from Section s order by s.libelle");
-        return q.getResultList();
+        return em.createQuery("select s from Section s", Section.class).getResultList();
     }
 
     public List<Section> getByMotCle(String paramMotCle) {
-        Query q = em.createQuery("select s from Section s left join fetch s.adherents where s.libelle like :pLibelle order by p.libelle");
-        q.setParameter("pLibelle", paramMotCle);
-        return q.getResultList();
+        return em.createQuery("select s from Section s left join fetch s.adherents where s.libelle like :pLibelle", Section.class).setParameter("pLibelle", "%"+paramMotCle+"%").getResultList();
     }
     
 }
