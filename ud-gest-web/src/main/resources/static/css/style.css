@@ -100,6 +100,16 @@ min-width: 120px;
 	width: 98%;
 }
 
+.form-group-adherent {
+	background: black;
+	height: 46px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding-top: 12px;
+	padding-left: 10px;
+	width: 100%;
+}
+
 .form-group-syndicat {
 	background: black;
 	height: 46px;

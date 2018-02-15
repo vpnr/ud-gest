@@ -6,27 +6,32 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import fr.fo.ud.data.api.IDaoFonction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import fr.fo.ud.data.api.IDaoMandat;
 import fr.fo.ud.entity.Mandat;
 
-public class DaoFonctionImpl implements IDaoFonction{
+@Repository
+@Transactional
+public class DaoMandatImpl implements IDaoMandat{
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+    @PersistenceContext
     private EntityManager em;
     
-    public Mandat add(Mandat paramFonction) {
-        em.persist(paramFonction);
-        return paramFonction;
+    public Mandat add(Mandat mandat) {
+        em.persist(mandat);
+        return mandat;
     }
 
-    public Mandat update(Mandat paramFonction) {
-        em.merge(paramFonction);
-        return paramFonction;
+    public Mandat update(Mandat mandat) {
+        em.merge(mandat);
+        return mandat;
     }
 
-    public Mandat delete(Mandat paramFonction) {
-        em.remove(paramFonction);
-        return paramFonction;
+    public Mandat delete(Mandat mandat) {
+        em.remove(mandat);
+        return mandat;
     }
 
     public Mandat getById(Integer paramId) {

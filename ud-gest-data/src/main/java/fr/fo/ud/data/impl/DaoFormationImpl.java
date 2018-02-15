@@ -2,11 +2,15 @@ package fr.fo.ud.data.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.fo.ud.data.api.IDaoFormation;
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Formation;
 
+@Repository
+@Transactional
 public class DaoFormationImpl implements IDaoFormation{
 
     public Formation add(Formation paramFormation) {

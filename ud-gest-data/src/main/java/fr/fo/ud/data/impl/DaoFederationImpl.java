@@ -35,20 +35,15 @@ public class DaoFederationImpl implements IDaoFederation{
     }
     
     public List<Federation> findAll() {
-    	Query q = em.createQuery("select f from Federation f order by f.libelle");
-    	return q.getResultList();
+    	return em.createQuery("select f from Federation f order by f.libelle", Federation.class).getResultList();
     }
 
     public Federation findById(Integer paramId) {
-        Query q = em.createQuery("select f from Federation f left join fetch f.branches where f.id =:pId ");
-        q.setParameter("pId", paramId);
-        return (Federation) q.getSingleResult();
+    	return em.createQuery("select f from Federation f where f.id =:pId", Federation.class).setParameter("pId", paramId).getSingleResult();
     }
 
     public List<Federation> findByMotCle(String paramMotCle) {
-        Query q = em.createQuery("select f from Federation f where f.libelle like :pLibelle order by f.libelle");
-        q.setParameter("pLibelle", paramMotCle + "%");
-        return q.getResultList();
+    	return em.createQuery("select f from Federation f where f.libelle like :pLibelle", Federation.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
     }
     
 }

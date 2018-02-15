@@ -145,13 +145,13 @@
 							<td th:text="${adherent.tel}"></td>
 							<td th:text="${adherent.mail}"></td>
 							<td>
-								<a th:href="@{'/ud-gest/show-syndicat-detail/'+ ${adherent.syndicat.id}}" th:text="${adherent.syndicat.libelle}"></a>
+								<a th:href="@{'/ud-gest/show-syndicat-detail/'+ ${adherent?.syndicat?.id}}" th:text="${adherent?.syndicat?.libelle}"></a>
 							</td>
 							<td>
-								<a th:href="@{'/ud-gest/show-ud-detail/'+ ${adherent.syndicat.ud.id}}" th:text="${adherent.syndicat.ud.libelle}"></a>
+								<a th:href="@{'/ud-gest/show-ud-detail/'+ ${adherent?.syndicat?.ud?.id}}" th:text="${adherent?.syndicat?.ud?.libelle}"></a>
 							</td>
 							<td>
-								<a th:href="@{'/ud-gest/show-federation-detail/'+ ${adherent.syndicat.federation.id}}" th:text="${adherent.syndicat.federation.libelle}"></a>
+								<a th:href="@{'/ud-gest/show-federation-detail/'+ ${adherent?.syndicat?.federation?.id}}" th:text="${adherent?.syndicat?.federation?.libelle}"></a>
 							</td>
 							<td class="center-td">
 								<a th:href="@{'/ud-gest/show-adherent-detail/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>

@@ -15,11 +15,9 @@
             </div>
         </div>
 		<div class="alert alert-info" role="alert">
- 			<p>Il est possible de trier les élément grâce aux liens de l'entête du tableau.</p>
- 			<p>Les liens du tableau permettent d'afficher les détails de l'élément séléctionné.</p>
 			<p>
  				<span class="glyphicon glyphicon-search"></span>
- 				<span> - Afficher les détails de l'adhérent</span>
+ 				<span class="left10">Afficher les détails de l'adhérent</span>
  			</p>
 		</div>
 		<form th:action="@{search-adherent-form}" method="post">
@@ -132,19 +130,19 @@
 					<td th:text="${adherent.nom}"></td>
 					<td th:text="${adherent.prenom}"></td>
 					<td>
-						<a th:href="@{'/detail-entrerpise/'+ ${adherent.entreprise.id}}" th:text="${adherent.entreprise.libelle}"></a>
+						<a th:href="@{'/ud-gest/show-entreprise-detail/'+ ${adherent.entreprise.id}}" th:text="${adherent.entreprise.libelle}"></a>
 					</td>
 					<td>
-						<a th:href="@{'/detail-syndicat/'+ ${adherent.syndicat.id}}" th:text="${adherent.syndicat.libelle}"></a>
+						<a th:href="@{'/ud-gest/show-syndicat-detail/'+ ${adherent.syndicat.id}}" th:text="${adherent.syndicat.libelle}"></a>
 					</td>
 					<td>
-						<a th:href="@{'/detail-ud/'+ ${adherent.syndicat.ud.id}}" th:text="${adherent.syndicat.ud.libelle}"></a>
+						<a th:href="@{'/ud-gest/show-ud-detail/'+ ${adherent?.syndicat?.ud?.id}}" th:text="${adherent?.syndicat?.ud?.libelle}"></a>
 					</td>
 					<td>
-						<a th:href="@{'/detail-federation/'+ ${adherent.syndicat.federation.id}}" th:text="${adherent.syndicat.federation.libelle}"></a>
+						<a th:href="@{'/ud-gest/show-federation-detail/'+ ${adherent?.syndicat?.federation?.id}}" th:text="${adherent?.syndicat?.federation?.libelle}"></a>
 					</td>
 					<td class="center-td">
-						<a th:href="@{'/show-adherent-detail/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>
+						<a th:href="@{'/ud-gest/show-adherent-detail/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>
 					</td>
 				</tr>
 			</tbody>

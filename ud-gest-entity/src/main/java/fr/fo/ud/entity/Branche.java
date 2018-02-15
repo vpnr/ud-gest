@@ -30,7 +30,7 @@ public class Branche implements Serializable {
     private String libelle;
     
     @ManyToOne
-    @JoinColumn(name = "id_federation_branche", nullable = false)
+    @JoinColumn(name = "id_federation_branche", nullable = true)
     private Federation federation;
     
     @JsonIgnore

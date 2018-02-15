@@ -19,9 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.fo.ud.business.api.IBusinessAdherent;
 import fr.fo.ud.business.api.IBusinessEntreprise;
+import fr.fo.ud.business.api.IBusinessFederation;
 import fr.fo.ud.business.api.IBusinessSyndicat;
+import fr.fo.ud.business.api.IBusinessUd;
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
+import fr.fo.ud.entity.Federation;
+import fr.fo.ud.entity.Syndicat;
+import fr.fo.ud.entity.UnionDepartemental;
 
 @Controller
 public class AdherentController {
@@ -35,11 +40,17 @@ public class AdherentController {
 	@Autowired
 	IBusinessSyndicat buSyndicat;
 	
+	@Autowired
+	IBusinessFederation buFederation;
+	
+	@Autowired
+	IBusinessUd buUd;
+	
 	@RequestMapping(value="/ud-gest/show-adherent-search", method=RequestMethod.GET)
 	public String allAdherent(Model model) {
 		try {
-//			List<Adherent> adherents = buAdherent.getAll();
-//			model.addAttribute("adherents", adherents);
+			List<Adherent> adherents = buAdherent.getAll();
+			model.addAttribute("adherents", adherents);
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			System.out.println(auth.getName());
 			return "adherent-search";
@@ -75,19 +86,16 @@ public class AdherentController {
 	@RequestMapping(value="/ud-gest/show-adherent-form", method=RequestMethod.GET)
 	public String showAdherentForm(Model model) {
 		model.addAttribute("adherent", new Adherent());
-		model.addAttribute("entreprises", buEntreprise.getAll());
-		model.addAttribute("syndicats", buSyndicat.getAll());
+		model.addAttribute("entreprise", new Entreprise());
+		model.addAttribute("syndicat", new Syndicat());
 		return "adherent-form";
 	}
 	
 	@RequestMapping(value="/ud-gest/save-adherent", method=RequestMethod.POST)
 	public String saveAdherent(@ModelAttribute Adherent adherent, final BindingResult bindingResult,final ModelMap model) {
 		try {
-			System.out.println(adherent.toString());
-			System.out.println(adherent.getEntreprise().toString());
-			System.out.println(adherent.getSyndicat().toString());
 			buAdherent.add(adherent);
-			return "index";
+			return "redirect:/ud-gest/show-adherent-search";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
@@ -101,6 +109,33 @@ public class AdherentController {
 			entreprises.add(entreprise);
 		}
 		return entreprises;
+	}
+	
+	@RequestMapping(value="/ud-gest/search-syndicat-ajax", method=RequestMethod.POST)
+	public @ResponseBody List<Syndicat> searchSyndicat(@RequestParam(name="motCle") String motCle) {
+		List<Syndicat> syndicats = new ArrayList<>();
+		for (Syndicat syndicat : buSyndicat.getByMotCle(motCle)) {
+			syndicats.add(syndicat);
+		}
+		return syndicats;
+	}
+	
+	@RequestMapping(value="/ud-gest/search-federation-ajax", method=RequestMethod.POST)
+	public @ResponseBody List<Federation> searchFederation(@RequestParam(name="motCle") String motCle) {
+		List<Federation> federations = new ArrayList<>();
+		for (Federation federation : buFederation.getByMotCle(motCle)) {
+			federations.add(federation);
+		}
+		return federations;
+	}
+	
+	@RequestMapping(value="/ud-gest/search-ud-ajax", method=RequestMethod.POST)
+	public @ResponseBody List<UnionDepartemental> searchUd(@RequestParam(name="motCle") String motCle) {
+		List<UnionDepartemental> uds = new ArrayList<>();
+		for (UnionDepartemental ud : buUd.getByMotCle(motCle)) {
+			uds.add(ud);
+		}
+		return uds;
 	}
 	
 }

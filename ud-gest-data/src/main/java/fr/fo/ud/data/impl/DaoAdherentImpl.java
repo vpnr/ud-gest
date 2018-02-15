@@ -26,7 +26,7 @@ public class DaoAdherentImpl implements IDaoAdherent {
 	private EntityManager em;
 	
 	@Override
-    public Adherent add(Adherent paramAdh) {
+    public Adherent save(Adherent paramAdh) {
        em.persist(paramAdh);
        return paramAdh; 
     }

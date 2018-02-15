@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,11 +62,11 @@ public class Adherent implements Serializable {
     @Column(name = "mail_adherent", nullable = true, length = 100)
     private String mail;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_syndicat_adherent", nullable = true)
     private Syndicat syndicat;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_entreprise_adherent", nullable = true)
     private Entreprise entreprise;
     

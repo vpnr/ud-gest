@@ -7,15 +7,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Ajouter syndicat</h1>
+				<h1 class="page-header">Ajouter une fédération</h1>
 				<ol class="breadcrumb">
-					<li><a th:href="@{/ud-gest/show-syndicat-search}">Rechercher syndicat</a></li>
-					<li class="active">Ajouter syndicat</li>
+					<li><a th:href="@{/ud-gest/show-federation-search}">Rechercher une fédération</a></li>
+					<li class="active">Ajouter une fédération</li>
 				</ol>
 			</div>
 		</div>
 		<div class='row'>
-			<form class="form-horizontal" method="post" th:object="${syndicat}" th:action="@{/ud-gest/save-syndicat}">
+			<form class="form-horizontal" method="post" th:object="${federation}" th:action="@{/ud-gest/save-federation}">
 				<div class='row'>
 					<div class="col-lg-12 form-group-adherent">
 						<p class="fa fa-inverse">Informations générales</p>
@@ -26,43 +26,31 @@
 						<div class="form-group">
 							<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{libelle}" id="libelle_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{libelle}" id="libelle_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="tel" class="col-sm-2 control-label">Téléphone :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{tel}" id="tel_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{tel}" id="tel_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="fax" class="col-sm-2 control-label">Fax :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{fax}" id="fax_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{fax}" id="fax_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="mail" class="col-sm-2 control-label">Mail :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{mail}" id="mail_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{mail}" id="mail_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="mail" class="col-sm-2 control-label">Web :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{siteWeb}" id="web_syndicat"></input>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="dernier_ag" class="col-sm-2 control-label">Dern. ag :</label>
-							<div class="col-sm-8">
-								<input type="date" class="form-control" th:field="*{dernierAg}" id="dernier_ag"></input>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="prochain_ag" class="col-sm-2 control-label">Proch. ag :</label>
-							<div class="col-sm-8">
-								<input type="date" class="form-control" th:field="*{prochainAg}" id="prochain_ag"></input>
+								<input type="text" class="form-control" th:field="*{siteWeb}" id="web_federation"></input>
 							</div>
 						</div>
 					</div>
@@ -70,29 +58,29 @@
 						<div class="form-group">
 							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{numeroRue}" id="num_rue_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{numeroRue}" id="num_rue_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="rue" class="col-sm-2 control-label">Rue :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{libelleRue}" id="rue_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{libelleRue}" id="rue_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="cp" class="col-sm-2 control-label">Cp :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{cp}" id="cp_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{cp}" id="cp_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="ville" class="col-sm-2 control-label">Ville :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{ville}" id="ville_syndicat"></input>
+								<input type="text" class="form-control" th:field="*{ville}" id="ville_federation"></input>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label"></label>
+							<label for="ville" class="col-sm-2 control-label"></label>
 							<div class="col-sm-8 text-right">
 								<button type="submit" class="btn btn-success btn-md">Ajouter</button>
 							</div>

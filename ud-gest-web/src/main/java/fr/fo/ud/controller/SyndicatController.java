@@ -36,13 +36,6 @@ public class SyndicatController {
 		}
 	}
 	
-	@RequestMapping(value="/ud-gest/search-syndicat-ajax", method=RequestMethod.POST)
-	public @ResponseBody List<Syndicat> rechercherSyndicatAjax(@RequestParam(name="motCle") String motCle) {
-		List<Syndicat> syndicats = new ArrayList<>();
-		syndicats.addAll(buSyndicat.getByMotCle(motCle));
-		return syndicats;
-	}
-	
 	@RequestMapping(value="/ud-gest/show-syndicat-form", method=RequestMethod.GET)
 	public String showSyndicatForm(Model model) {
 		model.addAttribute("syndicat", new Syndicat());

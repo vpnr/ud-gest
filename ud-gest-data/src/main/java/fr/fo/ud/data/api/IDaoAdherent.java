@@ -22,7 +22,7 @@ public interface IDaoAdherent {
 	 * @param adh un adherent
 	 * @return
 	 */
-    Adherent add(Adherent adh);
+    Adherent save(Adherent adh);
     
     /**
      * Methode permettant de modifier les informations d'un adherent dans l'unite de persistence.

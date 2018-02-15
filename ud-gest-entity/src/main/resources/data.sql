@@ -49,10 +49,10 @@ insert into mandat (libelle_mandat) values ("délégué syndical central");
 insert into mandat (libelle_mandat) values ("secrétaire de branche");
 insert into mandat (libelle_mandat) values ("membre CPNEFP");
 
-insert into federation (libelle_federation, numero_rue, libelle_rue, tel_federation, fax_federation, mail_federation) values("FO Pharmacie", "7", "passage tenaille", "0140528560", "0140528561", "fopharma@wanadoo.fr");
-insert into federation (libelle_federation, numero_rue, libelle_rue, tel_federation, fax_federation, mail_federation) values("FO batiment", "102", "micile fix", "0145854525", "0146525412", "fochantier@gmail.fr");
-insert into federation (libelle_federation, numero_rue, libelle_rue, tel_federation, fax_federation, mail_federation) values("FO Cheminot", "4", "allee de la boissiere", "0145854578", "0143621549", "focheminot@wanadoo.fr");
-insert into federation (libelle_federation, numero_rue, libelle_rue, tel_federation, fax_federation, mail_federation) values("FO Textile", "12", "impasse de la raie", "0196989591", "0121545487", "foapoil@wanadoo.fr");
+insert into federation (libelle_federation, numero_rue, libelle_rue, cp_federation, ville_federation, tel_federation, fax_federation, mail_federation, siteweb_federation) values("FO Pharmacie", "7", "passage tenaille", "54444", "St-pol", "0140528560", "0140528561", "fopharma@wanadoo.fr", "www.fo-pharma.com");
+insert into federation (libelle_federation, numero_rue, libelle_rue, cp_federation, ville_federation, tel_federation, fax_federation, mail_federation, siteweb_federation) values("FO batiment", "102", "micile fix", "45698", "Bayonne", "0145854525", "0146525412", "fochantier@gmail.fr", "www.fo-bat-portugal.fr");
+insert into federation (libelle_federation, numero_rue, libelle_rue, cp_federation, ville_federation, tel_federation, fax_federation, mail_federation, siteweb_federation) values("FO Cheminot", "4", "allee de la boissiere", "13000", "Marseille", "0145854578", "0143621549", "focheminot@wanadoo.fr", "www.fo-rail.org");
+insert into federation (libelle_federation, numero_rue, libelle_rue, cp_federation, ville_federation, tel_federation, fax_federation, mail_federation, siteweb_federation) values("FO Textile", "12", "impasse de la raie", "72563", "Toulon", "0196989591", "0121545487", "foapoil@wanadoo.fr",  "www.fo-tissu.be");
 
 insert into branche (libelle_branche, id_federation_branche) values ("Construction", 2);
 insert into branche (libelle_branche, id_federation_branche) values ("Labo", 1);
@@ -77,7 +77,8 @@ insert into entreprise (libelle_entreprise, numero_rue, libelle_rue, cp_entrepri
 insert into entreprise (libelle_entreprise, numero_rue, libelle_rue, cp_entreprise, ville_entreprise, tel_entreprise, fax_entreprise, mail_entreprise, date_election, siteweb_entreprise) values ("RRR", "12", "avenue du general de gaule", "92100", "boulogne", "0145454545", "0145454546", "lacerp@gmail.com", "2016-02-23", "www.cerp-boulogne.com");
 insert into entreprise (libelle_entreprise, numero_rue, libelle_rue, cp_entreprise, ville_entreprise, tel_entreprise, fax_entreprise, mail_entreprise, date_election, siteweb_entreprise) values ("GGG", "3", "rue danton", "92120", "Malakoff", "0112455201", "0212363652", "afcepf@afcepf.fr", "2016-11-15", "www.afcepf.com");
 insert into entreprise (libelle_entreprise, numero_rue, libelle_rue, cp_entreprise, ville_entreprise, tel_entreprise, fax_entreprise, mail_entreprise, date_election, siteweb_entreprise) values ("FFF", "22", "avenue aristid briand", "91254", "bagneux", "0145401010", "0145478585", "a2rt@msn.com", "2016-12-10", "www.A2RT-bagneux.com");
-insert into entreprise (libelle_entreprise, numero_rue, libelle_rue, cp_entreprise, ville_entreprise, tel_entreprise, fax_entreprise, mail_entreprise, date_election, siteweb_entreprise) values ("BBFRFCV", "12", "avenue du general de gaule", "92150", "fontenay aux roses", "0145454545", "0145454546", "lacerp@gmail.com", "2016-02-23", "www.ocp.com");
+
+
 
 insert into syndicat (libelle_syndicat, numero_rue, libelle_rue, cp_syndicat, ville_syndicat, tel_syndicat, fax_syndicat, mail_syndicat, dernier_ag, prochain_ag, siteweb_syndicat, id_federation_syndicat, id_branche_syndicat, id_ud_syndicat) values ("FO78",  "78", "rue du moulin", "12458", "nantes", "0145859696", "0112131313", "fo@gmail.com", "2016-02-23", "2017-02-23", "www.fo78.fr", 2, 1, 1);
 insert into syndicat (libelle_syndicat, numero_rue, libelle_rue, cp_syndicat, ville_syndicat, tel_syndicat, fax_syndicat, mail_syndicat, dernier_ag, prochain_ag, siteweb_syndicat, id_federation_syndicat, id_branche_syndicat, id_ud_syndicat) values ("CGT92",  "10", "rue marcel samba", "25441", "saindié", "0145487854", "0146305050", "cgt@yahoo.fr", "2016-05-02", "2017-05-12", "www.cgt92.org", 2, 1, 2);
@@ -88,6 +89,7 @@ insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, li
 insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, libelle_rue, cp_adherent, ville_adherent, tel_adherent, mail_adherent, id_entreprise_adherent, id_syndicat_adherent) values ("Bouchet", "Messaline", "1991-10-11", "6", "mat laurent", "91250", "es ulis", "06645549965", "messbou@gmail.com", 2, 2);
 insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, libelle_rue, cp_adherent, ville_adherent, tel_adherent, mail_adherent, id_entreprise_adherent, id_syndicat_adherent) values ("Pannier", "Philippe", "1965-12-04", "14", "rue du capitaine facq", "21120", "dreux", "0685810505", "phil.pannier@msn.com", 1, 4);
 insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, libelle_rue, cp_adherent, ville_adherent, tel_adherent, mail_adherent, id_entreprise_adherent, id_syndicat_adherent) values ("Pannier", "Veronique", "1964-12-18", "14", "rue A", "54236", "dourdan", "0688447250", "lagoute92@hotmail.com", 2, 3);
+insert into adherent(nom_adherent, prenom_adherent, dob_adherent, numero_rue, libelle_rue, cp_adherent, ville_adherent, tel_adherent, mail_adherent, id_entreprise_adherent, id_syndicat_adherent) values ("Jonhy", "Bgood", "1970-02-21", "10", "rue de la villette", "95452", "magny en vexin", "025451254", "jbgood@gmail.com", 2, 3);
 
 insert into user(login_user, password_user, mail_user, tel_user, active) values ("admin", "$2a$10$AaQU0tyBBJAX1s2n0.m5v./t0n44r/BGx8tBsymXFf2q6Q3zW0hZC", "admin@udgest.fr", "0146309108", 1);
 insert into user(login_user, password_user, mail_user, tel_user,active) values ("user", "$2a$10$Qxv7Pr1YF/HL0HINtK44Vu7MxOalRe6Ti9yuzWEMNQED81hclPeRi", "user@udgest.fr", "0656458545", 1);
