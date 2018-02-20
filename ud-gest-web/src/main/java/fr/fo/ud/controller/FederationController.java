@@ -1,21 +1,38 @@
 package fr.fo.ud.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import fr.fo.ud.business.api.IBusinessBranche;
 import fr.fo.ud.business.api.IBusinessFederation;
+import fr.fo.ud.business.api.IBusinessSyndicat;
+import fr.fo.ud.entity.Branche;
 import fr.fo.ud.entity.Federation;
+import fr.fo.ud.entity.Syndicat;
 
 @Controller
 public class FederationController {
 
 	@Autowired
 	IBusinessFederation buFederation;
+	
+	@Autowired
+	IBusinessSyndicat buSyndicat;
+	
+	@Autowired
+	IBusinessBranche buBranche;
 	
 	@RequestMapping(value="/ud-gest/show-federation-search", method=RequestMethod.GET)
 	public String showFederationSearch(Model model) {
@@ -33,6 +50,7 @@ public class FederationController {
 	public String showFederationDetail(@PathVariable(name="id") int id, Model model) {
 		try {
 			model.addAttribute("federation", buFederation.getById(id));
+			model.addAttribute("branches", buBranche.getAll());
 			return "federation-detail";
 		} catch (Exception e) {
 			return "error";
@@ -46,7 +64,50 @@ public class FederationController {
 		} catch (Exception e) {
 			return "error";
 		}
-		
 		return "redirect:/ud-gest/show-federation-search";
+	}
+	
+	@RequestMapping(value="/ud-gest/update-federation", method=RequestMethod.POST)
+	public String updateEntreprise(@ModelAttribute Federation federation, final BindingResult bindingResult, final ModelMap model) {
+		try {
+			buFederation.update(federation);
+			return "redirect:/ud-gest/show-federation-search";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/ud-gest/delete-federation", method=RequestMethod.POST)
+	public String removeFederation(@RequestParam(name="id") int id) {
+		try {
+			buFederation.delete(id);
+			return "redirect:/ud-gest/show-federation-search";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/ud-gest/remove-syndicat-from-federation", method=RequestMethod.POST)
+	public String removeSyndicatFromFederation(@RequestParam(name="id") int id) {
+		try {
+			Syndicat syndicat = buSyndicat.getById(id);
+			int idFederation = syndicat.getFederation().getId();
+			syndicat.setFederation(null);
+			buSyndicat.update(syndicat);
+			return "redirect:/ud-gest/show-federation-detail/" + idFederation;
+		} catch (Exception e) {
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/ud-gest/search-branche-ajax", method=RequestMethod.POST)
+	public @ResponseBody List<Branche> searchBranche(@RequestParam(name="motCle") String motCle) {
+		List<Branche> branches = new ArrayList<>();
+		for (Branche branche : buBranche.getByMotCle(motCle)) {
+			branches.add(branche);
+		}
+		return branches;
 	}
 }

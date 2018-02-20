@@ -47,12 +47,4 @@ public class DaoBrancheImpl implements IDaoBranche {
     	return em.createQuery("select b from Branche b where b.libelle like :pLibelle", Branche.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
     }
 
-    public List<Branche> getByFederation(Federation paramFederation) {
-        Query q = em.createQuery("select b from Branche b left join fetch b.syndicats where b.federation =:pFederation order by b.libelle");
-        q.setParameter("pFederation", paramFederation);
-        return q.getResultList();
-    }
-    
-    
-
 }

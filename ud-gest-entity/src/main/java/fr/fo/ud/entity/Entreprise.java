@@ -1,7 +1,6 @@
 package fr.fo.ud.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,9 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.Cascade;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -37,10 +35,6 @@ public class Entreprise implements Serializable{
     
     @Column(name = "libelle_entreprise", nullable = false, length = 45)
     private String libelle;
-    
-    @Column(name = "date_election", nullable = true)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date dateElection;
     
     @Column(name = "numero_rue", nullable = true, length = 10)
     private String numeroRue;
@@ -65,6 +59,10 @@ public class Entreprise implements Serializable{
     
     @Column(name = "siteweb_entreprise", nullable = true, length = 150)
     private String siteWeb;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "entreprise")
+    private List<Event> events;
     
     @JsonIgnore
     @OneToMany(mappedBy = "entreprise")
@@ -204,14 +202,14 @@ public class Entreprise implements Serializable{
 		this.ville = ville;
 	}
 
-	public Date getDateElection() {
-        return dateElection;
-    }
+	public List<Event> getEvents() {
+		return events;
+	}
 
-    public void setDateElection(Date paramDateElection) {
-        dateElection = paramDateElection;
-    }
-
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+	
 //	@Override
 //	public String toString() {
 //		return "Entreprise [id=" + id + ", libelle=" + libelle + ", dateElection=" + dateElection + ", numeroRue="

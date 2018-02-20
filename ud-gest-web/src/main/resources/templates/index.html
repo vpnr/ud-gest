@@ -15,40 +15,158 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 
-
+		<div class="row bot20">
+			<div class="col-md-12">
+				<a href="#" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}" id="add_event">Ajouter un évenement</a>
+			</div>
+		</div>
+		<form class="form-horizontal" method="post" th:action="@{/ud-gest/add-event}">
+			<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Détail de l'évènement" aria-hidden="true">
+				<div class="modal-dialog vertical-align-center" role="document">
+					<div class="modal-content">
+						<div class="modal-header bg-black">
+							<span class="fa fa-inverse top10">Evènement</span>
+						</div>
+						<div class="modal-body text-center top20">
+							<div class='row'>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label for="title" class="col-sm-2 control-label">Titre :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="title" id="title_add"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="start" class="col-sm-2 control-label">Start :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="start" id="start_add"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="end" class="col-sm-2 control-label">End :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="end" id="end_add"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label">Description :</label>
+										<div class="col-sm-9">
+											<textarea th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" rows="10" class="form-control" id="description_add" name="description"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label"> :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="organisation" name="organisation">
+												<option>Adhérent</option>
+												<option>Branche</option>
+												<option>Entreprise</option>
+												<option>Fédération</option>
+												<option>Section</option>
+												<option>Syndicat</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer bg-black">
+							<button type="button" class="btn btn-success btn-xs" data-dismiss="modal">Annuler</button>
+							<button type="submit" class="btn btn-danger btn-xs">Ajouter</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 		<div id='calendar'></div>
+		<form class="form-horizontal" method="post" th:action="@{/ud-gest/update-event}">
+			<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="Détail de l'évènement" aria-hidden="true">
+				<div class="modal-dialog vertical-align-center" role="document">
+					<div class="modal-content">
+						<div class="modal-header bg-black">
+							<span class="fa fa-inverse top10">Evènement</span>
+						</div>
+						<div class="modal-body text-center top20">
+							<div class='row'>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label for="title" class="col-sm-2 control-label">Libelle :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="title" id="title"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="start" class="col-sm-2 control-label">Start :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="start" id="start"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="end" class="col-sm-2 control-label">End :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="end" id="end"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label">Description :</label>
+										<div class="col-sm-9">
+											<textarea th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" rows="10" class="form-control" id="description"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer bg-black">
+							<button type="button" class="btn btn-success btn-xs" data-dismiss="modal">Supprimer</button>
+							<button type="submit" class="btn btn-danger btn-xs">Modifier</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 </body>
 <div th:include="fragments/footer :: footer"></div>
 <script src='js/moment.min.js' th:src="@{/js/moment.min.js}"></script>
 <script src="js/jquery.qtip.min.js" th:src="@{/js/jquery.qtip.min.js}"></script>
-<script src="js/jquery.dynatable.js" th:src="@{/js/fullcalendar.min.js}"></script>
+<script src="js/fullcalendar.min.js" th:src="@{/js/fullcalendar.min.js}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 	
+		$("#add_event").click(function() {
+			$("#addModal").modal('toggle');
+		});
+		
 	    // page is now ready, initialize the calendar...
 	
 	    $('#calendar').fullCalendar({
-	    	events: [
-	            {
-	                title: 'My Event',
-	                start: '2018-02-02',
-	                description: 'This is a cool event'
-	            },
-	            {
-	                title: 'My Event',
-	                start: '2018-02-02',
-	                end: '2018-02-04',
-	                description: 'This is a cool event'
-	            }
-	        ],
+	    	events : "/ud-gest/fill-calendar",
+			eventClick: function(event) {
+				$("#eventModal").modal('toggle');
+				fillModal(event);
+			},
 	        eventRender: function(event, element) {
 	            element.qtip({
 	                content: event.description
 	            });
 	        }
-	    })
+	    });
 	    
+	    function fillModal(event) {
+	    	$("#title").val(event.title);
+	    	$("#start").val(event.start);
+	    	$("#end").val(event.end);
+	    	$("#description").text("");
+	    	$("#description").append("Description : " + event.description + "\n");
+	    	if(event.entreprise != null) {
+	    		$("#description").append("Entreprise : " + event.entreprise.libelle + "\n");
+	    		$("#description").append("Tel : " + event.entreprise.tel + "\n");
+	    		$("#description").append("Fax : " + event.entreprise.fax + "\n");
+	    		$("#description").append("Mail : " + event.entreprise.mail + "\n");
+	    		$("#description").append("Adresse : " + event.entreprise.numeroRue + " " + event.entreprise.libelleRue + "\n");
+	    		$("#description").append("                " + event.entreprise.cp + " " + event.entreprise.ville);
+	    	}
+	    }
 	});
 </script>
 </html>

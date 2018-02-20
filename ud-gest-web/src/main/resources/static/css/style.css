@@ -1,6 +1,10 @@
 /*
 Spacing utils
 */
+.bg-black {
+	background-color: black;
+}
+
 .top10 {
 	margin-top: 10px !important;
 }

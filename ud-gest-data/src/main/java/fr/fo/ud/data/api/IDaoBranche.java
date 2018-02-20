@@ -7,17 +7,15 @@ import fr.fo.ud.entity.Federation;
 
 public interface IDaoBranche {
 
-    Branche add(Branche branche);
+    public Branche add(Branche branche);
     
-    Branche update(Branche branche);
+    public Branche update(Branche branche);
     
-    Branche delete(Branche branche);
+    public Branche delete(Branche branche);
     
-    Branche getById(Integer id);
+    public Branche getById(Integer id);
     
-    List<Branche> getAll();
+    public List<Branche> getAll();
     
-    List<Branche> getByMotCle(String motCle);
-    
-    List<Branche> getByFederation(Federation federation);
+    public List<Branche> getByMotCle(String motCle);
 }

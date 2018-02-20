@@ -62,11 +62,11 @@ public class Adherent implements Serializable {
     @Column(name = "mail_adherent", nullable = true, length = 100)
     private String mail;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_syndicat_adherent", nullable = true)
     private Syndicat syndicat;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_entreprise_adherent", nullable = true)
     private Entreprise entreprise;
     

@@ -11,7 +11,7 @@ public interface IBusinessFederation {
     
     public Federation update(Federation federation);
     
-    public Federation delete(Federation federation);
+    public Federation delete(int id);
     
     public Federation getById(Integer id);
     

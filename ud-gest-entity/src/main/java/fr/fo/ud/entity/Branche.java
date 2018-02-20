@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +29,8 @@ public class Branche implements Serializable {
     
     @Column(name = "libelle_branche", nullable = false, length = 45)
     private String libelle;
-    
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_federation_branche", nullable = true)
     private Federation federation;
     
@@ -38,15 +39,6 @@ public class Branche implements Serializable {
     private List<Syndicat> syndicats;
 
 	public Branche() {
-		super();
-	}
-
-	public Branche(Integer paramId, String paramLibelle, Federation paramFederation, List<Syndicat> paramSyndicats) {
-		super();
-		id = paramId;
-		libelle = paramLibelle;
-		federation = paramFederation;
-		syndicats = paramSyndicats;
 	}
 
 	public Integer getId() {

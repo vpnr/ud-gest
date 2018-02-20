@@ -2,12 +2,17 @@ package fr.fo.ud.business.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.fo.ud.business.api.IBusinessBranche;
 import fr.fo.ud.data.api.IDaoBranche;
 import fr.fo.ud.entity.Branche;
 
+@Service
 public class BusinessBranche implements IBusinessBranche{
 
+	@Autowired
     private IDaoBranche daoBranche;
     
     public Branche add(Branche paramBranche) {

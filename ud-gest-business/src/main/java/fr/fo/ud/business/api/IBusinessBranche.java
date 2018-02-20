@@ -6,15 +6,15 @@ import fr.fo.ud.entity.Branche;
 
 public interface IBusinessBranche {
 
-    Branche add(Branche branche);
+    public Branche add(Branche branche);
     
-    Branche update(Branche branche);
+    public Branche update(Branche branche);
     
-    Branche delete(Branche branche);
+    public Branche delete(Branche branche);
     
-    Branche getById(Integer id);
+    public Branche getById(Integer id);
     
-    List<Branche> getAll();
+    public List<Branche> getAll();
     
-    List<Branche> getByMotCle(String motCle);
+    public List<Branche> getByMotCle(String motCle);
 }

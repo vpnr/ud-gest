@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML>idden
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header"></head>
 <body>
@@ -27,37 +27,38 @@
 						<div class="form-group">
 							<label for="nom" class="col-sm-2 control-label">Libelle :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="libelle" id="libelle_entreprise" th:field="*{libelle}" ></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="libelle" id="libelle_entreprise" th:field="*{libelle}" ></input>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="prenom" class="col-sm-2 control-label">Elections :</label>
-							<div class="col-sm-8">
-								<input type="date" class="form-control" name="dateElection" id="date_election" th:field="*{dateElection}"></input>
-							</div>
-						</div>
+<!-- 						<div class="form-group"> -->
+<!-- 							<label for="prenom" class="col-sm-2 control-label">Elections :</label> -->
+<!-- 							<div class="col-sm-8"> -->
+<!-- 								<input type="hidden" th:field="*{events[0].id}"></input> -->
+<!-- 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="dateElection" id="date_election" th:field="*{events[0].start}"></input> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						<div class="form-group">
 							<label for="dob" class="col-sm-2 control-label">Téléphone :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="tel" id="tel" th:field="*{tel}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="tel" id="tel" th:field="*{tel}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="tel" class="col-sm-2 control-label">Fax :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="fax" id="fax" th:field="*{fax}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="fax" id="fax" th:field="*{fax}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="mail" class="col-sm-2 control-label">Mail :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="mail"	id="mail" th:field="*{mail}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="mail"	id="mail" th:field="*{mail}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="web" class="col-sm-2 control-label">Site web :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="web"	id="web" th:field="*{siteWeb}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="web"	id="web" th:field="*{siteWeb}"></input>
 							</div>
 						</div>
 					</div>
@@ -65,32 +66,32 @@
 						<div class="form-group">
 							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="num_rue_entreprise" id="num_rue_entreprise" th:field="*{numeroRue}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="num_rue_entreprise" id="num_rue_entreprise" th:field="*{numeroRue}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="rue" class="col-sm-2 control-label">Rue :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="rue_entrepise" id="rue_entreprise" th:field="*{libelleRue}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="rue_entrepise" id="rue_entreprise" th:field="*{libelleRue}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="cp" class="col-sm-2 control-label">Cp :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="cp_entreprise" id="cp_entreprise" th:field="*{cp}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="cp_entreprise" id="cp_entreprise" th:field="*{cp}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="ville" class="col-sm-2 control-label">Ville :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="ville_entreprise"	id="ville_entreprise" th:field="*{ville}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="ville_entreprise"	id="ville_entreprise" th:field="*{ville}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-10 text-right">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">
 							<label for="ville" class="col-sm-2 control-label"></label>
 							<div class="col-sm-8 text-right">
 								<button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
@@ -100,6 +101,22 @@
 					</div>
 				</div>
 			</form>
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12 form-group-adherent"> -->
+<!-- 					<p class="fa fa-inverse">Evènements</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<div class="row" th:each="event : ${entreprise.events}"> -->
+<!-- 					<div class="col-lg-12"> -->
+<!-- 						<input type="hidden" th:value="${event.id}"></input> -->
+<!-- 						<label th:value="${event.title}" class="control-label"></label> -->
+<!-- 						<input th:value="${event.start}" type="date" class="form-control"></input> -->
+<!-- 						<input th:value="${event.end}" type="date" class="form-control"></input> -->
+<!-- 						<input th:value="${event.description}" class="form-control"></input> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 <!-- 			th:action="@{/ud-gest/remove-entreprise/} + ${entreprise.id}"  -->
 			<form method="post" th:action="@{/ud-gest/delete-entreprise}">
 				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Supprimer l'utilisateur" aria-hidden="true">
@@ -135,7 +152,7 @@
 							<td>ud</td>
 							<td>federation</td>
 							<td>-</td>
-							<td>--</td>
+							<td th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">--</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -156,7 +173,7 @@
 							<td class="center-td">
 								<a th:href="@{'/ud-gest/show-adherent-detail/'+ ${adherent.id}}"><span class="glyphicon glyphicon-search"></span></a>
 							</td>
-							<td class="center-td">
+							<td class="center-td" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">
 								<a id="showModal" data-toggle="modal" data-target="#modalAdherent" th:onclick="'showModal(' + ${adherent.id} + ')'" class="glyphicon glyphicon-trash red"></a>
 							</td>
 						</tr>
