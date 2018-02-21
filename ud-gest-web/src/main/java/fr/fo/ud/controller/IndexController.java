@@ -11,17 +11,47 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fr.fo.ud.business.api.IBusinessBranche;
+import fr.fo.ud.business.api.IBusinessEntreprise;
 import fr.fo.ud.business.api.IBusinessEvent;
+import fr.fo.ud.business.api.IBusinessFederation;
+import fr.fo.ud.business.api.IBusinessSection;
+import fr.fo.ud.business.api.IBusinessSyndicat;
+import fr.fo.ud.business.api.IBusinessUd;
 import fr.fo.ud.entity.Event;
 
 @Controller
 public class IndexController {
 	
 	@Autowired
-	IBusinessEvent buEvent;
+	private IBusinessEvent buEvent;
+	
+	@Autowired
+	private IBusinessBranche buBranche;
+	
+	@Autowired
+	private IBusinessEntreprise buEntreprise;
+	
+	@Autowired
+	private IBusinessFederation buFederation;
+	
+	@Autowired
+	private IBusinessSection buSection;
+	
+	@Autowired
+	private IBusinessSyndicat buSyndicat;
+	
+	@Autowired
+	private IBusinessUd buUd;
 	
 	@RequestMapping(value="/ud-gest/show-index", method=RequestMethod.GET)
 	public String showIndex(Model model) {
+		model.addAttribute("branches", buBranche.getAllLibellesBranche());
+		model.addAttribute("entreprises", buEntreprise.getAllLibelles());
+		model.addAttribute("federations", buFederation.getAllLibelles());
+		model.addAttribute("sections", buSection.getAllLibelles());
+		model.addAttribute("syndicats", buSyndicat.getAllLibelles());
+		model.addAttribute("uds", buUd.getAllLibelles());
 		return "index";
 	}
 	

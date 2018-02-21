@@ -7,18 +7,18 @@ import fr.fo.ud.entity.Formation;
 
 public interface IDaoFormation {
 
-	Formation add(Formation formation);
+	public Formation add(Formation formation);
 	
-	Formation update(Formation formation);
+	public Formation update(Formation formation);
 	
-	Formation delete(Formation formation);
+	public Formation delete(Formation formation);
 	
-	Formation getById(Integer id);
+	public Formation findById(Integer id);
 	
-	List<Formation> getAll();
+	public List<Formation> findAll();
 	
-	List<Formation> getByMotCle(String motCle);
+	public List<Formation> findByMotCle(String motCle);
 	
-	List<Formation> getByAdherent(Adherent adherent);
+	public List<Formation> findByAdherent(Adherent adherent);
 	
 }

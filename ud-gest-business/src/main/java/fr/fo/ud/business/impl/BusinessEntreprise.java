@@ -53,6 +53,11 @@ public class BusinessEntreprise implements IBusinessEntreprise{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<String> getAllLibelles() {
+		return daoEntreprise.findAllLibelles();
+	}
 
 	@Override
 	public List<String> getAllLibelleByMotCle(String motCle) {

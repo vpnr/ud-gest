@@ -29,7 +29,7 @@ public class BusinessUd implements IBusinessUd{
     }
 
     public UnionDepartemental delete(int id) {
-    	UnionDepartemental ud = daoUd.getById(id);
+    	UnionDepartemental ud = daoUd.findById(id);
 		for (Syndicat syndicat : ud.getSyndicats()) {
 			syndicat.setUd(null);
 			daoSyndicat.update(syndicat);
@@ -38,15 +38,19 @@ public class BusinessUd implements IBusinessUd{
     }
 
     public UnionDepartemental getById(Integer paramId) {
-        return daoUd.getById(paramId);
+        return daoUd.findById(paramId);
     }
 
     public List<UnionDepartemental> getAll() {
-        return daoUd.getAll();
+        return daoUd.findAll();
     }
 
     public List<UnionDepartemental> getByMotCle(String paramMotCle) {
-        return daoUd.getByMotCle(paramMotCle);
+        return daoUd.findByMotCle(paramMotCle);
+    }
+    
+    public List<String> getAllLibelles() {
+        return daoUd.findAllLibelles();
     }
     
     

@@ -16,6 +16,8 @@ public interface IBusinessFederation {
     public Federation getById(Integer id);
     
     public List<Federation> getAll();
+    
+    public List<String> getAllLibelles();
         
     public List<Federation> getByMotCle(String motCle);
     

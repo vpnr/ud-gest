@@ -58,4 +58,9 @@ public class BusinessFederation implements IBusinessFederation {
         return daoFederation.findByMotCle(paramMotCle);
     }
 
+	@Override
+	public List<String> getAllLibelles() {
+		return daoFederation.findAllLibelles();
+	}
+
 }

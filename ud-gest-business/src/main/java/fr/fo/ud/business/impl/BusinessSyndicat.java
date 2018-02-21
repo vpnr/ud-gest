@@ -28,15 +28,20 @@ public class BusinessSyndicat implements IBusinessSyndicat{
 	}
 
 	public List<Syndicat> getAll() {
-	    return daoSyndicat.getAll();
+	    return daoSyndicat.findAll();
 	}
 
 	public Syndicat getById(Integer paramId) {
-	    return daoSyndicat.getById(paramId);
+	    return daoSyndicat.findById(paramId);
 	}
 
 	public List<Syndicat> getByMotCle(String paramMotCle) {
-	    return daoSyndicat.getByMotCle(paramMotCle);
+	    return daoSyndicat.findByMotCle(paramMotCle);
+	}
+
+	@Override
+	public List<String> getAllLibelles() {
+		return daoSyndicat.findAllLibelles();
 	}
 
 }

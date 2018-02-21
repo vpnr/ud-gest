@@ -13,9 +13,11 @@ public interface IDaoBranche {
     
     public Branche delete(Branche branche);
     
-    public Branche getById(Integer id);
+    public Branche findById(Integer id);
     
-    public List<Branche> getAll();
+    public List<Branche> findAll();
     
-    public List<Branche> getByMotCle(String motCle);
+    public List<Branche> findByMotCle(String motCle);
+    
+    public List<String> findAllLibellesBranche();
 }

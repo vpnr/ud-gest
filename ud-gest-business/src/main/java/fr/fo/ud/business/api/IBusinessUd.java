@@ -6,15 +6,17 @@ import fr.fo.ud.entity.UnionDepartemental;
 
 public interface IBusinessUd {
 
-    UnionDepartemental add(UnionDepartemental ud);
+    public UnionDepartemental add(UnionDepartemental ud);
     
-    UnionDepartemental update(UnionDepartemental ud);
+    public UnionDepartemental update(UnionDepartemental ud);
     
-    UnionDepartemental delete(int id);
+    public UnionDepartemental delete(int id);
     
-    UnionDepartemental getById(Integer id);
+    public UnionDepartemental getById(Integer id);
     
-    List<UnionDepartemental> getAll();
+    public List<UnionDepartemental> getAll();
     
-    List<UnionDepartemental> getByMotCle(String motCle);
+    public List<String> getAllLibelles();
+    
+    public List<UnionDepartemental> getByMotCle(String motCle);
 }

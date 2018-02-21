@@ -55,15 +55,64 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="description" class="col-sm-2 control-label"> :</label>
+										<label for="description" class="col-sm-2 control-label">Organisme :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="organisation" name="organisation">
-												<option>Adhérent</option>
-												<option>Branche</option>
-												<option>Entreprise</option>
-												<option>Fédération</option>
-												<option>Section</option>
-												<option>Syndicat</option>
+												<option value="0">Selectionner un organisme</option>
+												<option value="1">Branche</option>
+												<option value="2">Entreprise</option>
+												<option value="3">Fédération</option>
+												<option value="4">Section</option>
+												<option value="5">Syndicat</option>
+												<option value="6">Union départementale</option>
+											</select>
+										</div>
+									</div>
+									<div id="div-branche" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Branche :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="branche" name="branche">
+												<option th:each="branche : ${branches}" th:value="${branche}" th:text="${branche}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-entreprise" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Entreprise :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="entreprise" name="entreprise">
+												<option th:each="entreprise : ${entreprises}" th:value="${entreprise}" th:text="${entreprise}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-federation" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Federation :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="federation" name="federation">
+												<option th:each="federation : ${federations}" th:value="${federation}" th:text="${federation}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-section" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Section :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="section" name="section">
+												<option th:each="section : ${sections}" th:value="${section}" th:text="${section}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-syndicat" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Syndicat :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="syndicat" name="syndicat">
+												<option th:each="syndicat : ${syndicats}" th:value="${syndicat}" th:text="${syndicat}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-ud" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Ud :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="ud" name="ud">
+												<option th:each="ud : ${uds}" th:value="${ud}" th:text="${ud}"></option>
 											</select>
 										</div>
 									</div>
@@ -135,6 +184,67 @@
 	
 		$("#add_event").click(function() {
 			$("#addModal").modal('toggle');
+		});
+		
+		$("#organisation").change(function() {
+			if($("#organisation").val() == 0) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			}
+			if($("#organisation").val() == 1) {
+				$("#div-branche").toggle(true);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 2) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(true);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 3) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(true);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 4) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(true);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 5) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(true);
+				$("#div-ud").toggle(false);
+			};
+			
+			if($("#organisation").val() == 6) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(true);
+			};
+				
 		});
 		
 	    // page is now ready, initialize the calendar...

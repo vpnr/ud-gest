@@ -45,5 +45,10 @@ public class DaoFederationImpl implements IDaoFederation{
     public List<Federation> findByMotCle(String paramMotCle) {
     	return em.createQuery("select f from Federation f where f.libelle like :pLibelle", Federation.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
     }
+
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select f.libelle from Federation f order by f.libelle", String.class).getResultList();
+	}
     
 }

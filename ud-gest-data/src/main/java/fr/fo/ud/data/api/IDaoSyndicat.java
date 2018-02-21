@@ -16,41 +16,43 @@ public interface IDaoSyndicat {
 	 * @param syndicat
 	 * @return
 	 */
-	Syndicat add(Syndicat syndicat);
+	public Syndicat add(Syndicat syndicat);
 	
 	/**
 	 * Methode permettant de modifier un {@link Syndicat} dans l'unit� de persistence.
 	 * @param syndicat
 	 * @return
 	 */
-	Syndicat update(Syndicat syndicat);
+	public Syndicat update(Syndicat syndicat);
 	
 	/**
 	 * Methode permettant de supprimer un {@link Syndicat} dans l'unite de persistence.
 	 * @param syndicat
 	 * @return
 	 */
-	Syndicat delete(Syndicat syndicat);
+	public Syndicat delete(Syndicat syndicat);
 	
 	/**
 	 * Methode permettant de rechercher un {@link Syndicat} selon son identifiant dans l'unite de persistence.
 	 * @param id
 	 * @return
 	 */
-	Syndicat getById(Integer id);
+	public Syndicat findById(Integer id);
 	
 	/**
 	 * Methode permettant de rchercher tous les {@link Syndicat} de l'unit� de persistence.
 	 * @return
 	 */
-	List<Syndicat> getAll();
+	public List<Syndicat> findAll();
+	
+	public List<String> findAllLibelles();
 	
     /**
      * methode permettant de rechercher les {@link Syndicat} selon un mot cl�.
      * @param nom
      * @return
      */
-    List<Syndicat> getByMotCle(String motCle);
+	public List<Syndicat> findByMotCle(String motCle);
     
     
 }

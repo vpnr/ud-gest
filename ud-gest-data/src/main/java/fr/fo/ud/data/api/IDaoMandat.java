@@ -13,10 +13,10 @@ public interface IDaoMandat {
 	
 	public Mandat delete(Mandat mandat);
 	
-	public Mandat getById(Integer id);
+	public Mandat findById(Integer id);
 	
-	public List<Mandat> getAll();
+	public List<Mandat> findAll();
 	
-	public List<Mandat> getByMotCle(String motCle);
+	public List<Mandat> findByMotCle(String motCle);
 	
 }

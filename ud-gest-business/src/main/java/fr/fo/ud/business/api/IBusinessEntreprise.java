@@ -21,6 +21,8 @@ public interface IBusinessEntreprise {
 	
 	public List<Entreprise> getEntrepriseByAdherent(Adherent adherent);
 	
+	public List<String> getAllLibelles();
+	
 	public List<String> getAllLibelleByMotCle(String motCle);
 	
 }

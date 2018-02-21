@@ -6,16 +6,18 @@ import fr.fo.ud.entity.UnionDepartemental;
 
 public interface IDaoUd {
 
-    UnionDepartemental add(UnionDepartemental ud);
+    public UnionDepartemental add(UnionDepartemental ud);
     
-    UnionDepartemental update(UnionDepartemental ud);
+    public UnionDepartemental update(UnionDepartemental ud);
     
-    UnionDepartemental delete(UnionDepartemental ud);
+    public UnionDepartemental delete(UnionDepartemental ud);
     
-    List<UnionDepartemental> getAll();
+    public List<UnionDepartemental> findAll();
     
-    UnionDepartemental getById(Integer id);
+    public List<String> findAllLibelles();
     
-    List<UnionDepartemental> getByMotCle(String motCle);
+    public UnionDepartemental findById(Integer id);
+    
+    public List<UnionDepartemental> findByMotCle(String motCle);
     
 }

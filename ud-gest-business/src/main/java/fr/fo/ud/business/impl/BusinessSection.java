@@ -28,15 +28,19 @@ public class BusinessSection implements IBusinessSection{
     }
 
     public Section getById(Integer paramId) {
-        return daoSection.getById(paramId);
+        return daoSection.findById(paramId);
     }
 
     public List<Section> getAll() {
-        return daoSection.getAll();
+        return daoSection.findAll();
+    }
+    
+    public List<String> getAllLibelles() {
+        return daoSection.findAllLibelles();
     }
 
     public List<Section> getByMotCle(String paramMotCle) {
-        return daoSection.getByMotCle(paramMotCle);
+        return daoSection.findByMotCle(paramMotCle);
     }
     
 }

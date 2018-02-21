@@ -67,6 +67,11 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 		return em.createQuery("select libelle from Entreprise e where e.libelle like :motCle", String.class).setParameter("motCle", "%" + motCle + "%").getResultList();
 	}
 
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select e.libelle from Entreprise e order by e.libelle", String.class).getResultList();
+	}
+
 
 	
 

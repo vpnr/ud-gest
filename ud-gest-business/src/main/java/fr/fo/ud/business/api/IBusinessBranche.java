@@ -17,4 +17,6 @@ public interface IBusinessBranche {
     public List<Branche> getAll();
     
     public List<Branche> getByMotCle(String motCle);
+    
+    public List<String> getAllLibellesBranche();
 }

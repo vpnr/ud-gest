@@ -34,19 +34,24 @@ public class DaoUdImpl implements IDaoUd {
         return paramUd;
     }
 
-    public List<UnionDepartemental> getAll() {
+    public List<UnionDepartemental> findAll() {
         return em.createQuery("select u from UnionDepartemental u", UnionDepartemental.class).getResultList();
     }
 
-    public UnionDepartemental getById(Integer paramId) {
+    public UnionDepartemental findById(Integer paramId) {
     	return em.createQuery("select u from UnionDepartemental u where u.id =:pId", UnionDepartemental.class).setParameter("pId", paramId).getSingleResult();
     }
 
-    public List<UnionDepartemental> getByMotCle(String paramMotCle) {
+    public List<UnionDepartemental> findByMotCle(String paramMotCle) {
         Query q = em.createQuery("select u from UnionDepartemental u where u.libelle like :pLibelle or u.ville.libelle like :pVille order by u.libelle");
         q.setParameter("pLibelle", paramMotCle + "%");
         q.setParameter("pVille", paramMotCle + "%");
         return q.getResultList();
     }
+
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select u.libelle from UnionDepartemental u order by u.libelle", String.class).getResultList();
+	}
     
 }

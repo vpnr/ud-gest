@@ -35,16 +35,22 @@ public class DaoBrancheImpl implements IDaoBranche {
         return paramBranche;
     }
 
-    public Branche getById(Integer paramId) {
+    public Branche findById(Integer paramId) {
     	return em.createQuery("select b from Branche b where b.id =:pId", Branche.class).setParameter("pId", paramId).getSingleResult();
     }
 
-    public List<Branche> getAll() {
+    public List<Branche> findAll() {
         return em.createQuery("select b from Branche b", Branche.class).getResultList();
     }
 
-    public List<Branche> getByMotCle(String paramMotCle) {
+    public List<Branche> findByMotCle(String paramMotCle) {
     	return em.createQuery("select b from Branche b where b.libelle like :pLibelle", Branche.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
     }
+
+	@Override
+	public List<String> findAllLibellesBranche() {
+		return em.createQuery("select b.libelle from Branche b order by b.libelle", String.class).getResultList();
+	}
+    
 
 }

@@ -35,18 +35,23 @@ public class DaoSyndicatImpl implements IDaoSyndicat {
         return paramSyndicat;
 	}
 
-	public Syndicat getById(Integer paramId) {
+	public Syndicat findById(Integer paramId) {
 	    return em.createQuery("select s from Syndicat s where s.id =:pId", Syndicat.class).setParameter("pId", paramId).getSingleResult();
 	}
 
-	public List<Syndicat> getByMotCle(String paramMotCle) {
+	public List<Syndicat> findByMotCle(String paramMotCle) {
 	    return em.createQuery("select s from Syndicat s where s.libelle like :pLibelle order by s.libelle", Syndicat.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
 	}
 
-    public List<Syndicat> getAll() {
+    public List<Syndicat> findAll() {
         Query q = em.createQuery("select s from Syndicat s order by s.libelle");
         return q.getResultList();
     }
+
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select s.libelle from Syndicat s order by s.libelle", String.class).getResultList();
+	}
 
 
 }

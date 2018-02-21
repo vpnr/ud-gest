@@ -34,55 +34,20 @@ public class DaoMandatImpl implements IDaoMandat{
         return mandat;
     }
 
-    public Mandat getById(Integer paramId) {
+    public Mandat findById(Integer paramId) {
         Query q = em.createQuery("select f from Fonction f where f.id =:pId order by f.libelle");
         q.setParameter("pId", paramId);
         return (Mandat) q.getSingleResult();
     }
 
-    public List<Mandat> getAll() {
+    public List<Mandat> findAll() {
         Query q = em.createQuery("select f from Fonction f order by f.libelle");
         return q.getResultList();
     }
 
-    public List<Mandat> getByMotCle(String paramMotCle) {
+    public List<Mandat> findByMotCle(String paramMotCle) {
         Query q = em.createQuery("select f from Fonction f where f.libelle =:pLibelle order by f.libelle");
         q.setParameter("pLibelle", paramMotCle);
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionEntreprise() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %CE% and f.libelle like %CHSCT% and f.libelle like %d�l�gu�% and f.libelle like %repr�sentant% order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionSyndicat() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %syndicat% order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionSection() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %section% order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionBranche() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %branche% and f.libelle like %CPNEFP% order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionUd() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %UD% order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionFederation() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %federation% order by f.libelle");
-        return q.getResultList();
-    }
-
-    public List<Mandat> getFonctionGroupement() {
-        Query q = em.createQuery("select f from Fonction f where f.libelle like %groupement% order by f.libelle");
         return q.getResultList();
     }
 

@@ -6,17 +6,19 @@ import fr.fo.ud.entity.Syndicat;
 
 public interface IBusinessSyndicat {
 
-	Syndicat add(Syndicat syndicat);
+	public Syndicat add(Syndicat syndicat);
 	
-	Syndicat update(Syndicat syndicat);
+	public Syndicat update(Syndicat syndicat);
 	
-	Syndicat delete(Syndicat syndicat);
+	public Syndicat delete(Syndicat syndicat);
 	
-	List<Syndicat> getAll();
+	public List<Syndicat> getAll();
 	
-	Syndicat getById(Integer id);
+	public List<String> getAllLibelles();
 	
-	List<Syndicat> getByMotCle(String motCle);
+	public Syndicat getById(Integer id);
+	
+	public List<Syndicat> getByMotCle(String motCle);
 	
 	
 }

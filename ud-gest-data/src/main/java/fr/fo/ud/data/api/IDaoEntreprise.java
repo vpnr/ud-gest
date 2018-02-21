@@ -58,6 +58,8 @@ public interface IDaoEntreprise {
      * @return
      */
 	public List<Entreprise> findByMotCle(String motCle);
+	
+	public List<String> findAllLibelles();
     
 	public List<String> findAllLibelleByMotCle(String motCle);
     

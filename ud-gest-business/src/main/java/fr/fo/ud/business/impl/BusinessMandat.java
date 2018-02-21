@@ -23,15 +23,15 @@ public class BusinessMandat implements IBusinessMandat{
     }
 
     public List<Mandat> getAll() {
-        return daoMandat.getAll();
+        return daoMandat.findAll();
     }
 
     public List<Mandat> getByMotCle(String paramMotCle) {
-        return daoMandat.getByMotCle(paramMotCle);
+        return daoMandat.findByMotCle(paramMotCle);
     }
 
     public Mandat getById(Integer paramId) {
-        return daoMandat.getById(paramId);
+        return daoMandat.findById(paramId);
     }
 
 }

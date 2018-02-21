@@ -12,9 +12,11 @@ public interface IDaoSection {
 
     public Section delete(Section section);
     
-    public Section getById(Integer id);
+    public Section findById(Integer id);
     
-    public List<Section> getAll();
+    public List<Section> findAll();
     
-    public List<Section> getByMotCle(String motCle);
+    public List<String> findAllLibelles();
+    
+    public List<Section> findByMotCle(String motCle);
 }

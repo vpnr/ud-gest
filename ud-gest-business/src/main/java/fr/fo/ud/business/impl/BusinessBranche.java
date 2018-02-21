@@ -28,16 +28,19 @@ public class BusinessBranche implements IBusinessBranche{
     }
 
     public Branche getById(Integer paramId) {
-        return daoBranche.getById(paramId);
+        return daoBranche.findById(paramId);
     }
 
     public List<Branche> getAll() {
-        return daoBranche.getAll();
+        return daoBranche.findAll();
     }
 
     public List<Branche> getByMotCle(String paramMotCle) {
-        return daoBranche.getByMotCle(paramMotCle);
+        return daoBranche.findByMotCle(paramMotCle);
     }
 
+    public List<String> getAllLibellesBranche() {
+        return daoBranche.findAllLibellesBranche();
+    }
     
 }
