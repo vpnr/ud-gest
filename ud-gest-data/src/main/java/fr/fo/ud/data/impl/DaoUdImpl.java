@@ -53,5 +53,10 @@ public class DaoUdImpl implements IDaoUd {
 	public List<String> findAllLibelles() {
 		return em.createQuery("select u.libelle from UnionDepartemental u order by u.libelle", String.class).getResultList();
 	}
+
+	@Override
+	public UnionDepartemental findByLibelle(String libelle) {
+		return em.createQuery("select u from UnionDepartemental u where u.libelle =:libelle", UnionDepartemental.class).setParameter("libelle", libelle).getSingleResult();
+	}
     
 }

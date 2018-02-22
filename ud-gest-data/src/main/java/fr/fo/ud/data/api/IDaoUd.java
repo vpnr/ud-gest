@@ -14,6 +14,8 @@ public interface IDaoUd {
     
     public List<UnionDepartemental> findAll();
     
+    public UnionDepartemental findByLibelle(String libelle);
+    
     public List<String> findAllLibelles();
     
     public UnionDepartemental findById(Integer id);

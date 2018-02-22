@@ -52,6 +52,11 @@ public class BusinessUd implements IBusinessUd{
     public List<String> getAllLibelles() {
         return daoUd.findAllLibelles();
     }
+
+	@Override
+	public UnionDepartemental getByLibelle(String libelle) {
+		return daoUd.findByLibelle(libelle);
+	}
     
     
 }

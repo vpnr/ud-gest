@@ -23,6 +23,8 @@ public interface IBusinessEntreprise {
 	
 	public List<String> getAllLibelles();
 	
+	public Entreprise getByLibelle(String libelle);
+	
 	public List<String> getAllLibelleByMotCle(String motCle);
 	
 }

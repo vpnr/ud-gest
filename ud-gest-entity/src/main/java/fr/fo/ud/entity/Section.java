@@ -1,6 +1,8 @@
 package fr.fo.ud.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "section")
@@ -51,6 +56,10 @@ public class Section implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_syndicat_section", nullable = false)
     private Syndicat syndicat;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "section")
+    private List<Event> events;
 
 	public Section() {
 	}
@@ -141,6 +150,14 @@ public class Section implements Serializable {
 
 	public void setSyndicat(Syndicat paramSyndicat) {
 		syndicat = paramSyndicat;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 	
 }

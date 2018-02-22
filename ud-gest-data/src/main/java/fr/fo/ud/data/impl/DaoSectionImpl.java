@@ -50,5 +50,10 @@ public class DaoSectionImpl implements IDaoSection{
 	public List<String> findAllLibelles() {
 		return em.createQuery("select s.libelle from Section s order by s.libelle", String.class).getResultList();
 	}
+
+	@Override
+	public Section findByLibelle(String libelle) {
+		return em.createQuery("select s from Section s where s.libelle = :libelle", Section.class).setParameter("libelle", libelle).getSingleResult();
+	}
     
 }

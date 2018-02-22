@@ -72,6 +72,7 @@
 										<label for="description" class="col-sm-2 control-label">Branche :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="branche" name="branche">
+												<option></option>
 												<option th:each="branche : ${branches}" th:value="${branche}" th:text="${branche}"></option>
 											</select>
 										</div>
@@ -80,6 +81,7 @@
 										<label for="description" class="col-sm-2 control-label">Entreprise :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="entreprise" name="entreprise">
+												<option></option>
 												<option th:each="entreprise : ${entreprises}" th:value="${entreprise}" th:text="${entreprise}"></option>
 											</select>
 										</div>
@@ -88,6 +90,7 @@
 										<label for="description" class="col-sm-2 control-label">Federation :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="federation" name="federation">
+												<option></option>
 												<option th:each="federation : ${federations}" th:value="${federation}" th:text="${federation}"></option>
 											</select>
 										</div>
@@ -96,6 +99,7 @@
 										<label for="description" class="col-sm-2 control-label">Section :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="section" name="section">
+												<option></option>
 												<option th:each="section : ${sections}" th:value="${section}" th:text="${section}"></option>
 											</select>
 										</div>
@@ -104,6 +108,7 @@
 										<label for="description" class="col-sm-2 control-label">Syndicat :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="syndicat" name="syndicat">
+												<option></option>
 												<option th:each="syndicat : ${syndicats}" th:value="${syndicat}" th:text="${syndicat}"></option>
 											</select>
 										</div>
@@ -112,6 +117,7 @@
 										<label for="description" class="col-sm-2 control-label">Ud :</label>
 										<div class="col-sm-9">
 											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="ud" name="ud">
+												<option></option>
 												<option th:each="ud : ${uds}" th:value="${ud}" th:text="${ud}"></option>
 											</select>
 										</div>
@@ -179,7 +185,8 @@
 <script src='js/moment.min.js' th:src="@{/js/moment.min.js}"></script>
 <script src="js/jquery.qtip.min.js" th:src="@{/js/jquery.qtip.min.js}"></script>
 <script src="js/fullcalendar.min.js" th:src="@{/js/fullcalendar.min.js}"></script>
-<script type="text/javascript">
+<script th:inline="javascript" type="text/javascript">
+/*<![CDATA[*/
 	$(document).ready(function() {
 	
 		$("#add_event").click(function() {
@@ -263,9 +270,17 @@
 	    });
 	    
 	    function fillModal(event) {
+	    	var startDate = buildDate(event.start);
+	    	var endDate;
+	    	if(event.end = null) {
+	    		endDate = startDate;
+	    	}
+	    	else {
+	    		endDate = buildDate(event.end);
+	    	}
 	    	$("#title").val(event.title);
-	    	$("#start").val(event.start);
-	    	$("#end").val(event.end);
+	    	$("#start").val(startDate);
+	    	$("#end").val(endDate);
 	    	$("#description").text("");
 	    	$("#description").append("Description : " + event.description + "\n");
 	    	if(event.entreprise != null) {
@@ -276,7 +291,57 @@
 	    		$("#description").append("Adresse : " + event.entreprise.numeroRue + " " + event.entreprise.libelleRue + "\n");
 	    		$("#description").append("                " + event.entreprise.cp + " " + event.entreprise.ville);
 	    	}
+	    	if(event.federation != null) {
+	    		$("#description").append("Fédération : " + event.federation.libelle + "\n");
+	    		$("#description").append("Tel : " + event.federation.tel + "\n");
+	    		$("#description").append("Fax : " + event.federation.fax + "\n");
+	    		$("#description").append("Mail : " + event.federation.mail + "\n");
+	    		$("#description").append("Adresse : " + event.federation.numeroRue + " " + event.federation.libelleRue + "\n");
+	    		$("#description").append("                " + event.federation.cp + " " + event.federation.ville);
+	    	}
+	    	if(event.section != null) {
+	    		$("#description").append("Section : " + event.section.libelle + "\n");
+	    		$("#description").append("Tel : " + event.section.tel + "\n");
+	    		$("#description").append("Fax : " + event.section.fax + "\n");
+	    		$("#description").append("Mail : " + event.section.mail + "\n");
+	    		$("#description").append("Adresse : " + event.section.numeroRue + " " + event.section.libelleRue + "\n");
+	    		$("#description").append("                " + event.section.cp + " " + event.section.ville);
+	    	}
+	    	if(event.syndicat != null) {
+	    		$("#description").append("Syndicat : " + event.syndicat.libelle + "\n");
+	    		$("#description").append("Tel : " + event.syndicat.tel + "\n");
+	    		$("#description").append("Fax : " + event.syndicat.fax + "\n");
+	    		$("#description").append("Mail : " + event.syndicat.mail + "\n");
+	    		$("#description").append("Adresse : " + event.syndicat.numeroRue + " " + event.syndicat.libelleRue + "\n");
+	    		$("#description").append("                " + event.syndicat.cp + " " + event.syndicat.ville);
+	    	}
+	    	if(event.ud != null) {
+	    		$("#description").append("Ud : " + event.ud.libelle + "\n");
+	    		$("#description").append("Tel : " + event.ud.tel + "\n");
+	    		$("#description").append("Fax : " + event.ud.fax + "\n");
+	    		$("#description").append("Mail : " + event.ud.mail + "\n");
+	    		$("#description").append("Adresse : " + event.ud.numeroRue + " " + event.ud.rue + "\n");
+	    		$("#description").append("                " + event.ud.cp + " " + event.ud.ville);
+	    	}
+	    }
+	    
+	    function buildDate(date) {
+	    	var tmpDate = new Date(date);
+	    	var day = tmpDate.getDay();
+	    	var month = tmpDate.getMonth() + 1;
+	    	var year = tmpDate.getFullYear();
+	    	
+	    	if(day < 10) {
+	    		day = "0" + day;
+	    	}
+	    	
+	    	if(month < 10) {
+	    		month = "0" + month;
+	    	}
+	    	
+	    	return year + "-" + month + "-" + day;	    	
 	    }
 	});
+/*]]>*/	
 </script>
 </html>

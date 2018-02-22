@@ -44,4 +44,9 @@ public class BusinessSyndicat implements IBusinessSyndicat{
 		return daoSyndicat.findAllLibelles();
 	}
 
+	@Override
+	public Syndicat getByLibelle(String libelle) {
+		return daoSyndicat.findByLibelle(libelle);
+	}
+
 }

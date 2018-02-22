@@ -39,8 +39,13 @@ public class BusinessBranche implements IBusinessBranche{
         return daoBranche.findByMotCle(paramMotCle);
     }
 
-    public List<String> getAllLibellesBranche() {
-        return daoBranche.findAllLibellesBranche();
+    public List<String> getAllLibelles() {
+        return daoBranche.findAllLibelles();
     }
+
+	@Override
+	public Branche getByLibelle(String libelle) {
+		return daoBranche.findByLibelle(libelle);
+	}
     
 }

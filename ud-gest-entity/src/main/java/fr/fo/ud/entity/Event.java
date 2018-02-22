@@ -46,8 +46,28 @@ public class Event  implements Serializable{
     private Date end;
     
     @ManyToOne
+    @JoinColumn(name = "id_event_branche", nullable = true)
+    private Branche branche;
+    
+    @ManyToOne
     @JoinColumn(name = "id_event_entreprise", nullable = true)
     private Entreprise entreprise;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_event_federation", nullable = true)
+    private Federation federation;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_event_section", nullable = true)
+    private Section section;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_event_syndicat", nullable = true)
+    private Syndicat syndicat;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_event_ud", nullable = true)
+    private UnionDepartemental ud;
     
     public Event() {
 	}
@@ -98,6 +118,46 @@ public class Event  implements Serializable{
 
 	public void setEntreprise(Entreprise entreprise) {
 		this.entreprise = entreprise;
+	}
+
+	public Branche getBranche() {
+		return branche;
+	}
+
+	public void setBranche(Branche branche) {
+		this.branche = branche;
+	}
+
+	public Federation getFederation() {
+		return federation;
+	}
+
+	public void setFederation(Federation federation) {
+		this.federation = federation;
+	}
+
+	public Section getSection() {
+		return section;
+	}
+
+	public void setSection(Section section) {
+		this.section = section;
+	}
+
+	public Syndicat getSyndicat() {
+		return syndicat;
+	}
+
+	public void setSyndicat(Syndicat syndicat) {
+		this.syndicat = syndicat;
+	}
+
+	public UnionDepartemental getUd() {
+		return ud;
+	}
+
+	public void setUd(UnionDepartemental ud) {
+		this.ud = ud;
 	}
 	
 }

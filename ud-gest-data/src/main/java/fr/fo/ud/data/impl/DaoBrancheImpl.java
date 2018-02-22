@@ -48,9 +48,13 @@ public class DaoBrancheImpl implements IDaoBranche {
     }
 
 	@Override
-	public List<String> findAllLibellesBranche() {
+	public List<String> findAllLibelles() {
 		return em.createQuery("select b.libelle from Branche b order by b.libelle", String.class).getResultList();
 	}
-    
+
+	@Override
+	public Branche findByLibelle(String libelle) {
+		return em.createQuery("select b.libelle from Branche b where b.libelle = :libelle", Branche.class).setParameter("libelle", libelle).getSingleResult();
+	}
 
 }

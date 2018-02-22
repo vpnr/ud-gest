@@ -58,6 +58,10 @@ public class Federation implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "federation")
     private List<Syndicat> syndicats;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "federation")
+    private List<Event> events;
 
     public Federation() {
         super();
@@ -158,5 +162,17 @@ public class Federation implements Serializable {
     public void setSyndicats(List<Syndicat> paramSyndicats) {
         syndicats = paramSyndicats;
     }
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public void setBranches(List<Branche> branches) {
+		this.branches = branches;
+	}
     
 }

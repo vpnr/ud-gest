@@ -50,5 +50,10 @@ public class DaoFederationImpl implements IDaoFederation{
 	public List<String> findAllLibelles() {
 		return em.createQuery("select f.libelle from Federation f order by f.libelle", String.class).getResultList();
 	}
+
+	@Override
+	public Federation findByLibelle(String libelle) {
+		return em.createQuery("select f from Federation f where f.libelle = :libelle", Federation.class).setParameter("libelle", libelle).getSingleResult();
+	}
     
 }

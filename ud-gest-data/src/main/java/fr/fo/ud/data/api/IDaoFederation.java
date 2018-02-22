@@ -16,6 +16,8 @@ public interface IDaoFederation {
     
     public List<String> findAllLibelles();
     
+    public Federation findByLibelle(String libelle);
+    
     public Federation findById(Integer id);
     
     public List<Federation> findByMotCle(String motCle);

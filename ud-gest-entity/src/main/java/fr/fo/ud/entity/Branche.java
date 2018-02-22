@@ -37,6 +37,10 @@ public class Branche implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "branche")
     private List<Syndicat> syndicats;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "branche")
+    private List<Event> events;
 
 	public Branche() {
 	}
@@ -72,6 +76,13 @@ public class Branche implements Serializable {
 	public void setSyndicats(List<Syndicat> paramSyndicats) {
 		syndicats = paramSyndicats;
 	}
-    
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
     
 }

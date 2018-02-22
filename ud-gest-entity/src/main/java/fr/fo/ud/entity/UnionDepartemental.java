@@ -56,6 +56,10 @@ public class UnionDepartemental implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "ud")
     private List<Syndicat> syndicats;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "ud")
+    private List<Event> events;
 
 	public UnionDepartemental() {
 	}
@@ -146,6 +150,14 @@ public class UnionDepartemental implements Serializable {
 
 	public void setSyndicats(List<Syndicat> paramSyndicats) {
 		syndicats = paramSyndicats;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 	
 }

@@ -53,5 +53,10 @@ public class DaoSyndicatImpl implements IDaoSyndicat {
 		return em.createQuery("select s.libelle from Syndicat s order by s.libelle", String.class).getResultList();
 	}
 
+	@Override
+	public Syndicat findByLibelle(String libelle) {
+		return em.createQuery("select s from Syndicat s where s.libelle = :libelle", Syndicat.class).setParameter("libelle", libelle).getSingleResult();
+	}
+
 
 }

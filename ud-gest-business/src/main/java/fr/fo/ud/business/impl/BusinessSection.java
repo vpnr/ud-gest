@@ -42,5 +42,10 @@ public class BusinessSection implements IBusinessSection{
     public List<Section> getByMotCle(String paramMotCle) {
         return daoSection.findByMotCle(paramMotCle);
     }
+
+	@Override
+	public Section getByLibelle(String libelle) {
+		return daoSection.findByLibelle(libelle);
+	}
     
 }

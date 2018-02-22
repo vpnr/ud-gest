@@ -18,5 +18,7 @@ public interface IBusinessSection {
     
     public List<String> getAllLibelles();
     
+    public Section getByLibelle(String libelle);
+    
     public List<Section> getByMotCle(String motCle);
 }

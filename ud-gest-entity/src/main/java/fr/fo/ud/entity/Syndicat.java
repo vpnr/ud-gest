@@ -86,6 +86,10 @@ public class Syndicat implements Serializable {
     @OneToMany(mappedBy = "syndicat")
     private List<Section> sections;
     
+    @JsonIgnore
+    @OneToMany(mappedBy = "syndicat")
+    private List<Event> events;
+    
     /**
      * Default constructor.
      */
@@ -270,11 +274,19 @@ public class Syndicat implements Serializable {
         federation = paramFederation;
     }
 
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
 	@Override
 	public String toString() {
 		return "Syndicat [id=" + id + ", libelle=" + libelle + ", dernierAg=" + dernierAg + ", prochainAg=" + prochainAg
 				+ ", numeroRue=" + numeroRue + ", libelleRue=" + libelleRue + ", cp=" + cp + ", ville=" + ville
 				+ ", tel=" + tel + ", fax=" + fax + ", mail=" + mail + ", siteWeb=" + siteWeb + "]";
 	}
-
+	
 }

@@ -45,6 +45,8 @@ public interface IDaoSyndicat {
 	 */
 	public List<Syndicat> findAll();
 	
+	public Syndicat findByLibelle(String libelle);
+	
 	public List<String> findAllLibelles();
 	
     /**

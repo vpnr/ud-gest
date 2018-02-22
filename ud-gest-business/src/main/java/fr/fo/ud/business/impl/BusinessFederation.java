@@ -63,4 +63,9 @@ public class BusinessFederation implements IBusinessFederation {
 		return daoFederation.findAllLibelles();
 	}
 
+	@Override
+	public Federation getByLibelle(String libelle) {
+		return daoFederation.findByLibelle(libelle);
+	}
+
 }

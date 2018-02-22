@@ -64,4 +64,9 @@ public class BusinessEntreprise implements IBusinessEntreprise{
 		return daoEntreprise.findAllLibelleByMotCle(motCle);
 	}
 
+	@Override
+	public Entreprise getByLibelle(String libelle) {
+		return daoEntreprise.findByLibelle(libelle);
+	}
+
 }

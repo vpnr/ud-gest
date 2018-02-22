@@ -16,6 +16,8 @@ public interface IBusinessUd {
     
     public List<UnionDepartemental> getAll();
     
+    public UnionDepartemental getByLibelle(String libelle);
+    
     public List<String> getAllLibelles();
     
     public List<UnionDepartemental> getByMotCle(String motCle);

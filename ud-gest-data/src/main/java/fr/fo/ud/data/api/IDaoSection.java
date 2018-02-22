@@ -16,6 +16,8 @@ public interface IDaoSection {
     
     public List<Section> findAll();
     
+    public Section findByLibelle(String libelle);
+    
     public List<String> findAllLibelles();
     
     public List<Section> findByMotCle(String motCle);

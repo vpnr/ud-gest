@@ -51,8 +51,7 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 	
 	@Override
 	public Entreprise findByLibelle(String libelle) {
-		em.createQuery("select e from Entreprise e where e.libelle = :libelle").setParameter("libelle", libelle).getSingleResult();
-		return null;
+		return em.createQuery("select e from Entreprise e where e.libelle = :libelle", Entreprise.class).setParameter("libelle", libelle).getSingleResult();
 	}
 
 	@Override

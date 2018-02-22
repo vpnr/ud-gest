@@ -19,5 +19,7 @@ public interface IDaoBranche {
     
     public List<Branche> findByMotCle(String motCle);
     
-    public List<String> findAllLibellesBranche();
+    public Branche findByLibelle(String libelle);
+    
+    public List<String> findAllLibelles();
 }

@@ -18,5 +18,7 @@ public interface IBusinessBranche {
     
     public List<Branche> getByMotCle(String motCle);
     
-    public List<String> getAllLibellesBranche();
+    public Branche getByLibelle(String libelle);
+    
+    public List<String> getAllLibelles();
 }

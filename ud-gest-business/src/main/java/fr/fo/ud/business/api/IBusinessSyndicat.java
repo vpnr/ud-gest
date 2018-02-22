@@ -14,6 +14,8 @@ public interface IBusinessSyndicat {
 	
 	public List<Syndicat> getAll();
 	
+	public Syndicat getByLibelle(String libelle);
+	
 	public List<String> getAllLibelles();
 	
 	public Syndicat getById(Integer id);
