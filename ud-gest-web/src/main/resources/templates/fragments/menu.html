@@ -26,22 +26,17 @@
 					<li><a th:href="@{/ud-gest/show-section-search}">Section</a></li>
 					<li><a th:href="@{/ud-gest/show-federation-search}">Fédération</a></li>
 					<li><a th:href="@{/ud-gest/show-ud-search}">Union départementale</a></li>
-					<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/ud-gest//admin/show-user-search}">Administration</a></li>
+					<li sec:authorize="hasAuthority('ADMIN')" class="dropdown"><a href="#" class="dropdown-toggle white"
+						data-toggle="dropdown">Administration<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/ud-gest/admin/show-user-search}">Gestion des utilisateurs</a></li>
+							<li><a th:href="@{/ud-gest/admin/show-mandat-gestion}">Gestion des mandats</a></li>
+							<li><a th:href="@{/ud-gest/admin/show-parametre}">Paramètres</a></li>
+						</ul>
+					</li>
 					<li sec:authorize="isAnonymous()"><a th:href="@{/ud-gest/show-login}">Se connecter</a></li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/ud-gest/logout}">Se déconnecter</a></li>
 					
-<!-- 					<li class="dropdown"><a href="#" class="dropdown-toggle white" -->
-<!-- 						data-toggle="dropdown">Soins et tarifs<b class="caret"></b></a> -->
-<!-- 						<ul class="dropdown-menu"> -->
-<!-- 							<li><a href="soins-visage.html">Soins visages</a></li> -->
-<!-- 							<li><a href="massages.html">Massages</a></li> -->
-<!-- 							<li><a href="escales.html">Escales</a></li> -->
-<!-- 							<li><a href="minceur-fermete.html">Minceur / fermeté</a></li> -->
-<!-- 							<li><a href="epilations.html">Epilations</a></li> -->
-<!-- 							<li><a href="mains-pieds.html">Mains et pieds</a></li> -->
-<!-- 							<li><a href="extensions-cils.html">Extensions de cils</a></li> -->
-<!-- 							<li><a href="autres-soins.html">Autres soins</a></li> -->
-<!-- 						</ul></li> -->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

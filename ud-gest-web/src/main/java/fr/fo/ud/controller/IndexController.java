@@ -1,5 +1,6 @@
 package fr.fo.ud.controller;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -78,8 +79,8 @@ public class IndexController {
 	@RequestMapping(value="/ud-gest/add-event", method=RequestMethod.POST)
 	public String addEvent(@RequestParam(name="title") String title,
 						   @RequestParam(name="start") @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
-						   @RequestParam(name="end") @DateTimeFormat(pattern="yyyy-MM-dd") Date end,
-						   @RequestParam(name="description") String description,
+						   @RequestParam(name="end", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date end,
+						   @RequestParam(name="description", required=false) String description,
 						   @RequestParam(name="organisation") int organisation,
 						   @RequestParam(name="branche", required=false) String branche,
 						   @RequestParam(name="entreprise", required=false) String entreprise,
@@ -90,33 +91,40 @@ public class IndexController {
 		
 		Event event = new Event();
 		event.setTitle(title);
-		event.setStart(start);
-		event.setEnd(end);
+		Calendar c = Calendar.getInstance();
+		if (end == null) {
+			c.setTime(start);
+			c.add(Calendar.DATE, 1);
+			event.setStart(c.getTime());
+			c.add(Calendar.DATE, 1);
+			event.setEnd(c.getTime());
+		}
+		else {
+			c.setTime(start);
+			c.add(Calendar.DATE, 1);
+			event.setStart(c.getTime());
+			c.setTime(end);
+			c.add(Calendar.DATE, 2);
+			event.setEnd(c.getTime());
+		}
 		event.setDescription(description);
 		
 		if (organisation == ID__FORM_BRANCHE) {
-			System.out.println("Dans le if de la branche");
 			event.setBranche(buBranche.getByLibelle(branche));
 		}
 		if (organisation == ID__FORM_ENTREPRISE) {
-			System.out.println("Dans le if de l'entreprise");
-			System.out.println(buEntreprise.getByLibelle(entreprise).toString());
 			event.setEntreprise(buEntreprise.getByLibelle(entreprise));
 		}
 		if (organisation == ID_FORM_FEDERATION) {
-			System.out.println("Dans le if de la federation");
 			event.setFederation(buFederation.getByLibelle(federation));
 		}
 		if (organisation == ID_FORM_SECTION) {
-			System.out.println("Dans le if de la section");
 			event.setSection(buSection.getByLibelle(section));
 		}
 		if (organisation == ID_FORM_SYNDICAT) {
-			System.out.println("Dans le if du syndicat");
 			event.setSyndicat(buSyndicat.getByLibelle(syndicat));
 		}
 		if (organisation == ID_FORM_UD) {
-			System.out.println("Dans le if de l'union départementale");
 			event.setUd(buUd.getByLibelle(ud));
 		}
 		buEvent.add(event);

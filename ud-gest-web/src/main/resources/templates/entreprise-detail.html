@@ -1,9 +1,8 @@
-<!DOCTYPE HTML>idden
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header"></head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
-		th:include="fragments/menu :: menu"></nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:include="fragments/menu :: menu"></nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -24,67 +23,69 @@
 				<input type="hidden" th:field="*{id}"></input>
 				<div class='row'>
 					<div class="col-lg-6">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('libelle')} ? has-error">
 							<label for="nom" class="col-sm-2 control-label">Libelle :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="libelle" id="libelle_entreprise" th:field="*{libelle}" ></input>
+								<span th:if="${#fields.hasErrors('libelle')}" th:errors="*{libelle}" class="text-danger"></span>
 							</div>
 						</div>
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="prenom" class="col-sm-2 control-label">Elections :</label> -->
-<!-- 							<div class="col-sm-8"> -->
-<!-- 								<input type="hidden" th:field="*{events[0].id}"></input> -->
-<!-- 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="dateElection" id="date_election" th:field="*{events[0].start}"></input> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('tel')} ? has-error">
 							<label for="dob" class="col-sm-2 control-label">Téléphone :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="tel" id="tel" th:field="*{tel}"></input>
+								<span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('fax')} ? has-error">
 							<label for="tel" class="col-sm-2 control-label">Fax :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="fax" id="fax" th:field="*{fax}"></input>
+								<span th:if="${#fields.hasErrors('fax')}" th:errors="*{fax}" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('mail')} ? has-error">
 							<label for="mail" class="col-sm-2 control-label">Mail :</label>
 							<div class="col-sm-8">
-								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="mail"	id="mail" th:field="*{mail}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="mail" id="mail" th:field="*{mail}"></input>
+								<span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('siteWeb')} ? has-error">
 							<label for="web" class="col-sm-2 control-label">Site web :</label>
 							<div class="col-sm-8">
-								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="web"	id="web" th:field="*{siteWeb}"></input>
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="web" id="web" th:field="*{siteWeb}"></input>
+								<span th:if="${#fields.hasErrors('siteWeb')}" th:errors="*{siteWeb}" class="text-danger"></span>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('numeroRue')} ? has-error">
 							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="num_rue_entreprise" id="num_rue_entreprise" th:field="*{numeroRue}"></input>
+								<span th:if="${#fields.hasErrors('numeroRue')}" th:errors="*{numeroRue}" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('libelleRue')} ? has-error">
 							<label for="rue" class="col-sm-2 control-label">Rue :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="rue_entrepise" id="rue_entreprise" th:field="*{libelleRue}"></input>
+								<span th:if="${#fields.hasErrors('libelleRue')}" th:errors="*{libelleRue}" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('cp')} ? has-error">
 							<label for="cp" class="col-sm-2 control-label">Cp :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="cp_entreprise" id="cp_entreprise" th:field="*{cp}"></input>
+								<span th:if="${#fields.hasErrors('cp')}" th:errors="*{cp}" class="text-danger"></span>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('ville')} ? has-error">
 							<label for="ville" class="col-sm-2 control-label">Ville :</label>
 							<div class="col-sm-8">
 								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="ville_entreprise"	id="ville_entreprise" th:field="*{ville}"></input>
+								<span th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}" class="text-danger"></span>
 							</div>
 						</div>
 						<div class="form-group">

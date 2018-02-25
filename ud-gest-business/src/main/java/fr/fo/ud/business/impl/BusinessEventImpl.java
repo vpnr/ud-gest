@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.fo.ud.business.api.IBusinessEvent;
-import fr.fo.ud.data.api.IdaoEvent;
+import fr.fo.ud.data.api.IDaoEvent;
 import fr.fo.ud.entity.Event;
 
 @Service
 public class BusinessEventImpl implements IBusinessEvent{
 
 	@Autowired
-	IdaoEvent daoEvent;
+	IDaoEvent daoEvent;
 	
 	@Override
 	public Event add(Event event) {

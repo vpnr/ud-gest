@@ -41,7 +41,7 @@ public class Event  implements Serializable{
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date start;
     
-    @Column(name = "end", nullable = false)
+    @Column(name = "end", nullable = true)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date end;
     

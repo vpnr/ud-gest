@@ -190,7 +190,6 @@
 		
 		function deleteEntity() {
 		    var url = "/ud-gest/remove-syndicat-from-ud";
-		    alert(/*[[${ud.id}]]*/)
 		    $.post(url, {id:$("#idSyndicat").val()}, function() {
 		    	window.location.replace("/ud-gest/show-ud-detail/"+/*[[${ud.id}]]*/);
 		    });

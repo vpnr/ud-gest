@@ -14,6 +14,9 @@ Spacing utils
 .top30 {
 	margin-top: 30px  !important;
 }
+.bot5 {
+	margin-bottom: 5px;
+}
 .bot10 {
 	margin-bottom: 10px;
 }
@@ -124,6 +127,12 @@ min-width: 120px;
 	width: 100%;
 }
 
+.form-group.required .control-label:after {
+  content:"*";
+  margin-left: 5px;
+  color:red;
+}
+
 .icon-search-overide {
 	color: white !important;
 	margin-left: 10px;
@@ -155,6 +164,26 @@ min-width: 120px;
 hr {
 	border-top: 1px solid #8c8b8b;
 }
+
+.bg-grey {
+	background-color: #d9d9d9;
+}
+
+.trash-mandat {
+	position: absolute;
+	right: 20px;
+	top: 2px;
+}
+
+/* .mandat-p { */
+/* 	overflow: hidden; */
+/* } */
+
+/* .mandat-p:after { */
+/* 	content:" ---------------------------------------------------------------------------------------------------------------"; */
+/* 	width: 100%; */
+/* 	overflow: hidden; */
+/* } */
 
 
 /* Overdide bootstrap css to keep nav red */

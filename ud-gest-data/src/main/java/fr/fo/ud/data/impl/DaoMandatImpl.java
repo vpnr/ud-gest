@@ -34,21 +34,16 @@ public class DaoMandatImpl implements IDaoMandat{
         return mandat;
     }
 
-    public Mandat findById(Integer paramId) {
-        Query q = em.createQuery("select f from Fonction f where f.id =:pId order by f.libelle");
-        q.setParameter("pId", paramId);
-        return (Mandat) q.getSingleResult();
+    public Mandat findById(Integer id) {
+        return em.createQuery("select m from Mandat m where m.id =:pId", Mandat.class).setParameter("id", id).getSingleResult();
     }
 
     public List<Mandat> findAll() {
-        Query q = em.createQuery("select f from Fonction f order by f.libelle");
-        return q.getResultList();
+        return em.createQuery("select m from Mandat m order by m.libelle", Mandat.class).getResultList();
     }
 
-    public List<Mandat> findByMotCle(String paramMotCle) {
-        Query q = em.createQuery("select f from Fonction f where f.libelle =:pLibelle order by f.libelle");
-        q.setParameter("pLibelle", paramMotCle);
-        return q.getResultList();
+    public List<Mandat> findByMotCle(String motCle) {
+        return em.createQuery("select m from Mandat m where m.libelle =:libelle order by m.libelle", Mandat.class).setParameter("motCle", motCle).getResultList();
     }
 
 }

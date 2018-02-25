@@ -2,6 +2,8 @@ package fr.fo.ud.controller;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -62,17 +64,23 @@ public class EntrepriseController {
 	}
 	
 	@RequestMapping(value="/ud-gest/save-entreprise", method=RequestMethod.POST)
-	public String saveEntreprise(@ModelAttribute Entreprise entreprise, @RequestParam(name="date_election") @DateTimeFormat(pattern="yyyy-MM-dd") Date dateElection, final BindingResult bindingResult, final ModelMap model) {
+	public String saveEntreprise(@ModelAttribute("entreprise") @Valid Entreprise entreprise,  BindingResult bindingResult, @RequestParam(name="date_election", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dateElection) {
+		if (bindingResult.hasErrors()) {
+			return "entreprise-form";
+		}
+		buEntreprise.add(entreprise);
 		try {
-			Event event = new Event();
-			event.setTitle("Election");
-			event.setDescription("Election de l'entreprise" + entreprise.getLibelle());
-			System.out.println(dateElection);
-			event.setStart(dateElection);
-			event.setEnd(dateElection);
-			event.setEntreprise(entreprise);
-			buEntreprise.add(entreprise);
-			buEvent.add(event);
+			if (dateElection != null) {
+				Event event = new Event();
+				event.setTitle("Election");
+				event.setDescription("Election de l'entreprise" + entreprise.getLibelle());
+				System.out.println(dateElection);
+				event.setStart(dateElection);
+				event.setEnd(dateElection);
+				event.setEntreprise(entreprise);
+				buEvent.add(event);
+			}
+			
 			return "redirect:/ud-gest/show-entreprise-search";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,7 +89,10 @@ public class EntrepriseController {
 	}
 	
 	@RequestMapping(value="/ud-gest/update-entreprise", method=RequestMethod.POST)
-	public String updateEntreprise(@ModelAttribute Entreprise entreprise, final BindingResult bindingResult, final ModelMap model) {
+	public String updateEntreprise(@ModelAttribute("entreprise") @Valid Entreprise entreprise, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "entreprise-detail";
+		}
 		try {
 			buEntreprise.update(entreprise);
 			return "redirect:/ud-gest/show-entreprise-search";

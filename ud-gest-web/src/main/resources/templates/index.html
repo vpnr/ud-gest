@@ -254,33 +254,30 @@
 				
 		});
 		
-	    // page is now ready, initialize the calendar...
+	    // initialize the calendar
 	
 	    $('#calendar').fullCalendar({
 	    	events : "/ud-gest/fill-calendar",
 			eventClick: function(event) {
-				$("#eventModal").modal('toggle');
 				fillModal(event);
-			},
-	        eventRender: function(event, element) {
-	            element.qtip({
-	                content: event.description
-	            });
-	        }
+				$("#eventModal").modal('toggle');
+			}
+// 	        eventRender: function(event, element) {
+// 	            element.qtip({
+// 	                content: event.description
+// 	            });
+// 	        }
 	    });
 	    
 	    function fillModal(event) {
-	    	var startDate = buildDate(event.start);
-	    	var endDate;
-	    	if(event.end = null) {
-	    		endDate = startDate;
+	    	$("#title").val(event.title);
+	    	$("#start").val(moment(event.start).format("YYYY-MM-DD"));
+	    	if(event.end == event.start) {
+	    		$("#end").val(moment(event.start).format("YYYY-MM-DD"));	
 	    	}
 	    	else {
-	    		endDate = buildDate(event.end);
+		    	$("#end").val(moment(event.end).add(-1, "d").format("YYYY-MM-DD"));
 	    	}
-	    	$("#title").val(event.title);
-	    	$("#start").val(startDate);
-	    	$("#end").val(endDate);
 	    	$("#description").text("");
 	    	$("#description").append("Description : " + event.description + "\n");
 	    	if(event.entreprise != null) {
@@ -323,23 +320,6 @@
 	    		$("#description").append("Adresse : " + event.ud.numeroRue + " " + event.ud.rue + "\n");
 	    		$("#description").append("                " + event.ud.cp + " " + event.ud.ville);
 	    	}
-	    }
-	    
-	    function buildDate(date) {
-	    	var tmpDate = new Date(date);
-	    	var day = tmpDate.getDay();
-	    	var month = tmpDate.getMonth() + 1;
-	    	var year = tmpDate.getFullYear();
-	    	
-	    	if(day < 10) {
-	    		day = "0" + day;
-	    	}
-	    	
-	    	if(month < 10) {
-	    		month = "0" + month;
-	    	}
-	    	
-	    	return year + "-" + month + "-" + day;	    	
 	    }
 	});
 /*]]>*/	
