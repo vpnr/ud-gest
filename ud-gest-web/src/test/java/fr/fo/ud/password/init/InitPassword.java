@@ -7,6 +7,9 @@ import fr.fo.ud.entity.User;
 
 public class InitPassword {
 
+	/**
+	 * Méthode pour créer un mot des mots de passes encodés
+	 */
 	@Test
 	public void initAdminPassword() {
 		BCryptPasswordEncoder bc = new BCryptPasswordEncoder();

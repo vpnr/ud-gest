@@ -175,16 +175,9 @@ hr {
 	top: 2px;
 }
 
-/* .mandat-p { */
-/* 	overflow: hidden; */
-/* } */
-
-/* .mandat-p:after { */
-/* 	content:" ---------------------------------------------------------------------------------------------------------------"; */
-/* 	width: 100%; */
-/* 	overflow: hidden; */
-/* } */
-
+.underline {
+	text-decoration: underline;
+}
 
 /* Overdide bootstrap css to keep nav red */
 /* nav { */

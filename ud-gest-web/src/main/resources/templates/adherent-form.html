@@ -102,7 +102,7 @@
 							<div class="form-group">
 								<label for="date_election_entreprise" class="col-sm-2 control-label">Elections :</label>
 								<div class="col-sm-8">
-									<input th:type="date" class="form-control" th:field="*{entreprise.dateElection}" id="date_election"></input>
+									<input th:type="date" class="form-control" th:value="${dateElection}" id="date_election"></input>
 								</div>
 							</div>
 							<div class="form-group">
@@ -182,6 +182,12 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="date_ag_syndicat" class="col-sm-2 control-label">AG :</label>
+								<div class="col-sm-8">
+									<input th:type="date" class="form-control" th:value="${dateAg}" id="date_ag"></input>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="tel" class="col-sm-2 control-label">Téléphone :</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" th:field="*{syndicat.tel}" id="tel_syndicat"></input>
@@ -247,90 +253,16 @@
 						</div>
 					</div>
 				</div>
-				<input id="id_syndicat" type="hidden" th:field="*{syndicat.ud.id}"></input>
 				<div id="div_syndicat">
 					<div class='row'>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.libelle}" id="libelle_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="tel" class="col-sm-2 control-label">Téléphone :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.tel}" id="tel_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="fax" class="col-sm-2 control-label">Fax :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.fax}" id="fax_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="mail" class="col-sm-2 control-label">Mail :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.mail}" id="mail_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="mail" class="col-sm-2 control-label">Web :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.siteWeb}" id="web_ud"></input>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="num_rue" class="col-sm-2 control-label">N° :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.numeroRue}" id="num_rue_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="rue" class="col-sm-2 control-label">Rue :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.rue}" id="rue_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="cp" class="col-sm-2 control-label">Cp :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.cp}" id="cp_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="ville" class="col-sm-2 control-label">Ville :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.ud.ville}" id="ville_ud"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="ville" class="col-sm-2 control-label"></label>
-								<div class="col-sm-8 text-right">
-									<input type="button" id="clear_form_ud" class="btn btn-success btn-md" value="Effacer"></input>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="form-group-adherent">
-							<span class="fa fa-inverse">Branche</span>
-						</div>
-					</div>
-				</div>
-				<input id="id_branche" type="hidden" th:field="*{syndicat.branche.id}"></input>
-				<div id="div_branche">
-					<div class='row'>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.branche.libelle}" id="libelle_branche"></input>
+									<select class="form-control" th:value="${ud}" id="ud" name="ud">
+										<option></option>
+										<option th:each="ud : ${uds}" th:value="${ud}" th:text="${ud}"></option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -343,70 +275,16 @@
 						</div>
 					</div>
 				</div>
-				<input id="id_federation" type="hidden" th:field="*{syndicat.federation.id}"></input>
-				<div id="div_syndicat">
+				<div id="div_federation">
 					<div class='row'>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.libelle}" id="libelle_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="tel" class="col-sm-2 control-label">Téléphone :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.tel}" id="tel_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="fax" class="col-sm-2 control-label">Fax :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.fax}" id="fax_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="mail" class="col-sm-2 control-label">Mail :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.mail}" id="mail_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="mail" class="col-sm-2 control-label">Web :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.siteWeb}" id="web_federation"></input>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="num_rue" class="col-sm-2 control-label">N° :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.numeroRue}" id="num_rue_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="rue" class="col-sm-2 control-label">Rue :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.libelleRue}" id="rue_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="cp" class="col-sm-2 control-label">Cp :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.cp}" id="cp_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="ville" class="col-sm-2 control-label">Ville :</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" th:field="*{syndicat.federation.ville}" id="ville_federation"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="ville" class="col-sm-2 control-label"></label>
-								<div class="col-sm-8 text-right">
-									<input type="button" id="clear_form_federation" class="btn btn-success btn-md" value="Effacer"></input>
+									<select class="form-control" th:value="${federation}" id="federation" name="federation">
+										<option></option>
+										<option th:each="federation : ${federations}" th:value="${federation}" th:text="${federation}"></option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -528,7 +406,6 @@
 			clearFormBranche();
 		});
 
-
 	    /** autocompletion pour l'entreprise **/
 		var optionsEntreprise = {
 			url : function(motCle) {
@@ -580,120 +457,15 @@
 			list : {
 				onChooseEvent : function() {
 					var syndicat = $("#libelle_syndicat").getSelectedItemData();
-					
 					fillSyndicat(syndicat);
-					
-					if(syndicat.federation != null) {
-						fillFederation(syndicat.federation);
-					}
-					
-					if(syndicat.ud != null) {
-						fillUd(syndicat.ud);
-					}
-					
-					if(syndicat.branche != null) {
-						fillBranche(syndicat.branche);
-					}
 				}
 			},
 			requestDelay : 10
 		};
 		$("#libelle_syndicat").easyAutocomplete(optionsSyndicat);
-		
-		/** autocompletion pour l'union départementale **/
-		var optionsUd = {
-			url : function(motCle) {
-				return "search-ud-ajax";
-			},
-			getValue : function(element) {
-				return element.libelle;
-			},
-			ajaxSettings : {
-				dataType : "json",
-				method : "POST",
-				data : {
-					dataType : "json"
-				}
-			},
-			preparePostData : function(data) {
-				data.motCle = $("#libelle_ud").val();
-				return data;
-			},
-			list : {
-				onChooseEvent : function() {
-					var ud = $("#libelle_ud").getSelectedItemData();
-					
-					fillUd(ud);
-					
-				}
-			},
-			requestDelay : 10
-		};
-		$("#libelle_ud").easyAutocomplete(optionsUd);
-	
-		/** autocompletion pour la federation **/
-		var optionsFederation = {
-			url : function(motCle) {
-				return "search-federation-ajax";
-			},
-			getValue : function(element) {
-				return element.libelle;
-			},
-			ajaxSettings : {
-				dataType : "json",
-				method : "POST",
-				data : {
-					dataType : "json"
-				}
-			},
-			preparePostData : function(data) {
-				data.motCle = $("#libelle_federation").val();
-				return data;
-			},
-			list : {
-				onChooseEvent : function() {
-					var federation = $("#libelle_federation").getSelectedItemData();
-					
-					fillFederation(federation);
-					
-				}
-			},
-			requestDelay : 10
-		};
-		$("#libelle_federation").easyAutocomplete(optionsFederation);
-		
-		/** autocompletion pour la branche **/
-		var optionsBranche = {
-			url : function(motCle) {
-				return "search-branche-ajax";
-			},
-			getValue : function(element) {
-				return element.libelle;
-			},
-			ajaxSettings : {
-				dataType : "json",
-				method : "POST",
-				data : {
-					dataType : "json"
-				}
-			},
-			preparePostData : function(data) {
-				data.motCle = $("#libelle_branche").val();
-				return data;
-			},
-			list : {
-				onChooseEvent : function() {
-					var branche = $("#libelle_branche").getSelectedItemData();
-					
-					fillBranche(branche);
-					
-				}
-			},
-			requestDelay : 10
-		};
-		$("#libelle_branche").easyAutocomplete(optionsBranche);
 	});
-	
+
+		
 	function fillEntreprise(entreprise) {
 		$("#libelle_entreprise").prop("readonly", true);
 		$("#id_entreprise").val(entreprise.id);
@@ -738,60 +510,11 @@
 		$("#mail_syndicat").prop("readonly", true);
 		$("#web_syndicat").val(syndicat.siteWeb);
 		$("#web_syndicat").prop("readonly", true);
+		
+		$("#federation").prop("readonly", true);
+		$("#federation").val(syndicat.federation.libelle);
 	}
 		
-	function fillFederation(federation) {
-		$("#libelle_federation").val(federation.libelle);
-		$("#libelle_federation").prop("readonly", true);
-		$("#id_federation").val(federation.id);
-		$("#id_federation").prop("readonly", true);
-		$("#num_rue_federation").val(federation.numeroRue);
-		$("#num_rue_federation").prop("readonly", true);
-		$("#rue_federation").val(federation.libelleRue);
-		$("#rue_federation").prop("readonly", true);
-		$("#cp_federation").val(federation.cp);
-		$("#cp_federation").prop("readonly", true);
-		$("#ville_federation").val(federation.ville);
-		$("#ville_federation").prop("readonly", true);
-		$("#tel_federation").val(federation.tel);
-		$("#tel_federation").prop("readonly", true);
-		$("#fax_federation").val(federation.fax);
-		$("#fax_federation").prop("readonly", true);
-		$("#mail_federation").val(federation.fax);
-		$("#mail_federation").prop("readonly", true);
-		$("#web_federation").val(federation.siteWeb);
-		$("#web_federation").prop("readonly", true);
-	}
-	
-	function fillUd(ud) {
-		$("#libelle_ud").val(ud.libelle);
-		$("#libelle_ud").prop("readonly", true);
-		$("#id_ud").val(ud.id);
-		$("#id_ud").prop("readonly", true);
-		$("#num_rue_ud").val(ud.numeroRue);
-		$("#num_rue_ud").prop("readonly", true);
-		$("#rue_ud").val(ud.rue);
-		$("#rue_ud").prop("readonly", true);
-		$("#cp_ud").val(ud.cp);
-		$("#cp_ud").prop("readonly", true);
-		$("#ville_ud").val(ud.ville);
-		$("#ville_ud").prop("readonly", true);
-		$("#tel_ud").val(ud.tel);
-		$("#tel_ud").prop("readonly", true);
-		$("#fax_ud").val(ud.fax);
-		$("#fax_ud").prop("readonly", true);
-		$("#mail_ud").val(ud.fax);
-		$("#mail_ud").prop("readonly", true);
-		$("#web_ud").val(ud.siteWeb);
-		$("#web_ud").prop("readonly", true);
-	}
-	
-	function fillBranche(branche) {
-		$("#libelle_branche").val(branche.libelle);
-		$("#libelle_branche").prop("readonly", true);
-		$("#id_branche").val(branche.id);
-		$("#id_branche").prop("readonly", true);
-	}
 	
 	function clearFormEntreprise() {
 		$("#libelle_entreprise").val("");
@@ -841,59 +564,5 @@
 		$("#web_syndicat").prop("readonly", false);
 	}
 	
-	function clearFormFederation() {
-		$("#libelle_federation").val("");
-		$("#libelle_federation").prop("readonly", false);
-		$("#id_federation").val("");
-		$("#id_federation").prop("readonly", false);
-		$("#num_rue_federation").val("");
-		$("#num_rue_federation").prop("readonly", false);
-		$("#rue_federation").val("");
-		$("#rue_federation").prop("readonly", false);
-		$("#cp_federation").val("");
-		$("#cp_federation").prop("readonly", false);
-		$("#ville_federation").val("");
-		$("#ville_federation").prop("readonly", false);
-		$("#tel_federation").val("");
-		$("#tel_federation").prop("readonly", false);
-		$("#fax_federation").val("");
-		$("#fax_federation").prop("readonly", false);
-		$("#mail_federation").val("");
-		$("#mail_federation").prop("readonly", false);
-		$("#web_federation").val("");
-		$("#web_federation").prop("readonly", false);
-	}
-	
-	function clearFormUd() {
-		$("#libelle_ud").val("");
-		$("#libelle_ud").prop("readonly", false);
-		$("#id_ud").val("");
-		$("#id_ud").prop("readonly", false);
-		$("#num_rue_ud").val("");
-		$("#num_rue_ud").prop("readonly", false);
-		$("#rue_ud").val("");
-		$("#rue_ud").prop("readonly", false);
-		$("#cp_ud").val("");
-		$("#cp_ud").prop("readonly", false);
-		$("#ville_ud").val("");
-		$("#ville_ud").prop("readonly", false);
-		$("#tel_ud").val("");
-		$("#tel_ud").prop("readonly", false);
-		$("#fax_ud").val("");
-		$("#fax_ud").prop("readonly", false);
-		$("#mail_ud").val("");
-		$("#mail_ud").prop("readonly", false);
-		$("#web_ud").val("");
-		$("#web_ud").prop("readonly", false);
-	}
-	
-	function clearFormBranche() {
-		$("#libelle_branche").val("");
-		$("#libelle_branche").prop("readonly", false);
-		$("#id_branche").val("");
-		$("#id_branche").prop("readonly", false);
-	}
-	
-
 	</script>
 </html>

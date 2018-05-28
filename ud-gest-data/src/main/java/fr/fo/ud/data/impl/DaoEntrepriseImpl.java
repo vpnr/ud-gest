@@ -40,8 +40,7 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 
 	@Override
 	public List<Entreprise> findAll() {
-		Query q = em.createQuery("select e from Entreprise e order by e.libelle");
-		return q.getResultList();
+		return em.createQuery("select e from Entreprise e order by e.libelle", Entreprise.class).getResultList();
 	}
 	
 	@Override
@@ -56,9 +55,7 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 
 	@Override
 	public List<Entreprise> findByMotCle(String paramMotCle) {
-		Query q = em.createQuery("select e from Entreprise e  where e.libelle like :pLibelle order by e.libelle");
-		q.setParameter("pLibelle", paramMotCle + "%");
-		return q.getResultList();
+		return em.createQuery("select e from Entreprise e  where e.libelle like :pLibelle order by e.libelle", Entreprise.class).setParameter("pLibelle", "%" + paramMotCle + "%").getResultList();
 	}
 
 	@Override
@@ -71,7 +68,10 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 		return em.createQuery("select e.libelle from Entreprise e order by e.libelle", String.class).getResultList();
 	}
 
-
+	@Override
+	public Long count(String libelle) {
+		return em.createQuery("select count(e) from Entreprise e where e.libelle = :libelle", Long.class).setParameter("libelle", libelle).getSingleResult();
+	}
 	
 
 }

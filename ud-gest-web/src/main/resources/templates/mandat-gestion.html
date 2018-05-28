@@ -15,18 +15,86 @@
             </div>
         </div>
         <div class="row">
+        	<div class="col-md-12">
+        		<h2 class="underline">Ajouter un mandat</h2>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-12">
+        		<div class="alert alert-info" role="alert">
+					<p>La taille du libelle d'un mandat ne doit pas dépasser 100 caractères et les caractères spéciaux sont interdits</p>
+	        	</div>
+			</div>	
+        </div>
+        <form class="form-horizontal" th:action="@{/ud-gest/admin/save-mandat}" th:object="${mandat}" method="post">
+   			<div class="form-group" th:classappend="${#fields.hasErrors('libelle')} ? has-error">
+        		<div class="row">
+					<label class="control-label col-md-1" for="libelle">Mandat :</label>
+        			<div class="col-md-5">
+						<input class="form-control" th:field="*{libelle}"></input>
+						<span th:if="${#fields.hasErrors('libelle')}" th:errors="*{libelle}" class="text-danger"></span>
+        			</div>
+        			<input class="btn btn-success col-md-1" type="submit"></input>
+        		</div>
+        	</div>
+        </form>
+        <div class="row">
+        	<div class="col-md-12">
+        		<h2 class="underline">Liste des mandats</h2>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-12">
+        		<div class="alert alert-info" role="alert">
+					<p>
+						<span class="glyphicon glyphicon-trash red"></span>
+						<span class="left10">Supprimer un  mandat</span>
+					</p>
+	        	</div>
+			</div>	
+        </div>
+        <div class="row">
         	<div th:each="mandat : ${mandats}">
 	        	<div class="col-md-6">
 	        		<p class="bg-grey">
 	        			<span th:text="${mandat.libelle}"></span>
 	        			<span class="trash-mandat">
-							<a href="#" class="glyphicon glyphicon-trash red"></a>
+							<a id="showModal" data-toggle="modal" data-target="#modalMandat" th:onclick="'showModal(' + ${mandat.id} + ')'" class="glyphicon glyphicon-trash red"></a>
 						</span>
 					</p>
 	        	</div>
 	        </div>
         </div>
+        <div id="modalMandat" class="modal fade" tabindex="-1" role="dialog">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-body text-center top20">
+		            	<input id="idMandat" type="hidden"/>
+						<span class="glyphicon glyphicon-alert fa-5x orange bot20"></span>
+						<p class="top20 text-center">Etes-vous de vouloir supprimer le mandat ? Les adhérents mandatés ne seront pas supprimés.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success btn-md" data-dismiss="modal">Annuler</button>
+						<button type="button" class="btn btn-danger btn-md" onclick="deleteEntity()">Confirmer</button>
+					</div>
+		        </div>
+		    </div>
+		</div>
 	</div>
 </body>
 <div th:include="fragments/footer :: footer"></div>
+<script th:inline="javascript" type="text/javascript">
+	/*<![CDATA[*/
+		function showModal(id) {
+			$('#idMandat').val(id);
+		};
+		
+		function deleteEntity() {
+			var url = "/ud-gest/admin/delete-mandat";
+		    $.post(url, {id:$("#idMandat").val()}, function() {
+		    	window.location.replace("/ud-gest/admin/show-mandat-gestion");
+		    });
+		}
+	/*]]>*/		
+</script>
 </html>

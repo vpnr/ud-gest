@@ -14,12 +14,12 @@
 			</div>
 		</div>
 		<div class='row'>
+			<div class="col-lg-12 form-group-adherent">
+				<p class="fa fa-inverse">Informations Générales</p>
+			</div>
+		</div>
+		<div class='row'>
 			<form class="form-horizontal" role="form" th:object="${entreprise}" th:action="@{/ud-gest/update-entreprise}" method="post">
-				<div class='row'>
-					<div class="col-lg-12 form-group-adherent">
-						<p class="fa fa-inverse">Informations Générales</p>
-					</div>
-				</div>
 				<input type="hidden" th:field="*{id}"></input>
 				<div class='row'>
 					<div class="col-lg-6">

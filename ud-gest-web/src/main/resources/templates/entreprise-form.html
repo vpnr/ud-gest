@@ -21,6 +21,12 @@
 						<p class="fa fa-inverse">Informations générales</p>
 					</div>
 				</div>
+				<div class="alert alert-danger" role="alert" th:if="${exist}">
+					<p>
+		 				<span class="glyphicon glyphicon-alert"></span>
+		 				<span class="left10" th:text="${exist}"></span>
+		 			</p>
+				</div>
 				<div class='row'>
 					<div class="col-lg-6">
 						<div class="form-group required" th:classappend="${#fields.hasErrors('libelle')} ? has-error">

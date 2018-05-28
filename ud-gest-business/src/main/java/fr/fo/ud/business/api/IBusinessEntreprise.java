@@ -27,4 +27,6 @@ public interface IBusinessEntreprise {
 	
 	public List<String> getAllLibelleByMotCle(String motCle);
 	
+	public Long exist(String libelle);
+	
 }

@@ -217,7 +217,7 @@ public class Adherent implements Serializable {
 		return mandats;
 	}
 
-	public void setMonctions(List<AdherentMandat> mandats) {
+	public void setMandats(List<AdherentMandat> mandats) {
 		this.mandats = mandats;
 	}
 

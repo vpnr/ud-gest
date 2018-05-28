@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import fr.fo.ud.business.api.IBusinessAdherent;
 import fr.fo.ud.data.api.IDaoAdherent;
-import fr.fo.ud.data.api.IDaoBranche;
 import fr.fo.ud.data.api.IDaoEntreprise;
 import fr.fo.ud.data.api.IDaoFederation;
 import fr.fo.ud.data.api.IDaoFormation;
@@ -15,7 +14,6 @@ import fr.fo.ud.data.api.IDaoMandat;
 import fr.fo.ud.data.api.IDaoSyndicat;
 import fr.fo.ud.data.api.IDaoUd;
 import fr.fo.ud.entity.Adherent;
-import fr.fo.ud.entity.Branche;
 import fr.fo.ud.entity.Entreprise;
 import fr.fo.ud.entity.Federation;
 import fr.fo.ud.entity.Formation;
@@ -36,9 +34,6 @@ public class BusinessAdherent implements IBusinessAdherent {
 	private IDaoSyndicat daoSyndicat;
 	
 	@Autowired
-	private IDaoBranche daoBranche;
-	
-	@Autowired
 	private IDaoFederation daoFederation;
 	
 	@Autowired
@@ -55,7 +50,6 @@ public class BusinessAdherent implements IBusinessAdherent {
 		
 		Entreprise entreprise;
 		Syndicat syndicat;
-		Branche branche;
 		Federation federation;
 		UnionDepartemental ud;
 		List<Mandat> mandats;
@@ -74,11 +68,6 @@ public class BusinessAdherent implements IBusinessAdherent {
 		if (adh.getSyndicat().getUd().getId() == null) {
 			ud= daoUd.add(adh.getSyndicat().getUd());
 			adh.getSyndicat().setUd(ud);
-		}
-		
-		if (adh.getSyndicat().getBranche().getId() == null) {
-			branche = daoBranche.add(adh.getSyndicat().getBranche());
-			adh.getSyndicat().setBranche(branche);
 		}
 		
 		if (adh.getSyndicat().getId() == null){

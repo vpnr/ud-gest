@@ -88,6 +88,8 @@ public class AdherentController {
 		model.addAttribute("adherent", new Adherent());
 		model.addAttribute("entreprise", new Entreprise());
 		model.addAttribute("syndicat", new Syndicat());
+		model.addAttribute("uds", buUd.getAllLibelles());
+		model.addAttribute("federations", buFederation.getAllLibelles());
 		return "adherent-form";
 	}
 	

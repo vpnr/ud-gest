@@ -85,4 +85,9 @@ public class BusinessEntreprise implements IBusinessEntreprise{
 		return daoEntreprise.findByLibelle(libelle);
 	}
 
+	@Override
+	public Long exist(String libelle) {
+		return daoEntreprise.count(libelle);
+	}
+
 }

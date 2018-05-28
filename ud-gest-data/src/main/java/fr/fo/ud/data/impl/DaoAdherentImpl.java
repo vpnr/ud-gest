@@ -115,8 +115,7 @@ public class DaoAdherentImpl implements IDaoAdherent {
 
 	@Override
 	public List<Adherent> findByMandat(Mandat mandat) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select a from Adherent a where a.mandat = :mandat", Adherent.class).setParameter("mandat", mandat).getResultList();
 	}
 
 

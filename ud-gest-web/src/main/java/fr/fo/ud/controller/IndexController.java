@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.fo.ud.business.api.IBusinessBranche;
 import fr.fo.ud.business.api.IBusinessEntreprise;
 import fr.fo.ud.business.api.IBusinessEvent;
 import fr.fo.ud.business.api.IBusinessFederation;
-import fr.fo.ud.business.api.IBusinessSection;
 import fr.fo.ud.business.api.IBusinessSyndicat;
 import fr.fo.ud.business.api.IBusinessUd;
 import fr.fo.ud.entity.Event;
@@ -25,33 +23,23 @@ import fr.fo.ud.entity.Event;
 @Controller
 public class IndexController {
 	
-	private static final int ID__FORM_BRANCHE = 1;
-	
-	private static final int ID__FORM_ENTREPRISE = 2;
+	private static final int ID_FORM_ENTREPRISE = 2;
 	
 	private static final int ID_FORM_FEDERATION = 3;
 	
-	private static final int ID_FORM_SECTION= 4;
+	private static final int ID_FORM_SYNDICAT = 4;
 	
-	private static final int ID_FORM_SYNDICAT = 5;
-	
-	private static final int ID_FORM_UD = 6;
+	private static final int ID_FORM_UD = 5;
 	
 	
 	@Autowired
 	private IBusinessEvent buEvent;
 	
 	@Autowired
-	private IBusinessBranche buBranche;
-	
-	@Autowired
 	private IBusinessEntreprise buEntreprise;
 	
 	@Autowired
 	private IBusinessFederation buFederation;
-	
-	@Autowired
-	private IBusinessSection buSection;
 	
 	@Autowired
 	private IBusinessSyndicat buSyndicat;
@@ -61,10 +49,8 @@ public class IndexController {
 	
 	@RequestMapping(value="/ud-gest/show-index", method=RequestMethod.GET)
 	public String showIndex(Model model) {
-		model.addAttribute("branches", buBranche.getAllLibelles());
 		model.addAttribute("entreprises", buEntreprise.getAllLibelles());
 		model.addAttribute("federations", buFederation.getAllLibelles());
-		model.addAttribute("sections", buSection.getAllLibelles());
 		model.addAttribute("syndicats", buSyndicat.getAllLibelles());
 		model.addAttribute("uds", buUd.getAllLibelles());
 		return "index";
@@ -85,7 +71,6 @@ public class IndexController {
 						   @RequestParam(name="branche", required=false) String branche,
 						   @RequestParam(name="entreprise", required=false) String entreprise,
 						   @RequestParam(name="federation", required=false) String federation,
-						   @RequestParam(name="section", required=false) String section,
 						   @RequestParam(name="syndicat", required=false) String syndicat,
 						   @RequestParam(name="ud", required=false) String ud) {
 		
@@ -109,17 +94,11 @@ public class IndexController {
 		}
 		event.setDescription(description);
 		
-		if (organisation == ID__FORM_BRANCHE) {
-			event.setBranche(buBranche.getByLibelle(branche));
-		}
-		if (organisation == ID__FORM_ENTREPRISE) {
+		if (organisation == ID_FORM_ENTREPRISE) {
 			event.setEntreprise(buEntreprise.getByLibelle(entreprise));
 		}
 		if (organisation == ID_FORM_FEDERATION) {
 			event.setFederation(buFederation.getByLibelle(federation));
-		}
-		if (organisation == ID_FORM_SECTION) {
-			event.setSection(buSection.getByLibelle(section));
 		}
 		if (organisation == ID_FORM_SYNDICAT) {
 			event.setSyndicat(buSyndicat.getByLibelle(syndicat));

@@ -62,5 +62,7 @@ public interface IDaoEntreprise {
 	public List<String> findAllLibelles();
     
 	public List<String> findAllLibelleByMotCle(String motCle);
+	
+	public Long count(String libelle);
     
 }

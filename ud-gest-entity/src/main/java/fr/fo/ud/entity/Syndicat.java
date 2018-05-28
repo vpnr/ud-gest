@@ -67,10 +67,6 @@ public class Syndicat implements Serializable {
     private String siteWeb;
     
     @ManyToOne
-    @JoinColumn(name = "id_branche_syndicat", nullable = true)
-    private Branche branche;
-    
-    @ManyToOne
     @JoinColumn(name = "id_federation_syndicat", nullable = true)
     private Federation federation;
     
@@ -81,10 +77,6 @@ public class Syndicat implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "syndicat")
     private List<Adherent> adherents;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "syndicat")
-    private List<Section> sections;
     
     @JsonIgnore
     @OneToMany(mappedBy = "syndicat")
@@ -242,28 +234,12 @@ public class Syndicat implements Serializable {
 		dernierAg = paramDernierAg;
 	}
 
-	public List<Section> getSections() {
-		return sections;
-	}
-
-	public void setSections(List<Section> paramSections) {
-		sections = paramSections;
-	}
-
 	public UnionDepartemental getUd() {
 		return ud;
 	}
 
 	public void setUd(UnionDepartemental paramUd) {
 		ud = paramUd;
-	}
-
-	public Branche getBranche() {
-		return branche;
-	}
-
-	public void setBranche(Branche paramBranche) {
-		branche = paramBranche;
 	}
 
     public Federation getFederation() {

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,12 +63,19 @@ public class EntrepriseController {
 	}
 	
 	@RequestMapping(value="/ud-gest/save-entreprise", method=RequestMethod.POST)
-	public String saveEntreprise(@ModelAttribute("entreprise") @Valid Entreprise entreprise,  BindingResult bindingResult, @RequestParam(name="date_election", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dateElection) {
+	public String saveEntreprise(@ModelAttribute("entreprise") @Valid Entreprise entreprise,  BindingResult bindingResult, @RequestParam(name="date_election", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dateElection, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "entreprise-form";
 		}
-		buEntreprise.add(entreprise);
+		
 		try {
+			if (buEntreprise.exist(entreprise.getLibelle()) > 0) {
+				model.addAttribute("exist", "L'entreprise " + entreprise.getLibelle() + " existe déja." );
+				return "entreprise-form";
+			}
+			else {
+				buEntreprise.add(entreprise);
+			}
 			if (dateElection != null) {
 				Event event = new Event();
 				event.setTitle("Election");
@@ -80,7 +86,6 @@ public class EntrepriseController {
 				event.setEntreprise(entreprise);
 				buEvent.add(event);
 			}
-			
 			return "redirect:/ud-gest/show-entreprise-search";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -35,7 +35,7 @@ public class DaoMandatImpl implements IDaoMandat{
     }
 
     public Mandat findById(Integer id) {
-        return em.createQuery("select m from Mandat m where m.id =:pId", Mandat.class).setParameter("id", id).getSingleResult();
+        return em.createQuery("select m from Mandat m where m.id =:id", Mandat.class).setParameter("id", id).getSingleResult();
     }
 
     public List<Mandat> findAll() {

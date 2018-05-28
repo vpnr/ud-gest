@@ -2,7 +2,6 @@ package fr.fo.ud.business.api;
 
 import java.util.List;
 
-import fr.fo.ud.entity.Branche;
 import fr.fo.ud.entity.Federation;
 
 public interface IBusinessFederation {

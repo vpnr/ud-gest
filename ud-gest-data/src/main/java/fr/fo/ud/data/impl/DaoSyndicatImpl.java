@@ -40,12 +40,11 @@ public class DaoSyndicatImpl implements IDaoSyndicat {
 	}
 
 	public List<Syndicat> findByMotCle(String paramMotCle) {
-	    return em.createQuery("select s from Syndicat s where s.libelle like :pLibelle order by s.libelle", Syndicat.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
+	    return em.createQuery("select s from Syndicat s where s.libelle like :pLibelle order by s.libelle", Syndicat.class).setParameter("pLibelle", "%" + paramMotCle + "%").getResultList();
 	}
 
     public List<Syndicat> findAll() {
-        Query q = em.createQuery("select s from Syndicat s order by s.libelle");
-        return q.getResultList();
+        return em.createQuery("select s from Syndicat s order by s.libelle", Syndicat.class).getResultList();
     }
 
 	@Override

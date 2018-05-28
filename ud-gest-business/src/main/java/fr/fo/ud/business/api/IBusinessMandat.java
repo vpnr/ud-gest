@@ -6,11 +6,11 @@ import fr.fo.ud.entity.Mandat;
 
 public interface IBusinessMandat{
 
-    public Mandat add(Mandat fonction);
+    public Mandat add(Mandat mandat);
     
-    public Mandat update(Mandat fonction);
+    public Mandat update(Mandat mandat);
     
-    public Mandat delete(Mandat fonction);
+    public Mandat delete(Mandat mandat);
     
     public List<Mandat> getAll();
     

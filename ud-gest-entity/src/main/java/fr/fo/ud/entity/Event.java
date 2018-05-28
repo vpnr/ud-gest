@@ -46,20 +46,12 @@ public class Event  implements Serializable{
     private Date end;
     
     @ManyToOne
-    @JoinColumn(name = "id_event_branche", nullable = true)
-    private Branche branche;
-    
-    @ManyToOne
     @JoinColumn(name = "id_event_entreprise", nullable = true)
     private Entreprise entreprise;
     
     @ManyToOne
     @JoinColumn(name = "id_event_federation", nullable = true)
     private Federation federation;
-    
-    @ManyToOne
-    @JoinColumn(name = "id_event_section", nullable = true)
-    private Section section;
     
     @ManyToOne
     @JoinColumn(name = "id_event_syndicat", nullable = true)
@@ -120,28 +112,12 @@ public class Event  implements Serializable{
 		this.entreprise = entreprise;
 	}
 
-	public Branche getBranche() {
-		return branche;
-	}
-
-	public void setBranche(Branche branche) {
-		this.branche = branche;
-	}
-
 	public Federation getFederation() {
 		return federation;
 	}
 
 	public void setFederation(Federation federation) {
 		this.federation = federation;
-	}
-
-	public Section getSection() {
-		return section;
-	}
-
-	public void setSection(Section section) {
-		this.section = section;
 	}
 
 	public Syndicat getSyndicat() {

@@ -8,14 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "mandat")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Mandat implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,6 +25,8 @@ public class Mandat implements Serializable {
     private Integer id;
     
     @Column(name = "libelle_mandat", nullable = false, length = 100)
+    @Size(min=1, max=100, message="Le libellé de l'entreprise ne doit pas être vide.")
+    @Pattern(regexp="(^[A-Za-z0-9 \\é\\à\\â\\î\\ê\\è\\ô\\û\\ö\\ï\\ë\\ä_-]*$)", message="Les caractères spéciaux ne sont pas autorisés.")
     private String libelle;
     
     @OneToMany(mappedBy = "adherent")
