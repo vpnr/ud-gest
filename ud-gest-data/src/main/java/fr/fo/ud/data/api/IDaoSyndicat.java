@@ -55,6 +55,13 @@ public interface IDaoSyndicat {
      * @return
      */
 	public List<Syndicat> findByMotCle(String motCle);
+	
+	/**
+     * Methode permettant de vérifier que le {@link Syndicat} n'existe pas déja dans la base de donnees.
+     * @param nom
+     * @return
+     */
+	public Long count(String libelle);
     
     
 }

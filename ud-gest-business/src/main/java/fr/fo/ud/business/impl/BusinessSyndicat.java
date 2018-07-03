@@ -49,4 +49,9 @@ public class BusinessSyndicat implements IBusinessSyndicat{
 		return daoSyndicat.findByLibelle(libelle);
 	}
 
+	@Override
+	public Long exist(String libelle) {
+		return daoSyndicat.count(libelle);
+	}
+	
 }

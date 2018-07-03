@@ -80,7 +80,6 @@ public class EntrepriseController {
 				Event event = new Event();
 				event.setTitle("Election");
 				event.setDescription("Election de l'entreprise" + entreprise.getLibelle());
-				System.out.println(dateElection);
 				event.setStart(dateElection);
 				event.setEnd(dateElection);
 				event.setEntreprise(entreprise);

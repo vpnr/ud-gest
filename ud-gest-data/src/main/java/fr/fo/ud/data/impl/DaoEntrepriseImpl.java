@@ -72,6 +72,5 @@ public class DaoEntrepriseImpl implements IDaoEntreprise {
 	public Long count(String libelle) {
 		return em.createQuery("select count(e) from Entreprise e where e.libelle = :libelle", Long.class).setParameter("libelle", libelle).getSingleResult();
 	}
-	
 
 }

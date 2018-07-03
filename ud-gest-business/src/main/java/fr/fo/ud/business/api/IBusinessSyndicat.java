@@ -22,5 +22,6 @@ public interface IBusinessSyndicat {
 	
 	public List<Syndicat> getByMotCle(String motCle);
 	
+	public Long exist(String libelle);
 	
 }

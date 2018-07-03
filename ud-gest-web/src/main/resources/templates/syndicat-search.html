@@ -20,6 +20,11 @@
  				<span class="left10">Afficher les détails du syndicat</span>
  			</p>
 		</div>
+		<div class="row bot20" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">
+			<div class="col-xs-12">
+				<a th:href="@{/ud-gest/show-syndicat-form}" class="link red">Ajouter un syndicat</a>
+			</div>
+		</div>
 		<table id="tableSyndicat" class="table table-striped table-bordered">
 			<thead>
 				<tr>
@@ -46,11 +51,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<div class="row">
-			<div class="col-xs-12">
-				<a th:href="@{/ud-gest/show-syndicat-form}" class="link">Ajouter un syndicat</a>
-			</div>
-		</div>
 	</div>
 </body>
 <div th:include="fragments/footer :: footer"></div>

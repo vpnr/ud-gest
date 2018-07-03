@@ -32,7 +32,7 @@
 						<div class="form-group required" th:classappend="${#fields.hasErrors('libelle')} ? has-error">
 							<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" th:field="*{libelle}" id="libelle_entreprise"></input>
+								<input type="text" class="form-control" th:field="*{libelle}" id="libelle_syndicat"></input>
 								<span th:if="${#fields.hasErrors('libelle')}" th:errors="*{libelle}" class="text-danger"></span>
 							</div>
 						</div>

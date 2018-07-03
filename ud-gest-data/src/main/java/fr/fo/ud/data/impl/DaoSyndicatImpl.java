@@ -57,5 +57,9 @@ public class DaoSyndicatImpl implements IDaoSyndicat {
 		return em.createQuery("select s from Syndicat s where s.libelle = :libelle", Syndicat.class).setParameter("libelle", libelle).getSingleResult();
 	}
 
+	@Override
+	public Long count(String libelle) {
+		return em.createQuery("select count(s) from Syndicat s where s.libelle = :libelle", Long.class).setParameter("libelle", libelle).getSingleResult();
+	}
 
 }

@@ -22,7 +22,6 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- ______________________ thymeleaf dependencies _________________________ -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
