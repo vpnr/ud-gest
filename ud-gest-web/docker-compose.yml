@@ -19,7 +19,7 @@ services:
     depends_on:
       - db     
     ports:
-      - "8880:8880"
+      - "8980:8980"
     environment:
       - DATABASE_HOST=db
       - DATABASE_NAME=db_udgest
