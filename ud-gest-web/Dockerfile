@@ -19,4 +19,4 @@ RUN apk update && apk add bash
 # Le point d'entré au démarage
 # On précise ici le profil spring à utilisé par défaut
 # On précise également un fichier de configuration externe au jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/ud-gest-web.jar","-Dspring.profiles.active=prod","--spring.config.location=file:/app/conf/conf.properties"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","--spring.config.location=file:/app/conf/conf.properties","-jar","/app/ud-gest-web.jar"]

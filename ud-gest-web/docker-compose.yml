@@ -17,12 +17,15 @@ services:
   web:
     image: vpnr/ud-gest-web
     depends_on:
-      - db     
+      - db:
+        condition: service_healthy
     volumes:
       - ./conf:/app/conf
+      - ./cert:/app/cert
     ports:
       - "8980:8980"
     environment:
+      - SPRING_PROFILES_ACTIVE=prod
       - DATABASE_HOST=db
       - DATABASE_NAME=db_udgest
       - DATABASE_PORT=3306
