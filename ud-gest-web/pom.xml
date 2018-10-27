@@ -23,7 +23,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<profiles>
-		            	<profile>dev</profile>
+				<!--<profile>dev</profile>-->
 		            	<profile>prod</profile>
 		          	</profiles>
 				</configuration>
@@ -50,6 +50,7 @@
 				    </execution>
 				</executions>
 				<configuration>
+					<skip>${image.build.skip}</skip>
 					<imageName>${project.name}</imageName>
 					<repository>${docker.image.prefix}/${project.artifactId}</repository>
 					<buildArgs>
