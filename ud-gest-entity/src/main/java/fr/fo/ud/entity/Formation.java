@@ -32,7 +32,7 @@ public class Formation implements Serializable {
     private String description;
     
     @OneToMany(mappedBy = "adherent")
-    private List<Adherent_Formation> adherents;
+    private List<AdherentFormation> adherents;
     
     public Formation() {
 		super();
@@ -87,11 +87,11 @@ public class Formation implements Serializable {
         description = paramDescription;
     }
 
-	public List<Adherent_Formation> getAdherents() {
+	public List<AdherentFormation> getAdherents() {
 		return adherents;
 	}
 
-	public void setAdherents(List<Adherent_Formation> paramAdherents) {
+	public void setAdherents(List<AdherentFormation> paramAdherents) {
 		adherents = paramAdherents;
 	}
     

@@ -3,22 +3,25 @@ package fr.fo.ud.business.api;
 import java.util.List;
 
 import fr.fo.ud.entity.Syndicat;
-import fr.fo.ud.entity.Ville;
 
 public interface IBusinessSyndicat {
 
-	Syndicat add(Syndicat syndicat);
+	public Syndicat add(Syndicat syndicat);
 	
-	Syndicat update(Syndicat syndicat);
+	public Syndicat update(Syndicat syndicat);
 	
-	Syndicat delete(Syndicat syndicat);
+	public Syndicat delete(Syndicat syndicat);
 	
-	List<Syndicat> getAll();
+	public List<Syndicat> getAll();
 	
-	Syndicat getById(Integer id);
+	public Syndicat getByLibelle(String libelle);
 	
-	List<Syndicat> getByMotCle(String motCle);
+	public List<String> getAllLibelles();
 	
-	List<Syndicat> getByVille(Ville ville);
+	public Syndicat getById(Integer id);
+	
+	public List<Syndicat> getByMotCle(String motCle);
+	
+	public Long exist(String libelle);
 	
 }

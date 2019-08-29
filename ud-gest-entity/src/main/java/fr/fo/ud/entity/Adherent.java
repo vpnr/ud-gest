@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Classe representant la table {@link Adherent}.
@@ -46,73 +50,36 @@ public class Adherent implements Serializable {
     @Column(name = "libelle_rue", nullable = true, length = 150)
     private String libelleRue;
     
+    @Column(name = "cp_adherent", nullable = true, length = 150)
+    private String cp;
+    
+    @Column(name = "ville_adherent", nullable = true, length = 150)
+    private String ville;
+    
     @Column(name = "tel_adherent", nullable = true, length = 15)
     private String tel;
     
     @Column(name = "mail_adherent", nullable = true, length = 100)
     private String mail;
-
-    @ManyToOne
-    @JoinColumn(name = "id_ville_adherent", nullable = true)
-    private Ville ville;
     
     @ManyToOne
     @JoinColumn(name = "id_syndicat_adherent", nullable = true)
     private Syndicat syndicat;
     
     @ManyToOne
-    @JoinColumn(name = "id_section_adherent", nullable = true)
-    private Section section;
-    
-//    @ManyToOne
-//    @JoinColumn(name = "id_groupement_adherent", nullable = true)
-//    private Groupement groupement;
-    
-    @ManyToOne
-    @JoinColumn(name = "id_federation_adherent", nullable = true)
-    private Federation federation;
-    
-    @ManyToOne
-    @JoinColumn(name = "id_ud_adherent", nullable = true)
-    private UnionDepartemental ud;
-    
-    @ManyToOne
     @JoinColumn(name = "id_entreprise_adherent", nullable = true)
     private Entreprise entreprise;
     
-    @OneToMany(mappedBy = "fonction")
-    private List<Adherent_Fonction> fonctions;
+    @JsonIgnore
+    @OneToMany(mappedBy = "mandat")
+    private List<AdherentMandat> mandats;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "formation")
-    private List<Adherent_Formation> formations;
+    private List<AdherentFormation> formations;
     
     public Adherent() {
-		super();
 	}
-    
-    public Adherent(Integer paramId, String paramNom, String paramPrenom, Date paramDob, String paramNumeroRue,
-            String paramLibelleRue, String paramTel, String paramMail, Ville paramVille, Syndicat paramSyndicat,
-            Section paramSection, Federation paramFederation, UnionDepartemental paramUd,
-            Entreprise paramEntreprise) {
-        super();
-        id = paramId;
-        nom = paramNom;
-        prenom = paramPrenom;
-        dob = paramDob;
-        numeroRue = paramNumeroRue;
-        libelleRue = paramLibelleRue;
-        tel = paramTel;
-        mail = paramMail;
-        ville = paramVille;
-        syndicat = paramSyndicat;
-        section = paramSection;
-        //groupement = paramGroupement;
-        federation = paramFederation;
-        ud = paramUd;
-        entreprise = paramEntreprise;
-    }
-
-
 
     /**
      * @return the id
@@ -198,85 +165,78 @@ public class Adherent implements Serializable {
         mail = paramMail;
     }
     
-
-	public Ville getVille() {
-		return ville;
-	}
-
-	public void setVille(Ville paramVille) {
-		ville = paramVille;
-	}
-
-	public Syndicat getSyndicat() {
-		return syndicat;
-	}
-
-	public void setSyndicat(Syndicat paramSyndicat) {
-		syndicat = paramSyndicat;
-	}
-
-	public Entreprise getEntreprise() {
-		return entreprise;
-	}
-
-	public void setEntreprise(Entreprise paramEntreprise) {
-		entreprise = paramEntreprise;
-	}
-
-	public List<Adherent_Fonction> getFonctions() {
-		return fonctions;
-	}
-
-	public void setFonctions(List<Adherent_Fonction> paramFonctions) {
-		fonctions = paramFonctions;
-	}
-
-	public List<Adherent_Formation> getFormations() {
-		return formations;
-	}
-
-	public void setFormations(List<Adherent_Formation> paramFormations) {
-		formations = paramFormations;
-	}
-
 	public String getNumeroRue() {
 		return numeroRue;
 	}
 
-	public void setNumeroRue(String paramNumeroRue) {
-		numeroRue = paramNumeroRue;
+	public void setNumeroRue(String numeroRue) {
+		this.numeroRue = numeroRue;
 	}
 
 	public String getLibelleRue() {
 		return libelleRue;
 	}
 
-	public void setLibelleRue(String paramLibelleRue) {
-		libelleRue = paramLibelleRue;
+	public void setLibelleRue(String libelleRue) {
+		this.libelleRue = libelleRue;
 	}
 
-    public Section getSection() {
-        return section;
-    }
+	public String getCp() {
+		return cp;
+	}
 
-    public void setSection(Section paramSection) {
-        section = paramSection;
-    }
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
 
-    public Federation getFederation() {
-        return federation;
-    }
+	public String getVille() {
+		return ville;
+	}
 
-    public void setFederation(Federation paramFederation) {
-        federation = paramFederation;
-    }
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
 
-    public UnionDepartemental getUd() {
-        return ud;
-    }
+	public Syndicat getSyndicat() {
+		return syndicat;
+	}
 
-    public void setUd(UnionDepartemental paramUd) {
-        ud = paramUd;
-    }
+	public void setSyndicat(Syndicat syndicat) {
+		this.syndicat = syndicat;
+	}
 
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
+
+	public List<AdherentMandat> getMandats() {
+		return mandats;
+	}
+
+	public void setMandats(List<AdherentMandat> mandats) {
+		this.mandats = mandats;
+	}
+
+	public List<AdherentFormation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<AdherentFormation> formations) {
+		this.formations = formations;
+	}
+
+	@Override
+	public String toString() {
+		return "Adherent [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dob=" + dob + ", numeroRue="
+				+ numeroRue + ", libelleRue=" + libelleRue + ", cp=" + cp + ", ville=" + ville + ", tel=" + tel
+				+ ", mail=" + mail + ", syndicat=" + syndicat + ", entreprise=" + entreprise + ", mandats="
+				+ mandats + ", formations=" + formations + "]";
+	}
+
+	
+	
 }

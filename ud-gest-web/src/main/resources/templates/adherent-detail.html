@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+		th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Détails adhérent</h1>
+				<ol class="breadcrumb">
+					<li><a th:href="@{/ud-gest/show-adherent-search}">Rechercher adherent</a></li>
+					<li class="active">Détails adhérent</li>
+				</ol>
+			</div>
+		</div>
+		<div class='row'>
+			<form class="form-horizontal" role="form">
+				<div class='row'>
+					<div class="col-lg-12 form-group-adherent">
+						<p class="fa fa-inverse">Informations personnelles</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="nom" class="col-sm-2 control-label">Nom :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="nom_adherent"
+									id="nom_adherent" th:value="${adherent.nom}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="prenom" class="col-sm-2 control-label">Prénom :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="prenom_adherent"
+									id="prenom_adherent" th:value="${adherent.prenom}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="dob" class="col-sm-2 control-label">Dob :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="dob_adherent"
+									id="dob_adherent" th:value="${adherent.dob}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Téléphone
+								:</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="tel_adherent"
+									id="tel_adherent" th:value="${adherent.tel}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="mail" class="col-sm-2 control-label">Mail :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="mail_adherent"
+									id="mail_adherent" th:value="${adherent.mail}"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="nom_adherent"
+									id="num_rue_adherent" th:value="${adherent.numeroRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rue" class="col-sm-2 control-label">Rue :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="rue_adherent"
+									id="rue_adherent" th:value="${adherent.libelleRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="dob" class="col-sm-2 control-label">Cp :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="dob_adherent"
+									id="cp_adherent" th:value="${adherent.cp}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Ville :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="ville_adherent"
+									id="ville_adherent" th:value="${adherent.ville}"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="form-group-entreprise">
+								<span class="fa fa-inverse">Entreprise</span>
+								<a th:href="@{'/detail-entreprise/' + ${adherent.entreprise.id}}">
+									<span class="icon-search-overide glyphicon glyphicon-search"></span>
+								</a>	
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="libelle_entreprise" class="col-sm-2 control-label">Libellé :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="libelle_entreprise" id="libelle_entreprise" th:value="${adherent.entreprise.libelle}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="num_rue_entreprise" class="col-sm-2 control-label">N° :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="num_rue_entreprise" id="libelle_entreprise" th:value="${adherent.entreprise.numeroRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="libelle_rue_entreprise"
+								class="col-sm-2 control-label">Rue :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="libelle_rue_entreprise" id="libelle_rue_entreprise" th:value="${adherent.entreprise.libelleRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cp_entreprise" class="col-sm-2 control-label">Cp :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="cp_entreprise" id="cp_entreprise" th:value="${adherent.entreprise.cp}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ville_entreprise" class="col-sm-2 control-label">Ville :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="ville_entreprise"	id="ville_entreprise" th:value="${adherent.entreprise.ville}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel_entreprise" class="col-sm-2 control-label">Tel :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="tel_entreprise" id="tel_entreprise" th:value="${adherent.entreprise.tel}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="fax_entreprise" class="col-sm-2 control-label">Fax :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="fax_entreprise" id="fax_entreprise" th:value="${adherent.entreprise.fax}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="web_entreprise" class="col-sm-2 control-label">Site	web :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="web_entreprise" id="web_entreprise" th:value="${adherent.entreprise.siteWeb}"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="form-group-syndicat">
+								<span class="fa fa-inverse">Syndicat</span>	
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="libelle_syndicat" class="col-sm-2 control-label">Libellé :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="libelle_syndicat" id="libelle_syndicat" th:value="${adherent.syndicat.libelle}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="dernier_ag_syndicat" class="col-sm-2 control-label">Dern. Ag :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="dernier_ag_syndicat" id="dernier_ag_syndicat" th:value="${adherent.syndicat.dernierAg}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="prochain_ag_syndicat" class="col-sm-2 control-label">Proch. Ag :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="prochain_ag_syndicat" id="prochain_ag_syndicat" th:value="${adherent.syndicat.prochainAg}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="num_rue_syndicat" class="col-sm-2 control-label">N° :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="num_rue_syndicat" id="num_rue_syndicat" th:value="${adherent.syndicat.numeroRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rue_syndicat" class="col-sm-2 control-label">Rue :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="rue_syndicat" id="rue_syndicat" th:value="${adherent.syndicat.libelleRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cp_syndicat" class="col-sm-2 control-label">Cp :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="cp_syndicat" id="cp_syndicat" th:value="${adherent.syndicat.cp}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ville_syndicat" class="col-sm-2 control-label">Ville :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="ville_syndicat" id="ville_syndicat" th:value="${adherent.syndicat.ville}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel_syndicat" class="col-sm-2 control-label">Tel :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="tel_syndicat" id="tel_syndicat" th:value="${adherent.syndicat.tel}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="fax_syndicat" class="col-sm-2 control-label">Fax :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="fax_syndicat" id="fax_syndicat" th:value="${adherent.syndicat.fax}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="mail_syndicat" class="col-sm-2 control-label">Mail :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="mail_syndicat" id="mail_syndicat" th:value="${adherent.syndicat.mail}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="web_syndicat" class="col-sm-2 control-label">Site web :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control"	name="web_syndicat" id="web_syndicat" th:value="${adherent.syndicat.siteWeb}"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+</html>

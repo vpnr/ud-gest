@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Fonction;
+import fr.fo.ud.entity.Mandat;
 import fr.fo.ud.entity.Formation;
 import fr.fo.ud.entity.Syndicat;
 
@@ -22,7 +22,7 @@ public interface IDaoAdherent {
 	 * @param adh un adherent
 	 * @return
 	 */
-    Adherent add(Adherent adh);
+    Adherent save(Adherent adh);
     
     /**
      * Methode permettant de modifier les informations d'un adherent dans l'unite de persistence.
@@ -37,6 +37,8 @@ public interface IDaoAdherent {
      * @return
      */
     Adherent delete(Adherent adh);
+    
+    List<Adherent> findAll();
     
     Adherent findById(Integer id);
     
@@ -99,5 +101,5 @@ public interface IDaoAdherent {
     
     List<Adherent> findByFormation(Formation formation);
     
-    List<Adherent> findByFonction(Fonction fonction);
+    List<Adherent> findByMandat(Mandat mandat);
 }

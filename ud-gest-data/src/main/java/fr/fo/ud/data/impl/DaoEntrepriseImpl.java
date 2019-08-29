@@ -6,52 +6,71 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.fo.ud.data.api.IDaoEntreprise;
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Ville;
 
+@Repository
+@Transactional
 public class DaoEntrepriseImpl implements IDaoEntreprise {
 
-	@PersistenceContext(unitName = "Udgest_Entity")
-	EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 	
+	@Override
 	public Entreprise add(Entreprise paramEntreprise) {
 		em.persist(paramEntreprise);
 		return paramEntreprise;
 	}
 
+	@Override
 	public Entreprise update(Entreprise paramEntreprise) {
-		// TODO Auto-generated method stub
-		return null;
+		em.merge(paramEntreprise);
+		return paramEntreprise;
 	}
 
+	@Override
 	public Entreprise delete(Entreprise paramEntreprise) {
-		// TODO Auto-generated method stub
-		return null;
+		em.remove(paramEntreprise);
+		return paramEntreprise;
 	}
 
-	public Entreprise getById(Integer paramId) {
-		Query q = em.createQuery("select e from Entreprise e left join fetch e.adherents where e.id =:pId");
-		q.setParameter("pId", paramId);
-		return (Entreprise) q.getSingleResult();
+	@Override
+	public List<Entreprise> findAll() {
+		return em.createQuery("select e from Entreprise e order by e.libelle", Entreprise.class).getResultList();
 	}
-
-	public List<Entreprise> getByMotCle(String paramMotCle) {
-		Query q = em.createQuery("select e from Entreprise e  where e.libelle like :pLibelle order by e.libelle");
-		q.setParameter("pLibelle", paramMotCle + "%");
-		return q.getResultList();
-	}
-
-	public List<Entreprise> getByVille(Ville paramVille) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<Entreprise> getAll() {
-		Query q = em.createQuery("select e from Entreprise e order by e.libelle");
-		return q.getResultList();
-	}
-
 	
+	@Override
+	public Entreprise findById(Integer paramId) {
+		return em.createQuery("select e from Entreprise e where e.id =:pId", Entreprise.class).setParameter("pId", paramId).getSingleResult();
+	}
+	
+	@Override
+	public Entreprise findByLibelle(String libelle) {
+		return em.createQuery("select e from Entreprise e where e.libelle = :libelle", Entreprise.class).setParameter("libelle", libelle).getSingleResult();
+	}
+
+	@Override
+	public List<Entreprise> findByMotCle(String paramMotCle) {
+		return em.createQuery("select e from Entreprise e  where e.libelle like :pLibelle order by e.libelle", Entreprise.class).setParameter("pLibelle", "%" + paramMotCle + "%").getResultList();
+	}
+
+	@Override
+	public List<String> findAllLibelleByMotCle(String motCle) {
+		return em.createQuery("select libelle from Entreprise e where e.libelle like :motCle", String.class).setParameter("motCle", "%" + motCle + "%").getResultList();
+	}
+
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select e.libelle from Entreprise e order by e.libelle", String.class).getResultList();
+	}
+
+	@Override
+	public Long count(String libelle) {
+		return em.createQuery("select count(e) from Entreprise e where e.libelle = :libelle", Long.class).setParameter("libelle", libelle).getSingleResult();
+	}
 
 }

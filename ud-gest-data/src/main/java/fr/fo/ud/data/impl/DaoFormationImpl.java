@@ -2,11 +2,15 @@ package fr.fo.ud.data.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.fo.ud.data.api.IDaoFormation;
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Formation;
 
+@Repository
+@Transactional
 public class DaoFormationImpl implements IDaoFormation{
 
     public Formation add(Formation paramFormation) {
@@ -24,22 +28,22 @@ public class DaoFormationImpl implements IDaoFormation{
         return null;
     }
 
-    public Formation getById(Integer paramId) {
+    public Formation findById(Integer paramId) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public List<Formation> getAll() {
+    public List<Formation> findAll() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public List<Formation> getByMotCle(String paramMotCle) {
+    public List<Formation> findByMotCle(String paramMotCle) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public List<Formation> getByAdherent(Adherent paramAdherent) {
+    public List<Formation> findByAdherent(Adherent paramAdherent) {
         // TODO Auto-generated method stub
         return null;
     }

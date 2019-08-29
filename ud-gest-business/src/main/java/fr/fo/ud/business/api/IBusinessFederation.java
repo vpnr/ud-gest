@@ -2,22 +2,24 @@ package fr.fo.ud.business.api;
 
 import java.util.List;
 
-import fr.fo.ud.entity.Branche;
 import fr.fo.ud.entity.Federation;
 
 public interface IBusinessFederation {
 
-    Federation add(Federation federation);
+    public Federation add(Federation federation);
     
-    Federation update(Federation federation);
+    public Federation update(Federation federation);
     
-    Federation delete(Federation federation);
+    public Federation delete(int id);
     
-    Federation getById(Integer id);
+    public Federation getById(Integer id);
     
-    List<Federation> getAll();
+    public List<Federation> getAll();
+    
+    public Federation getByLibelle(String libelle);
+    
+    public List<String> getAllLibelles();
         
-    List<Federation> getByMotCle(String motCle);
+    public List<Federation> getByMotCle(String motCle);
     
-    List<Branche> getBranchesByFederation(Federation federation);
 }

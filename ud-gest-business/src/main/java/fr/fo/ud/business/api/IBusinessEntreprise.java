@@ -4,24 +4,29 @@ import java.util.List;
 
 import fr.fo.ud.entity.Adherent;
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Ville;
 
 public interface IBusinessEntreprise {
 
-	Entreprise add(Entreprise entreprise);
+	public Entreprise add(Entreprise entreprise);
 	
-	Entreprise update(Entreprise entreprise);
+	public Entreprise update(Entreprise entreprise);
 	
-	Entreprise delete(Entreprise entreprise);
+	public Entreprise delete(int id);
 	
-	Entreprise getById(Integer id);
+	public Entreprise getById(Integer id);
 	
-	List<Entreprise> getAll();
+	public List<Entreprise> getAll();
 	
-	List<Entreprise> getByMotCle(String motCle);
+	public List<Entreprise> getByMotCle(String motCle);
 	
-	List<Entreprise> getByVille(Ville ville);
+	public List<Entreprise> getEntrepriseByAdherent(Adherent adherent);
 	
-	List<Entreprise> getEntrepriseByAdherent(Adherent adherent);
+	public List<String> getAllLibelles();
+	
+	public Entreprise getByLibelle(String libelle);
+	
+	public List<String> getAllLibelleByMotCle(String motCle);
+	
+	public Long exist(String libelle);
 	
 }

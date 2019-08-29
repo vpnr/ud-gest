@@ -1,0 +1,568 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+		th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Ajouter adhérent</h1>
+				<ol class="breadcrumb">
+					<li><a th:href="@{/ud-gest/show-adherent-search}">Rechercher adherent</a></li>
+					<li class="active">Ajouter adhérent</li>
+				</ol>
+			</div>
+		</div>
+		<div class='row'>
+			<form class="form-horizontal" method="post" th:object="${adherent}" th:action="@{/ud-gest/save-adherent}">
+				<div class='row'>
+					<div class="col-lg-12 form-group-adherent">
+						<p class="fa fa-inverse">Informations personnelles</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="nom" class="col-sm-2 control-label">Nom :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{nom}" id="nom_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="prenom" class="col-sm-2 control-label">Prénom :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{prenom}" id="prenom_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="dob" class="col-sm-2 control-label">Dob :</label>
+							<div class="col-sm-8">
+								<input type="date" class="form-control" th:field="*{dob}" id="dob_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Téléphone
+								:</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{tel}" id="tel_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="mail" class="col-sm-2 control-label">Mail :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{mail}" id="mail_adherent"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{numeroRue}" id="num_rue_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rue" class="col-sm-2 control-label">Rue :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{libelleRue}" id="rue_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="dob" class="col-sm-2 control-label">Cp :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{cp}" id="cp_adherent"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Ville :</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" th:field="*{ville}" id="ville_adherent"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group-adherent">
+							<span class="fa fa-inverse">Entreprise</span>
+						</div>
+					</div>
+				</div>
+				<input id="id_entreprise" type="hidden" th:field="*{entreprise.id}"></input>
+				<div id="div_entreprise">
+					<div class='row'>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="libelle_entreprise" class="col-sm-2 control-label">Libellé :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.libelle}" id="libelle_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="date_election_entreprise" class="col-sm-2 control-label">Elections :</label>
+								<div class="col-sm-8">
+									<input th:type="date" class="form-control" th:value="${dateElection}" id="date_election"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tel_entreprise" class="col-sm-2 control-label">Téléphone :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.tel}" id="tel_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="fax_entreprise" class="col-sm-2 control-label">Fax :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.fax}" id="fax_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="mail_entreprise" class="col-sm-2 control-label">Mail :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.mail}" id="mail_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="web_entreprise" class="col-sm-2 control-label">Web :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.siteWeb}" id="web_entreprise"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="num_rue_entreprise" class="col-sm-2 control-label">N° :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.numeroRue}" id="num_rue_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="rue_entreprise" class="col-sm-2 control-label">Rue :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.libelleRue}" id="rue_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cp_entreprise" class="col-sm-2 control-label">Cp :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.cp}" id="cp_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="ville_entreprise" class="col-sm-2 control-label">Ville :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{entreprise.ville}" id="ville_entreprise"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="ville_entreprise" class="col-sm-2 control-label"></label>
+								<div class="col-sm-8 text-right">
+									<input type="button" id="clear_form_entreprise" class="btn btn-success btn-md" value="Effacer"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group-adherent">
+							<span class="fa fa-inverse">Syndicat</span>
+						</div>
+					</div>
+				</div>
+				<input id="id_syndicat" type="hidden" th:field="*{syndicat.id}"></input>
+				<div id="div_syndicat">
+					<div class='row'>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.libelle}" id="libelle_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="date_ag_syndicat" class="col-sm-2 control-label">AG :</label>
+								<div class="col-sm-8">
+									<input th:type="date" class="form-control" th:value="${dateAg}" id="date_ag"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tel" class="col-sm-2 control-label">Téléphone :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.tel}" id="tel_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="fax" class="col-sm-2 control-label">Fax :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.fax}" id="fax_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="mail" class="col-sm-2 control-label">Mail :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.mail}" id="mail_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="mail" class="col-sm-2 control-label">Web :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.siteWeb}" id="web_syndicat"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="num_rue" class="col-sm-2 control-label">N° :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.numeroRue}" id="num_rue_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="rue" class="col-sm-2 control-label">Rue :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.libelleRue}" id="rue_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cp" class="col-sm-2 control-label">Cp :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.cp}" id="cp_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="ville" class="col-sm-2 control-label">Ville :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" th:field="*{syndicat.ville}" id="ville_syndicat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="ville" class="col-sm-2 control-label"></label>
+								<div class="col-sm-8 text-right">
+									<input type="button" id="clear_form_syndicat" class="btn btn-success btn-md" value="Effacer"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group-adherent">
+							<span class="fa fa-inverse">Union départementale</span>
+						</div>
+					</div>
+				</div>
+				<div id="div_syndicat">
+					<div class='row'>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
+								<div class="col-sm-8">
+									<select class="form-control" th:value="${ud}" id="ud" name="ud">
+										<option></option>
+										<option th:each="ud : ${uds}" th:value="${ud}" th:text="${ud}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group-adherent">
+							<span class="fa fa-inverse">Fédération</span>
+						</div>
+					</div>
+				</div>
+				<div id="div_federation">
+					<div class='row'>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
+								<div class="col-sm-8">
+									<select class="form-control" th:value="${federation}" id="federation" name="federation">
+										<option></option>
+										<option th:each="federation : ${federations}" th:value="${federation}" th:text="${federation}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group-adherent">
+							<span class="fa fa-inverse">Mandats</span>
+						</div>
+					</div>
+				</div>
+				<input id="id_branche" type="hidden"></input>
+				<div id="div_mandat">
+					<div class='row'>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="libelle_mandat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Début :</label>
+								<div class="col-sm-8">
+									<input type="date" class="form-control" id="date_debut_mandat"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Fin :</label>
+								<div class="col-sm-8">
+									<input type="date" class="form-control" id="date_fin_formation"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"></label>
+								<div class="col-sm-8 text-right">
+									<input type="button" id="add_mandat" class="btn btn-success btn-md" value="Ajouter"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-5">
+							<table class="table table-striped">
+								<tr>
+									<td>Mandat1</td>
+									<td>23-06-2017</td>
+									<td>23-06-2018</td>
+									<td class="text-right"><a class="glyphicon glyphicon-remove red"></a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group-adherent">
+							<span class="fa fa-inverse">Formations</span>
+						</div>
+					</div>
+				</div>
+				<input id="id_branche" type="hidden"></input>
+				<div id="div_mandat">
+					<div class='row'>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Libellé :</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="libelle_formation"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="libelle" class="col-sm-2 control-label">Date :</label>
+								<div class="col-sm-8">
+									<input type="date" class="form-control" id="date_formation"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"></label>
+								<div class="col-sm-8 text-right">
+									<input type="button" id="add_formation" class="btn btn-success btn-md" value="Ajouter"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-5">
+							<table class="table table-striped">
+								<tr>
+									<td>Fonction1</td>
+									<td>23-06-2017</td>
+									<td class="text-right"><a class="glyphicon glyphicon-remove red"></a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<button type="button" class="btn btn-danger">Annuler</button>
+						<button type="submit" class="btn btn-success">Ajouter un adhérent</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+	<!-- jquery autocomplete pluggin -->
+	<script src="js/jquery.easy-autocomplete.min.js" th:src="@{/js/jquery.easy-autocomplete.min.js}"></script>
+		
+	<script type="text/javascript">
+	$(function() {
+		
+		$("#clear_form_entreprise").click(function() {
+			clearFormEntreprise();
+		});
+		
+		$("#clear_form_syndicat").click(function() {
+			clearFormSyndicat();
+			clearFormUd();
+			clearFormBranche();
+		});
+
+	    /** autocompletion pour l'entreprise **/
+		var optionsEntreprise = {
+			url : function(motCle) {
+				return "search-entreprise-ajax";
+			},
+			getValue : function(element) {
+				return element.libelle;
+			},
+			ajaxSettings : {
+				dataType : "json",
+				method : "POST",
+				data : {
+					dataType : "json"
+				}
+			},
+			preparePostData : function(data) {
+				data.motCle = $("#libelle_entreprise").val();
+				return data;
+			},
+			list : {
+				onChooseEvent : function() {
+					var entreprise = $("#libelle_entreprise").getSelectedItemData();
+					fillEntreprise(entreprise);
+				}
+			},
+			requestDelay : 10
+		};
+		$("#libelle_entreprise").easyAutocomplete(optionsEntreprise);
+		
+		/** autocompletion pour le syndicat **/
+		var optionsSyndicat = {
+			url : function(motCle) {
+				return "search-syndicat-ajax";
+			},
+			getValue : function(element) {
+				return element.libelle;
+			},
+			ajaxSettings : {
+				dataType : "json",
+				method : "POST",
+				data : {
+					dataType : "json"
+				}
+			},
+			preparePostData : function(data) {
+				data.motCle = $("#libelle_syndicat").val();
+				return data;
+			},
+			list : {
+				onChooseEvent : function() {
+					var syndicat = $("#libelle_syndicat").getSelectedItemData();
+					fillSyndicat(syndicat);
+				}
+			},
+			requestDelay : 10
+		};
+		$("#libelle_syndicat").easyAutocomplete(optionsSyndicat);
+	});
+
+		
+	function fillEntreprise(entreprise) {
+		$("#libelle_entreprise").prop("readonly", true);
+		$("#id_entreprise").val(entreprise.id);
+		$("#id_entreprise").prop("readonly", true);
+		$("#num_rue_entreprise").val(entreprise.numeroRue);
+		$("#num_rue_entreprise").prop("readonly", true);
+		$("#date_election").val(entreprise.dateElection);
+		$("#date_election").prop("readonly", true);
+		$("#rue_entreprise").val(entreprise.libelleRue);
+		$("#rue_entreprise").prop("readonly", true);
+		$("#cp_entreprise").val(entreprise.cp);
+		$("#cp_entreprise").prop("readonly", true);
+		$("#ville_entreprise").val(entreprise.ville);
+		$("#ville_entreprise").prop("readonly", true);
+		$("#tel_entreprise").val(entreprise.tel);
+		$("#tel_entreprise").prop("readonly", true);
+		$("#fax_entreprise").val(entreprise.fax);
+		$("#fax_entreprise").prop("readonly", true);
+		$("#mail_entreprise").val(entreprise.fax);
+		$("#mail_entreprise").prop("readonly", true);
+		$("#web_entreprise").val(entreprise.siteWeb);
+		$("#web_entreprise").prop("readonly", true);
+	}
+	
+	function fillSyndicat(syndicat) {
+		$("#libelle_syndicat").prop("readonly", true);
+		$("#id_syndicat").val(syndicat.id);
+		$("#id_syndicat").prop("readonly", true);
+		$("#num_rue_syndicat").val(syndicat.numeroRue);
+		$("#num_rue_syndicat").prop("readonly", true);
+		$("#rue_syndicat").val(syndicat.libelleRue);
+		$("#rue_syndicat").prop("readonly", true);
+		$("#cp_syndicat").val(syndicat.cp);
+		$("#cp_syndicat").prop("readonly", true);
+		$("#ville_syndicat").val(syndicat.ville);
+		$("#ville_syndicat").prop("readonly", true);
+		$("#tel_syndicat").val(syndicat.tel);
+		$("#tel_syndicat").prop("readonly", true);
+		$("#fax_syndicat").val(syndicat.fax);
+		$("#fax_syndicat").prop("readonly", true);
+		$("#mail_syndicat").val(syndicat.fax);
+		$("#mail_syndicat").prop("readonly", true);
+		$("#web_syndicat").val(syndicat.siteWeb);
+		$("#web_syndicat").prop("readonly", true);
+		
+		$("#federation").prop("readonly", true);
+		$("#federation").val(syndicat.federation.libelle);
+	}
+		
+	
+	function clearFormEntreprise() {
+		$("#libelle_entreprise").val("");
+		$("#libelle_entreprise").prop("readonly", false);
+		$("#id_entreprise").val("");
+		$("#id_entreprise").prop("readonly", false);
+		$("#num_rue_entreprise").val("");
+		$("#num_rue_entreprise").prop("readonly", false);
+		$("#date_election").text("");
+		$("#date_election").prop("readonly", false);
+		$("#rue_entreprise").val("");
+		$("#rue_entreprise").prop("readonly", false);
+		$("#cp_entreprise").val("");
+		$("#cp_entreprise").prop("readonly", false);
+		$("#ville_entreprise").val("");
+		$("#ville_entreprise").prop("readonly", false);
+		$("#tel_entreprise").val("");
+		$("#tel_entreprise").prop("readonly", false);
+		$("#fax_entreprise").val("");
+		$("#fax_entreprise").prop("readonly", false);
+		$("#mail_entreprise").val("");
+		$("#mail_entreprise").prop("readonly", false);
+		$("#web_entreprise").val("");
+		$("#web_entreprise").prop("readonly", false);
+	}
+	
+	function clearFormSyndicat() {
+		$("#libelle_syndicat").val("");
+		$("#libelle_syndicat").prop("readonly", false);
+		$("#id_syndicat").val("");
+		$("#id_syndicat").prop("readonly", false);
+		$("#num_rue_syndicat").val("");
+		$("#num_rue_syndicat").prop("readonly", false);
+		$("#rue_syndicat").val("");
+		$("#rue_syndicat").prop("readonly", false);
+		$("#cp_syndicat").val("");
+		$("#cp_syndicat").prop("readonly", false);
+		$("#ville_syndicat").val("");
+		$("#ville_syndicat").prop("readonly", false);
+		$("#tel_syndicat").val("");
+		$("#tel_syndicat").prop("readonly", false);
+		$("#fax_syndicat").val("");
+		$("#fax_syndicat").prop("readonly", false);
+		$("#mail_syndicat").val("");
+		$("#mail_syndicat").prop("readonly", false);
+		$("#web_syndicat").val("");
+		$("#web_syndicat").prop("readonly", false);
+	}
+	
+	</script>
+</html>

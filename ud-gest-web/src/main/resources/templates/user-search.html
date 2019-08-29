@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Administration</h1>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Accueil</a>
+                    </li>
+                    <li class="active">Administration</li>
+                </ol>
+            </div>
+        </div>
+		<div class="alert alert-info" role="alert">
+ 				<p>
+ 					<span class="glyphicon glyphicon-off"></span>
+ 					<span class="left10">Activer/Désactiver un compte utilisateur</span>
+ 				</p>
+		</div>
+		<table id="tableUser" class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<td>Login</td>
+					<td>Mail</td>
+					<td>Téléphone</td>
+					<td>Rôle</td>
+					<td>--</td>
+					<td>---</td>
+					<td>-</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.login}"></td>
+					<td th:text="${user.mail}"></td>
+					<td th:text="${user.tel}"></td>
+					<td th:text="${user.roles[0].role}"></td>
+					<td class="center-td">
+						<a th:href="@{'/admin/show-user-form/'+ ${user.id}}"><span class="glyphicon glyphicon-cog"></span></a>
+					</td>
+					<td class="center-td">
+						<a th:if="${user.active} == 1" th:href="@{'/ud-gest/admin/desactive-user/'+ ${user.id}}"><span class="glyphicon glyphicon-off red"></span></a>
+						<a th:if="${user.active} == 0" th:href="@{'/ud-gest/admin/active-user/'+ ${user.id}}"><span class="glyphicon glyphicon-off green"></span></a>
+					</td>
+					<td class="center-td">
+						<a th:href="@{'/ud-gest/admin/delete-user/'+ ${user.id}}"><span class="glyphicon glyphicon-trash"></span></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col-xs-12">
+				<a th:href="@{/ud-gest/admin/show-user-form}" class="link">Ajouter un utilisateur</a>
+			</div>
+		</div>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+
+<!-- jquery autocomplete pluggin -->
+<script src="js/jquery.easy-autocomplete.min.js" th:src="@{/js/jquery.easy-autocomplete.min.js}"></script>
+
+<script type="text/javascript">
+			$(document).ready(function() {
+			    $('#tableUser').dynatable();
+				$.dynatableSetup({
+					 inputs: {
+						 queryEvent: 'keyup'
+					 }
+				});
+			});
+			
+			$('tr').each(function(){
+			    $(this).find('td').eq(4).removeAttr('style');
+			    $(this).find('td').eq(4).addClass('text-center');
+			    $(this).find('td').eq(5).removeAttr('style');
+			    $(this).find('td').eq(5).addClass('text-center');
+			    $(this).find('td').eq(6).removeAttr('style');
+			    $(this).find('td').eq(6).addClass('text-center');
+			})
+			
+		</script>
+</html>

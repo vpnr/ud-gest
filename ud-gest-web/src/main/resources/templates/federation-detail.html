@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+		th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Détails fédération</h1>
+				<ol class="breadcrumb">
+					<li><a th:href="@{/ud-gest/show-federation-search}">Rechercher une fédération</a></li>
+					<li class="active">Détails fédération</li>
+				</ol>
+			</div>
+		</div>
+		<div class='row'>
+			<form class="form-horizontal" role="form" method="post" th:action="@{/ud-gest/update-federation}" th:object="${federation}">
+				<div class='row'>
+					<div class="col-lg-12 form-group-adherent">
+						<p class="fa fa-inverse">Informations Générales</p>
+					</div>
+				</div>
+				<input type="hidden" th:field="*{id}"></input>
+				<div class='row'>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="nom" class="col-sm-2 control-label">Libelle :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="libelle" id="libelle_federation" th:field="*{libelle}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Tel :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="tel" id="tel" th:field="*{tel}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="col-sm-2 control-label">Fax :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="fax" id="fax" th:field="*{fax}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="mail" class="col-sm-2 control-label">Mail :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="mail" id="mail" th:field="*{mail}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="web" class="col-sm-2 control-label">Site web :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="web" id="web" th:field="*{siteWeb}"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="num_rue" class="col-sm-2 control-label">N° :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="num_rue_syndicat" id="num_rue_federation" th:field="*{numeroRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rue" class="col-sm-2 control-label">Rue :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="rue_federation" id="rue_federation" th:field="*{libelleRue}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cp" class="col-sm-2 control-label">Cp :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="cp_federation" id="cp_federation" th:field="*{cp}"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="ville" class="col-sm-2 control-label">Ville :</label>
+							<div class="col-sm-8">
+								<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="ville_federation" id="ville_federation" th:field="*{ville}"></input>
+							</div>
+						</div>
+						<div class="form-group" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-8 text-right">
+								<button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
+								<button type="submit" class="btn btn-success btn-md">Modifier</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<form method="post" th:action="@{/ud-gest/delete-federation}">
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Supprimer la federation" aria-hidden="true">
+					<div class="modal-dialog vertical-align-center" role="document">
+						<div class="modal-content">
+							<div class="modal-body text-center top20">
+								<span class="glyphicon glyphicon-alert fa-5x orange bot20"></span>
+								<p class="top20 text-center">Etes-vous sûr de vouloir supprimer définitivement la fédération ?</p>
+								<input type="hidden" name="id" th:value="${federation.id}"></input>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success btn-md" data-dismiss="modal">Annuler</button>
+								<button type="submit" class="btn btn-danger btn-md">Confirmer</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>	
+			<div class="row">
+					<div class="col-lg-12 form-group-adherent">
+						<p class="fa fa-inverse">Syndicats</p>
+					</div>
+			</div>
+			<div class="row">
+				<table id="table_syndicat" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<td>Libelle</td>
+							<td>Tel</td>
+							<td>Fax</td>
+							<td>Mail</td>
+							<td>-</td>
+							<td th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">--</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="syndicat : ${federation.syndicats}">
+							<td th:text="${syndicat.libelle}"></td>
+							<td th:text="${syndicat.tel}"></td>
+							<td th:text="${syndicat.fax}"></td>
+							<td th:text="${syndicat.mail}"></td>
+							<td class="center-td">
+								<a th:href="@{'/show-syndicat-detail/'+ ${syndicat.id}}"><span class="glyphicon glyphicon-search"></span></a>
+							</td>
+							<td class="center-td" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}">
+								<a id="showModal" data-toggle="modal" data-target="#modalFederation" th:onclick="'showModal(' + ${syndicat.id} + ')'" class="glyphicon glyphicon-trash red"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="modalFederation" class="modal fade" tabindex="-1" role="dialog">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-body text-center top20">
+			            	<input id="idSyndicat" type="hidden"/>
+							<span class="glyphicon glyphicon-alert fa-5x orange bot20"></span>
+							<p class="top20 text-center">Etes-vous sûr de retirer le syndicat de la fédération? Le syndicat ne sera pas supprimé.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success btn-md" data-dismiss="modal">Annuler</button>
+							<button type="button" class="btn btn-danger btn-md" onclick="deleteEntity()">Confirmer</button>
+						</div>
+			        </div>
+			    </div>
+			</div>
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12 form-group-adherent"> -->
+<!-- 					<p class="fa fa-inverse">Fédérations</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="form-group"> -->
+<!-- 					<label for="branche" class="col-sm-2 control-label">Branche :</label> -->
+<!-- 					<div class="col-sm-8" th:each="branche : ${federation.branches}"> -->
+<!-- 						<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="hidden" id="id_branche" th:value="${branche.id}"></input> -->
+<!-- 						<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" id="libelle_branche" th:value="${branche.libelle}"></input> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+		</div>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+	
+<!-- jquery autocomplete pluggin -->
+<script src="js/jquery.easy-autocomplete.min.js" th:src="@{/js/jquery.easy-autocomplete.min.js}"></script>
+	
+<script th:inline="javascript" type="text/javascript">
+/*<![CDATA[*/
+	$(document).ready(function() {
+	    $('#table_syndicat').dynatable();
+		$.dynatableSetup({
+			 inputs: {
+				 queryEvent: 'keyup'
+			 }
+		});
+		$('tr').each(function(){
+		    $(this).find('td').eq(4).removeAttr('style');
+		    $(this).find('td').eq(4).addClass('text-center');
+		    $(this).find('td').eq(5).removeAttr('style');
+		    $(this).find('td').eq(5).addClass('text-center');
+		});
+		
+		/** autocompletion pour la branche **/
+		var optionsBranche = {
+			url : function(motCle) {
+				return "/ud-gest/search-branche-ajax";
+			},
+			getValue : function(element) {
+				return element.libelle;
+			},
+			ajaxSettings : {
+				dataType : "json",
+				method : "POST",
+				data : {
+					dataType : "json"
+				}
+			},
+			preparePostData : function(data) {
+				data.motCle = $("#libelle_branche").val();
+				$("#id_branche").val("");
+				return data;
+			},
+			list : {
+				onChooseEvent : function() {
+					var branche = $("#libelle_branche").getSelectedItemData();
+					fillBranche(branche);
+				}
+			},
+			requestDelay : 10
+		};
+		$("#libelle_branche").easyAutocomplete(optionsBranche);
+	});
+	
+	
+	function showModal(id) {
+		$('#idSyndicat').val(id);
+	};
+	
+	function deleteEntity() {
+	    var url = "/ud-gest/remove-syndicat-from-federation";
+	    $.post(url, {id:$("#idSyndicat").val()}, function() {
+	    	window.location.replace("/ud-gest/show-federation-detail/"+/*[[${federation.id}]]*/);
+	    });
+	}
+	
+	function fillBranche(branche) {
+		$("#libelle_branche").val(branche.libelle);
+		$("#id_branche").val(branche.id);
+		$("#id_branche").prop("readonly", true);
+	}
+	
+/*]]>*/		
+</script>
+</html>

@@ -6,12 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.fo.ud.data.api.IDaoUd;
 import fr.fo.ud.entity.UnionDepartemental;
 
+@Repository
+@Transactional
 public class DaoUdImpl implements IDaoUd {
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+    @PersistenceContext
     EntityManager em;
     
     public UnionDepartemental add(UnionDepartemental paramUd) {
@@ -29,25 +34,29 @@ public class DaoUdImpl implements IDaoUd {
         return paramUd;
     }
 
-    public List<UnionDepartemental> getAll() {
-        Query q = em.createQuery("select u from UnionDepartemental u order by u.libelle");
-        List<UnionDepartemental> uds;
-        uds = q.getResultList();
-        return uds;
+    public List<UnionDepartemental> findAll() {
+        return em.createQuery("select u from UnionDepartemental u", UnionDepartemental.class).getResultList();
     }
 
-    public List<UnionDepartemental> getByMotCle(String paramMotCle) {
+    public UnionDepartemental findById(Integer paramId) {
+    	return em.createQuery("select u from UnionDepartemental u where u.id =:pId", UnionDepartemental.class).setParameter("pId", paramId).getSingleResult();
+    }
+
+    public List<UnionDepartemental> findByMotCle(String paramMotCle) {
         Query q = em.createQuery("select u from UnionDepartemental u where u.libelle like :pLibelle or u.ville.libelle like :pVille order by u.libelle");
         q.setParameter("pLibelle", paramMotCle + "%");
         q.setParameter("pVille", paramMotCle + "%");
         return q.getResultList();
     }
 
-    public UnionDepartemental getById(Integer paramId) {
-        Query q = em.createQuery("select u from UnionDepartemental u left join fetch u.syndicats where u.id =:pId ");
-        q.setParameter("pId", paramId);
-        return (UnionDepartemental) q.getSingleResult();
-    }
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select u.libelle from UnionDepartemental u order by u.libelle", String.class).getResultList();
+	}
 
+	@Override
+	public UnionDepartemental findByLibelle(String libelle) {
+		return em.createQuery("select u from UnionDepartemental u where u.libelle =:libelle", UnionDepartemental.class).setParameter("libelle", libelle).getSingleResult();
+	}
     
 }

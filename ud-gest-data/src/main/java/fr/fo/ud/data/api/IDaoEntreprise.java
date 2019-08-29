@@ -3,10 +3,9 @@ package fr.fo.ud.data.api;
 import java.util.List;
 
 import fr.fo.ud.entity.Entreprise;
-import fr.fo.ud.entity.Ville;
 
 /**
- * Definition des services liées a la persistence pour l'entite {@link Entreprise}.
+ * Definition des services liees a la persistence pour l'entite {@link Entreprise}.
  * @author myPC
  *
  */
@@ -17,47 +16,53 @@ public interface IDaoEntreprise {
 	 * @param entreprise
 	 * @return
 	 */
-	Entreprise add(Entreprise entreprise);
+	public Entreprise add(Entreprise entreprise);
 	
 	/**
-	 * Methode permettant de modifier une {@link Entreprise} dans l'unité de persistence.
+	 * Methode permettant de modifier une {@link Entreprise} dans l'unite de persistence.
 	 * @param entreprise
 	 * @return
 	 */
-	Entreprise update(Entreprise entreprise);
+	public Entreprise update(Entreprise entreprise);
 	
 	/**
-	 * Methode permettant de supprimer une {@link Entreprise} dans l'unité de persitence.
+	 * Methode permettant de supprimer une {@link Entreprise} dans l'unite de persitence.
 	 * @param entreprise
 	 * @return
 	 */
-	Entreprise delete(Entreprise entreprise);
-	
-	/**
-	 * methode permettant de rechercher une {@link Entreprise} selon son id dans l'unité de persistence.
-	 * @param id
-	 * @return
-	 */
-	Entreprise getById(Integer id);
+	public Entreprise delete(Entreprise entreprise);
 	
 	/**
 	 * methode permettant de recuperer une liste de touts les entreprises de l'unite de persistence.
 	 * @return
 	 */
-	List<Entreprise> getAll();
+	public List<Entreprise> findAll();
+	
+	/**
+	 * methode permettant de rechercher une {@link Entreprise} selon son id dans l'unite de persistence.
+	 * @param id
+	 * @return
+	 */
+	public Entreprise findById(Integer id);
+	
+	/**
+	 * methode permettant de rechercher une {@link Entreprise} selon son libelle dans l'unite de persistence.
+	 * @param libelle
+	 * @return
+	 */
+	public Entreprise findByLibelle(String libelle);
 	
     /**
-     * Methode permettant de rechercher des {@link Entreprise} selon un mot clé.
+     * Methode permettant de rechercher des {@link Entreprise} selon un mot cle.
      * @param motCle
      * @return
      */
-    List<Entreprise> getByMotCle(String motCle);
+	public List<Entreprise> findByMotCle(String motCle);
+	
+	public List<String> findAllLibelles();
     
-    /**
-     * Methode permettant de rechercher une {@link Entreprise} selon sa ville dans l'unité de persistence.
-     * @param ville
-     * @return
-     */
-    List<Entreprise> getByVille(Ville ville);
+	public List<String> findAllLibelleByMotCle(String motCle);
+	
+	public Long count(String libelle);
     
 }

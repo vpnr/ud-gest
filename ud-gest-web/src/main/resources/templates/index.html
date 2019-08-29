@@ -1,0 +1,327 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="fragments/header :: header"></head>
+	<link href="css/style.css" rel="stylesheet" type="text/css" th:href="@{/css/fullcalendar.min.css}"/>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<h1>Index udgest</h1>
+<!-- 		<div sec:authentication="name"></div> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<div class="col-xs-3"> -->
+<!-- 					<label></label> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+
+		<div class="row bot20">
+			<div class="col-md-12">
+				<a href="#" th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}" id="add_event">Ajouter un évenement</a>
+			</div>
+		</div>
+		<form class="form-horizontal" method="post" th:action="@{/ud-gest/add-event}">
+			<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Détail de l'évènement" aria-hidden="true">
+				<div class="modal-dialog vertical-align-center" role="document">
+					<div class="modal-content">
+						<div class="modal-header bg-black">
+							<span class="fa fa-inverse top10">Evènement</span>
+						</div>
+						<div class="modal-body text-center top20">
+							<div class='row'>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label for="title" class="col-sm-2 control-label">Titre :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="title" id="title_add"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="start" class="col-sm-2 control-label">Start :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="start" id="start_add"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="end" class="col-sm-2 control-label">End :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="end" id="end_add"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label">Description :</label>
+										<div class="col-sm-9">
+											<textarea th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" rows="10" class="form-control" id="description_add" name="description"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label">Organisme :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="organisation" name="organisation">
+												<option value="0">Selectionner un organisme</option>
+												<option value="1">Branche</option>
+												<option value="2">Entreprise</option>
+												<option value="3">Fédération</option>
+												<option value="4">Section</option>
+												<option value="5">Syndicat</option>
+												<option value="6">Union départementale</option>
+											</select>
+										</div>
+									</div>
+									<div id="div-branche" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Branche :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="branche" name="branche">
+												<option></option>
+												<option th:each="branche : ${branches}" th:value="${branche}" th:text="${branche}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-entreprise" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Entreprise :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="entreprise" name="entreprise">
+												<option></option>
+												<option th:each="entreprise : ${entreprises}" th:value="${entreprise}" th:text="${entreprise}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-federation" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Federation :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="federation" name="federation">
+												<option></option>
+												<option th:each="federation : ${federations}" th:value="${federation}" th:text="${federation}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-section" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Section :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="section" name="section">
+												<option></option>
+												<option th:each="section : ${sections}" th:value="${section}" th:text="${section}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-syndicat" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Syndicat :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="syndicat" name="syndicat">
+												<option></option>
+												<option th:each="syndicat : ${syndicats}" th:value="${syndicat}" th:text="${syndicat}"></option>
+											</select>
+										</div>
+									</div>
+									<div id="div-ud" class="form-group" hidden="true">
+										<label for="description" class="col-sm-2 control-label">Ud :</label>
+										<div class="col-sm-9">
+											<select th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" class="form-control" id="ud" name="ud">
+												<option></option>
+												<option th:each="ud : ${uds}" th:value="${ud}" th:text="${ud}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer bg-black">
+							<button type="button" class="btn btn-success btn-xs" data-dismiss="modal">Annuler</button>
+							<button type="submit" class="btn btn-danger btn-xs">Ajouter</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div id='calendar'></div>
+		<form class="form-horizontal" method="post" th:action="@{/ud-gest/update-event}">
+			<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="Détail de l'évènement" aria-hidden="true">
+				<div class="modal-dialog vertical-align-center" role="document">
+					<div class="modal-content">
+						<div class="modal-header bg-black">
+							<span class="fa fa-inverse top10">Evènement</span>
+						</div>
+						<div class="modal-body text-center top20">
+							<div class='row'>
+								<div class="col-lg-12">
+									<div class="form-group">
+										<label for="title" class="col-sm-2 control-label">Libelle :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="text" class="form-control" name="title" id="title"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="start" class="col-sm-2 control-label">Start :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="start" id="start"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="end" class="col-sm-2 control-label">End :</label>
+										<div class="col-sm-9">
+											<input th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" type="date" class="form-control" name="end" id="end"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label">Description :</label>
+										<div class="col-sm-9">
+											<textarea th:attrappend="readonly=!${#strings.contains(#authentication.principal.authorities,'ADMIN')}" rows="10" class="form-control" id="description"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer bg-black">
+							<button type="button" class="btn btn-success btn-xs" data-dismiss="modal">Supprimer</button>
+							<button type="submit" class="btn btn-danger btn-xs">Modifier</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+<script src='js/moment.min.js' th:src="@{/js/moment.min.js}"></script>
+<script src="js/jquery.qtip.min.js" th:src="@{/js/jquery.qtip.min.js}"></script>
+<script src="js/fullcalendar.min.js" th:src="@{/js/fullcalendar.min.js}"></script>
+<script th:inline="javascript" type="text/javascript">
+/*<![CDATA[*/
+	$(document).ready(function() {
+	
+		$("#add_event").click(function() {
+			$("#addModal").modal('toggle');
+		});
+		
+		$("#organisation").change(function() {
+			if($("#organisation").val() == 0) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			}
+			if($("#organisation").val() == 1) {
+				$("#div-branche").toggle(true);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 2) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(true);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 3) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(true);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 4) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(true);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(false);
+			};
+			if($("#organisation").val() == 5) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(true);
+				$("#div-ud").toggle(false);
+			};
+			
+			if($("#organisation").val() == 6) {
+				$("#div-branche").toggle(false);
+				$("#div-entreprise").toggle(false);
+				$("#div-federation").toggle(false);
+				$("#div-section").toggle(false);
+				$("#div-syndicat").toggle(false);
+				$("#div-ud").toggle(true);
+			};
+				
+		});
+		
+	    // initialize the calendar
+	
+	    $('#calendar').fullCalendar({
+	    	events : "/ud-gest/fill-calendar",
+			eventClick: function(event) {
+				fillModal(event);
+				$("#eventModal").modal('toggle');
+			}
+// 	        eventRender: function(event, element) {
+// 	            element.qtip({
+// 	                content: event.description
+// 	            });
+// 	        }
+	    });
+	    
+	    function fillModal(event) {
+	    	$("#title").val(event.title);
+	    	$("#start").val(moment(event.start).format("YYYY-MM-DD"));
+	    	if(event.end == event.start) {
+	    		$("#end").val(moment(event.start).format("YYYY-MM-DD"));	
+	    	}
+	    	else {
+		    	$("#end").val(moment(event.end).add(-1, "d").format("YYYY-MM-DD"));
+	    	}
+	    	$("#description").text("");
+	    	$("#description").append("Description : " + event.description + "\n");
+	    	if(event.entreprise != null) {
+	    		$("#description").append("Entreprise : " + event.entreprise.libelle + "\n");
+	    		$("#description").append("Tel : " + event.entreprise.tel + "\n");
+	    		$("#description").append("Fax : " + event.entreprise.fax + "\n");
+	    		$("#description").append("Mail : " + event.entreprise.mail + "\n");
+	    		$("#description").append("Adresse : " + event.entreprise.numeroRue + " " + event.entreprise.libelleRue + "\n");
+	    		$("#description").append("                " + event.entreprise.cp + " " + event.entreprise.ville);
+	    	}
+	    	if(event.federation != null) {
+	    		$("#description").append("Fédération : " + event.federation.libelle + "\n");
+	    		$("#description").append("Tel : " + event.federation.tel + "\n");
+	    		$("#description").append("Fax : " + event.federation.fax + "\n");
+	    		$("#description").append("Mail : " + event.federation.mail + "\n");
+	    		$("#description").append("Adresse : " + event.federation.numeroRue + " " + event.federation.libelleRue + "\n");
+	    		$("#description").append("                " + event.federation.cp + " " + event.federation.ville);
+	    	}
+	    	if(event.section != null) {
+	    		$("#description").append("Section : " + event.section.libelle + "\n");
+	    		$("#description").append("Tel : " + event.section.tel + "\n");
+	    		$("#description").append("Fax : " + event.section.fax + "\n");
+	    		$("#description").append("Mail : " + event.section.mail + "\n");
+	    		$("#description").append("Adresse : " + event.section.numeroRue + " " + event.section.libelleRue + "\n");
+	    		$("#description").append("                " + event.section.cp + " " + event.section.ville);
+	    	}
+	    	if(event.syndicat != null) {
+	    		$("#description").append("Syndicat : " + event.syndicat.libelle + "\n");
+	    		$("#description").append("Tel : " + event.syndicat.tel + "\n");
+	    		$("#description").append("Fax : " + event.syndicat.fax + "\n");
+	    		$("#description").append("Mail : " + event.syndicat.mail + "\n");
+	    		$("#description").append("Adresse : " + event.syndicat.numeroRue + " " + event.syndicat.libelleRue + "\n");
+	    		$("#description").append("                " + event.syndicat.cp + " " + event.syndicat.ville);
+	    	}
+	    	if(event.ud != null) {
+	    		$("#description").append("Ud : " + event.ud.libelle + "\n");
+	    		$("#description").append("Tel : " + event.ud.tel + "\n");
+	    		$("#description").append("Fax : " + event.ud.fax + "\n");
+	    		$("#description").append("Mail : " + event.ud.mail + "\n");
+	    		$("#description").append("Adresse : " + event.ud.numeroRue + " " + event.ud.rue + "\n");
+	    		$("#description").append("                " + event.ud.cp + " " + event.ud.ville);
+	    	}
+	    }
+	});
+/*]]>*/	
+</script>
+</html>

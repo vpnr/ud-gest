@@ -2,7 +2,6 @@ package fr.fo.ud.business.impl;
 
 import java.util.List;
 
-import fr.fo.ud.business.api.IBusinessFonction;
 import fr.fo.ud.business.api.IBusinessFormation;
 import fr.fo.ud.data.api.IDaoFormation;
 import fr.fo.ud.entity.Formation;

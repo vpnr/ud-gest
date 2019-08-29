@@ -6,12 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.fo.ud.data.api.IDaoFederation;
 import fr.fo.ud.entity.Federation;
 
+@Transactional
+@Repository
 public class DaoFederationImpl implements IDaoFederation{
 
-    @PersistenceContext(unitName = "Udgest_Entity")
+    @PersistenceContext
     EntityManager em;
     
     public Federation add(Federation paramFederation) {
@@ -28,22 +33,27 @@ public class DaoFederationImpl implements IDaoFederation{
         em.remove(paramFederation);
         return paramFederation;
     }
-
-    public Federation getById(Integer paramId) {
-        Query q = em.createQuery("select f from Federation f left join fetch f.branches where f.id =:pId ");
-        q.setParameter("pId", paramId);
-        return (Federation) q.getSingleResult();
+    
+    public List<Federation> findAll() {
+    	return em.createQuery("select f from Federation f order by f.libelle", Federation.class).getResultList();
     }
 
-    public List<Federation> getAll() {
-        Query q = em.createQuery("select f from Federation f order by f.libelle");
-        return q.getResultList();
+    public Federation findById(Integer paramId) {
+    	return em.createQuery("select f from Federation f where f.id =:pId", Federation.class).setParameter("pId", paramId).getSingleResult();
     }
 
-    public List<Federation> getByMotCle(String paramMotCle) {
-        Query q = em.createQuery("select f from Federation f where f.libelle like :pLibelle order by f.libelle");
-        q.setParameter("pLibelle", paramMotCle + "%");
-        return q.getResultList();
+    public List<Federation> findByMotCle(String paramMotCle) {
+    	return em.createQuery("select f from Federation f where f.libelle like :pLibelle", Federation.class).setParameter("pLibelle", paramMotCle + "%").getResultList();
     }
+
+	@Override
+	public List<String> findAllLibelles() {
+		return em.createQuery("select f.libelle from Federation f order by f.libelle", String.class).getResultList();
+	}
+
+	@Override
+	public Federation findByLibelle(String libelle) {
+		return em.createQuery("select f from Federation f where f.libelle = :libelle", Federation.class).setParameter("libelle", libelle).getSingleResult();
+	}
     
 }

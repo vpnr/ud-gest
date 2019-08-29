@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:include="fragments/menu :: menu"></nav>
+	<div class="container">
+		<form th:action="@{/ud-gest/login}" method="POST" class="form-signin">
+			<div id="login-form">
+				<div class="row">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-6 text-center">
+						<img id="logo_login" alt="fo" th:src="@{/images/logoFO.png}" class="image-responsive"></img>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-6">
+						<input type="text" id="login_user" name="login_user" th:placeholder="Pseudo" class="form-control" /> <br />
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-6">
+						<input type="password" placeholder="Mot de passe" id="password_user" name="password_user" class="form-control" /> <br />
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<div  th:if="${param.error}" class="row">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-6">
+						<div class="alert alert-danger">
+							<p>Informations de connexions incorrectes.</p>
+						</div>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3"></div>
+					<div class="col-xs-6">
+						<button class="btn btn-md btn-default btn-block" name="Submit" value="Login" type="Submit">Se connecter</button>
+					</div>
+					<div class="col-xs-3"></div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+<div th:include="fragments/footer :: footer"></div>
+</html>

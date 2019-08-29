@@ -1,0 +1,38 @@
+version: "2"
+services:
+  db:
+    image: mysql:5.7
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile.db
+    ports:
+      - "3307:3306"
+    networks:
+      - udgest-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_udgest
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+  web:
+    image: vpnr/ud-gest-web
+    depends_on:
+      - db:
+        condition: service_healthy
+    volumes:
+      - ./conf:/app/conf
+      - ./cert:/app/cert
+    ports:
+      - "8980:8980"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DATABASE_HOST=db
+      - DATABASE_NAME=db_udgest
+      - DATABASE_PORT=3306
+    links:
+      - db
+    networks:
+      - udgest-network
+networks:
+  udgest-network:
+    driver: bridge
